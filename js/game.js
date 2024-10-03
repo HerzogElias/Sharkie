@@ -1,9 +1,10 @@
 let canves;
-let ctx;
-let charackter =new MovableObject();
+let world;
  
 function init() {
-    canves=document.getElementById('canvas');
-    ctx =canves.getContext('2d)');
-    console.log('My charackter is', charackter);
+    let canvas = document.getElementById('canvas');
+    world= new World(canvas);   
+    let ctx = canvas.getContext('2d'); // Korrigierte Anführungszeichen und "canvas"
+    
+    console.log('My character is', world.charackter);
 }
