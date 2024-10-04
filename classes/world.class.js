@@ -5,17 +5,15 @@ enemies = [
     new Chicken(),
     new Chicken (),
 ];
+canvas;
 ctx;
     constructor(canvas){
-        this.ctx=canvas.getContext('2d');   
-        this.draw();
+        this.ctx=canvas.getContext('2d');
+        this.canvas=canvas;   
+
     }
 
-    draw (){
-        let self = this;
-        this.ctx.drawImage(this.charackter.img, this.charackter.x, this.charackter.y ,this.charackter.height, this.charackter.width)
-        requestAnimationFrame(function(){
-            self.draw();
-        });
+    draw(){
+        this.ctx.drawImage(this.charackter.img, this.charackter.x, this.charackter.y,this.charackter.height) 
     }
 }
