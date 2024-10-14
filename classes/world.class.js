@@ -11,7 +11,7 @@ class World {
     ];
 
     backgroundObjects = [
-        new BackgroundObject('../img/3. Background/Layers/4.Fondo 2/D1.png', 0,480)
+        new BackgroundObject('./img/3. Background/Layers/4.Fondo 2/D1.png', 0, 100)
     ];
 
     canvas;
