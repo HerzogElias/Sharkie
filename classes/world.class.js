@@ -1,9 +1,13 @@
 class World {
     charackter = new Charackter();
-    enemies = [
-        new Chicken(),
-        new Chicken(),
-        new Chicken()
+    jellyFish = [
+        new JellyFish(),
+        new JellyFish(),
+        new JellyFish()
+    ];
+
+    pufferfish =[
+        new Pufferfish()
     ];
     clouds = [
         new Cloud(),
@@ -31,7 +35,8 @@ class World {
         this.addObcetsToMap(this.backgroundObjects);
         this.addToMap(this.charackter)
         this.addObcetsToMap(this.clouds);
-        this.addObcetsToMap(this.enemies);
+        this.addObcetsToMap(this.jellyFish);
+        this.addObcetsToMap(this.pufferfish)
         
      
         let self = this;
