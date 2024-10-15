@@ -11,7 +11,7 @@ class Charackter extends MovableObject{
             './img/1.Sharkie/3.Swim/5.png',
             './img/1.Sharkie/3.Swim/6.png'
         ]
-    currentImage=0; 
+  
 
     constructor(){
         super().loadImage('./img/1.Sharkie/2.Long_IDLE/i1.png')
