@@ -2,13 +2,14 @@ class World {
     charackter = new Charackter();
     jellyFish = [
         new JellyFish(),
-        new JellyFish(),
         new JellyFish()
     ];
 
     pufferfish =[
+        new Pufferfish(),
         new Pufferfish()
     ];
+
     clouds = [
         new Cloud(),
         new Cloud()
@@ -20,7 +21,7 @@ class World {
         new BackgroundObject('./img/3. Background/Layers/3.Fondo 1/L1.png', 0),
         new BackgroundObject('./img/3. Background/Layers/2. Floor/D1.png',0)
     ];
-
+    
     canvas;
     ctx;
 

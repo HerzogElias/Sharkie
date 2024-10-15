@@ -3,6 +3,7 @@ class Cloud extends MovableObject {
     y = 25;
     width = 350; 
     height = 250;
+   
 
     constructor() {
         super().loadImage('./img/3. Background/Legacy/Layers/1. Light/2.png');
@@ -10,8 +11,12 @@ class Cloud extends MovableObject {
     }
 
     animate() {
+        this.moveleft();
+    }
+
+    moveleft(){
         setInterval(() => { // Korrektur hier: das "=>" sollte nicht in Klammern stehen
-            this.x -= 0.15;
+            this.x -=this.speed;
         }, 1000 / 60);
     }
 }

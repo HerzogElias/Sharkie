@@ -6,6 +6,9 @@ class MovableObject {
     width=150;
     imageCache ={};
     currentImage=0; 
+    speed=0.15;
+
+
     loadImage(path) {
         this.img = new Image();
         this.img.src= path;
@@ -18,8 +21,13 @@ class MovableObject {
             this.imageCache[path]=img;
         });
     }
-    moveRight() {
+    moveright() {
         console.log('moving right');
     }
-    moveleft() {};
+    
+    moveleft(){
+        setInterval(() => { // Korrektur hier: das "=>" sollte nicht in Klammern stehen
+            this.x -=this.speed;
+        }, 1000 / 60);
+    }
 } 

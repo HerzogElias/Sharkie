@@ -16,6 +16,7 @@ class JellyFish extends MovableObject {
         super().loadImage('img/2.Enemy/2 Jelly fish/Dead/green/g1.png');
         this.x=200+Math.random()*500;
         this.y=50+Math.random()*250;
+        this.speed=0.15+Math.random()*0.13;
         this.loadImages(this.IMAGES_WALKING)
         this.animate();
     } 
