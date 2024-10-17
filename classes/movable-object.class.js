@@ -26,8 +26,14 @@ class MovableObject {
     }
     
     moveleft(){
-        setInterval(() => { // Korrektur hier: das "=>" sollte nicht in Klammern stehen
+        setInterval(() => { 
             this.x -=this.speed;
         }, 1000 / 60);
+    }
+    playAnimation(imeges){
+    let i = this.currentImage % this.IMAGES_WALKING.length;
+    let path = imeges[i];
+    this.img=this.imageCache[path];
+    this.currentImage++;
     }
 } 
