@@ -1,9 +1,6 @@
 class World {
     charackter = new Charackter();
-    jellyFish= Level1.jellyFish;
-    pufferfish =Level1.pufferfish;
-    clouds =Level1.clouds;
-    backgroundObjects =Level1.backgroundObjects;
+    level=Level1;
     
     canvas;
     ctx;
@@ -25,11 +22,11 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x,0);
-        this.addObcetsToMap(this.backgroundObjects);
+        this.addObcetsToMap(this.level.backgroundObjects);
         this.addToMap(this.charackter)
-        this.addObcetsToMap(this.clouds);
-        this.addObcetsToMap(this.jellyFish);
-        this.addObcetsToMap(this.pufferfish);
+        this.addObcetsToMap(this.level.clouds);
+        this.addObcetsToMap(this.level.jellyFish);
+        this.addObcetsToMap(this.level.pufferfish);
         this.ctx.translate(-this.camera_x,0);
      
         let self = this;

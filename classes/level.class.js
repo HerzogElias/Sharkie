@@ -3,6 +3,7 @@ class level {
     pufferfish;
     clouds;
     backgroundObjects;
+    level_x_End= 2200;
 
     constructor(jellyFish,pufferfish,clouds,backgroundObjects) {
         this.jellyFish=jellyFish;
