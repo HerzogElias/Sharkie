@@ -1,44 +1,9 @@
 class World {
     charackter = new Charackter();
-    jellyFish = [
-        new JellyFish(),
-        new JellyFish()
-    ];
-
-    pufferfish =[
-        new Pufferfish(),
-        new Pufferfish()
-    ];
-
-    clouds = [
-        new Cloud(),
-        new Cloud()
-    ];
-
-    backgroundObjects = [
-        new BackgroundObject('./img/3. Background/Layers/5. Water/D1.png',-719),
-        new BackgroundObject('./img/3. Background/Layers/4.Fondo 2/D2.png', -719),
-        new BackgroundObject('./img/3. Background/Layers/3.Fondo 1/L2.png', -719),
-        new BackgroundObject('./img/3. Background/Layers/2. Floor/D2.png',-719),
-
-        new BackgroundObject('./img/3. Background/Layers/5. Water/D2.png',0),
-        new BackgroundObject('./img/3. Background/Layers/4.Fondo 2/D1.png', 0),
-        new BackgroundObject('./img/3. Background/Layers/3.Fondo 1/L1.png', 0),
-        new BackgroundObject('./img/3. Background/Layers/2. Floor/D1.png',0),
-        new BackgroundObject('./img/3. Background/Layers/5. Water/D1.png',719),
-        new BackgroundObject('./img/3. Background/Layers/4.Fondo 2/D2.png', 719),
-        new BackgroundObject('./img/3. Background/Layers/3.Fondo 1/L2.png', 719),
-        new BackgroundObject('./img/3. Background/Layers/2. Floor/D2.png',719),
-
-        new BackgroundObject('./img/3. Background/Layers/5. Water/D2.png',719*2),
-        new BackgroundObject('./img/3. Background/Layers/4.Fondo 2/D1.png', 719*2),
-        new BackgroundObject('./img/3. Background/Layers/3.Fondo 1/L1.png', 719*2),
-        new BackgroundObject('./img/3. Background/Layers/2. Floor/D1.png',719*2),
-        new BackgroundObject('./img/3. Background/Layers/5. Water/D1.png',719*3),
-        new BackgroundObject('./img/3. Background/Layers/4.Fondo 2/D2.png', 719*3),
-        new BackgroundObject('./img/3. Background/Layers/3.Fondo 1/L2.png', 719*3),
-        new BackgroundObject('./img/3. Background/Layers/2. Floor/D2.png',719*3),
-    ];
+    jellyFish= Level1.jellyFish;
+    pufferfish =Level1.pufferfish;
+    clouds =Level1.clouds;
+    backgroundObjects =Level1.backgroundObjects;
     
     canvas;
     ctx;
