@@ -24,22 +24,28 @@ class Charackter extends MovableObject{
         setInterval(() => {
             if(this.world.keyboard.RIGHT) {
                 this.x +=this.speed;
+                this.otherDirection=false;
             }
 
             if(this.world.keyboard.LEFT) {
                 this.x -=this.speed;
+                this.otherDirection=true;
             }
+            this.world.camera_x=-this.x;
+        }, 1000/60);
 
+        setInterval(() => {
             if(this.world.keyboard.DOWN) {
                 this.y +=this.speed;
+                this.otherDirection=false;
             }
 
             if(this.world.keyboard.UP) {
                 this.y -=this.speed;
+                this.otherDirection=false;
             }
         }, 1000/60);
 
-        
         setInterval(() => {
         let i = this.currentImage % this.IMAGES_WALKING.length;
         let path = this.IMAGES_WALKING[i];
