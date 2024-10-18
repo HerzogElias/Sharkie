@@ -1,6 +1,7 @@
 const Level1 = new level(
     [
         new JellyFish(),
+        new JellyFish(),
         new JellyFish()
     ],
     [
