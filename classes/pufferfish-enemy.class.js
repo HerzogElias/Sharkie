@@ -1,7 +1,7 @@
 class Pufferfish extends MovableObject {
     width=60;
     height=60;
-
+    speed=10;
     IMAGES_WALKING=
     [
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png',
@@ -24,5 +24,11 @@ class Pufferfish extends MovableObject {
         setInterval(() => {
            this.playAnimation(this.IMAGES_WALKING)
         },1000)
+    }
+
+    moveleft(){
+        setInterval(() => { 
+            this.x -=this.speed;
+        }, 1000 / 60);
     }
 }

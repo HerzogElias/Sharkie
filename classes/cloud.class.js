@@ -15,7 +15,7 @@ class Cloud extends MovableObject {
     }
 
     moveleft(){
-        setInterval(() => { // Korrektur hier: das "=>" sollte nicht in Klammern stehen
+        setInterval(() => {
             this.x -=this.speed;
         }, 1000 / 60);
     }

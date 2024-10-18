@@ -1,7 +1,7 @@
 class World {
     charackter = new Charackter();
     level=Level1;
-    
+    Endboss;
     canvas;
     ctx;
     keyboard; 
@@ -27,6 +27,7 @@ class World {
         this.addObcetsToMap(this.level.clouds);
         this.addObcetsToMap(this.level.jellyFish);
         this.addObcetsToMap(this.level.pufferfish);
+        this.addObcetsToMap(this.level.Endboss);
         this.ctx.translate(-this.camera_x,0);
      
         let self = this;

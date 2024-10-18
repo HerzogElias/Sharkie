@@ -1,5 +1,6 @@
 class Endboss extends MovableObject{
-
+    width= 350;
+    height=350;
     IMAGES_WALKING=[
         'img/2.Enemy/3 Final Enemy/2.floating/1.png',
         'img/2.Enemy/3 Final Enemy/2.floating/2.png',
@@ -20,13 +21,12 @@ class Endboss extends MovableObject{
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
         this.x=2000;
-        this.y=200;
+        this.y=100;
         this.animate();
     }
 
     animate(){
         setInterval(() => {
-            console.log('Animation wird abgespielt');
            this.playAnimation(this.IMAGES_WALKING)
         },200)
     }
