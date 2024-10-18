@@ -18,6 +18,7 @@ class Pufferfish extends MovableObject {
         this.speed=0.15+Math.random()*0.25;
         this.loadImages(this.IMAGES_WALKING)
         this.animate();
+        this.moveleft();
     } 
 
     animate(){
@@ -25,6 +26,8 @@ class Pufferfish extends MovableObject {
            this.playAnimation(this.IMAGES_WALKING)
         },1000)
     }
+
+    
 
     moveleft(){
         setInterval(() => { 

@@ -19,6 +19,7 @@ class Charackter extends MovableObject{
         super().loadImage('./img/1.Sharkie/2.Long_IDLE/i1.png')
         this.loadImages(this.IMAGES_WALKING)
         this.animate();
+        this.fallDown();
     }
 
     animate(){
@@ -43,18 +44,26 @@ class Charackter extends MovableObject{
             if(this.world.keyboard.DOWN &&this.y<390){
                 this.y +=this.speed;
                 this.otherDirection=false;
-            
             }
 
             if(this.world.keyboard.UP &&this.y >5){
                 this.y -=this.speed;
                 this.otherDirection=false;
-             
             }
         }, 1000/60);
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
         },200)
+    }
+
+    fallDown() {
+        setInterval(() => {
+            if (!this.world.keyboard.DOWN && !this.world.keyboard.UP) {
+                if (this.y < 380) {
+                    this.y += 2;
+                }
+            }
+        }, 1000 / 10);
     }
 }

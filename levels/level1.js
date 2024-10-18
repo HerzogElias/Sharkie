@@ -5,7 +5,9 @@ const Level1 = new level(
     ],
     [
         new Pufferfish(),
-        new Pufferfish()
+        new Pufferfish(),
+        new Pufferfish(),
+        new Pufferfish(),
     ],
 
     [
