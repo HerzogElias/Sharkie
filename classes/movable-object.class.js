@@ -8,6 +8,7 @@ class MovableObject {
     currentImage = 0;
     speed = 0.15;
     otherDirection = false;
+    energy = 100;
 
     loadImage(path) {
         this.img = new Image();
@@ -33,7 +34,14 @@ class MovableObject {
             this.y + this.height > mo.y &&
             this.x < mo.x &&
             this.y < mo.y + mo.height;
+    }
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
         }
+    }
 
     loadImages(arr) {
         arr.forEach(path => {

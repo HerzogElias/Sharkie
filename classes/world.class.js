@@ -7,13 +7,15 @@ class World {
     keyboard;
     camera_x = 100;
 
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkColissions();
+        this.checkColissionPufferfish();
+        this.checkColissionJellyFish();
     }
 
     setWorld() {
@@ -66,14 +68,25 @@ class World {
         this.ctx.restore();
     }
 
-    checkColissions() {
+    checkColissionPufferfish() {
         setInterval(() => {
             this.level.pufferfish.forEach((pufferfish) => {
                 if (this.charackter.isColiding(pufferfish)) {
-                    console.log('Testi')
+                   this.charackter.hit();
+                   console.log('Collision with Character', this.charackter.energy);        
                 }
-            }, 1000);
+            },200);
         } )
     }
-}
 
+    checkColissionJellyFish() {
+        setInterval(() => {
+            this.level.jellyFish.forEach((jellyFish) => {
+                if (this.charackter.isColiding(jellyFish)) {
+                    console.log('Testi');
+                }
+            }, 200);
+        } )
+    }
+
+}
