@@ -10,7 +10,7 @@ function init() {
     console.log('My character is', world.charackter);
 }
 window.addEventListener("keydown",(e) => {
-    console.log(e)
+   /* console.log(e)*/
 
     if (e.keyCode == 32 ) {
         keyboard.SPACE=true;
@@ -34,7 +34,7 @@ window.addEventListener("keydown",(e) => {
 
 
 window.addEventListener("keyup",(e) => {
-    console.log(e)
+/*    console.log(e)*/
 
     if (e.keyCode == 32 ) {
         keyboard.SPACE=false;

@@ -2,50 +2,57 @@ class MovableObject {
     x = 50;
     y = 250;
     img;
-    height=200;
-    width=150;
-    imageCache ={};
-    currentImage=0; 
-    speed=0.15;
+    height = 200;
+    width = 150;
+    imageCache = {};
+    currentImage = 0;
+    speed = 0.15;
     otherDirection = false;
 
     loadImage(path) {
         this.img = new Image();
-        this.img.src= path;
+        this.img.src = path;
     }
 
-    draw(ctx){
+    draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    drawBorder(ctx){
-        ctx.beginPath();
-        ctx.lineWidth ='5'
-        ctx.strokeStyle = 'blue';
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.stroke();
+    drawBorder(ctx) {
+        if (this instanceof Charackter || this instanceof Pufferfish || this instanceof JellyFish) {
+            ctx.beginPath();
+            ctx.lineWidth = '5'
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
     }
-    
-    loadImages(arr){
+
+    isColiding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
+        }
+
+    loadImages(arr) {
         arr.forEach(path => {
-            let img= new Image();
-            img.src=path;
-            this.imageCache[path]=img;
+            let img = new Image();
+            img.src = path;
+            this.imageCache[path] = img;
         });
     }
-    moveright() {
-        console.log('moving right');
-    }
-    
-    moveleft(){
-        setInterval(() => { 
-            this.x -=this.speed;
+
+    moveleft() {
+        setInterval(() => {
+            this.x -= this.speed;
         }, 1000 / 60);
     }
-    playAnimation(imeges){
-    let i = this.currentImage % this.IMAGES_WALKING.length;
-    let path = imeges[i];
-    this.img=this.imageCache[path];
-    this.currentImage++;
+
+    playAnimation(imeges) {
+        let i = this.currentImage % this.IMAGES_WALKING.length;
+        let path = imeges[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
     }
 } 

@@ -13,6 +13,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkColissions();
     }
 
     setWorld() {
@@ -50,7 +51,7 @@ class World {
         mo.drawBorder(this.ctx)
 
         if (mo.otherDirection) {
-          this.flipImageBack(mo);
+            this.flipImageBack(mo);
         }
     }
     flipImage(mo) {
@@ -60,8 +61,19 @@ class World {
         mo.x = mo.x * -1;
     }
 
-    flipImageBack(mo){
+    flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+    checkColissions() {
+        setInterval(() => {
+            this.level.pufferfish.forEach((pufferfish) => {
+                if (this.charackter.isColiding(pufferfish)) {
+                    console.log('Testi')
+                }
+            }, 1000);
+        } )
+    }
 }
+
