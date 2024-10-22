@@ -75,7 +75,7 @@ class World {
                    this.charackter.hit();
                    console.log('Collision with Character', this.charackter.energy);        
                 }
-            },200);
+            },2000);
         } )
     }
 
@@ -84,8 +84,9 @@ class World {
             this.level.jellyFish.forEach((jellyFish) => {
                 if (this.charackter.isColiding(jellyFish)) {
                     console.log('Testi');
+                    this.charackter.hit();
                 }
-            }, 200);
+            }, 2000);
         } )
     }
 
