@@ -6,6 +6,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 100;
+    statusBar = new Statusbar();
 
 
     constructor(canvas, keyboard) {
@@ -26,7 +27,13 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObcetsToMap(this.level.backgroundObjects);
-        this.addToMap(this.charackter)
+        this.addToMap(this.charackter);
+
+        this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0);
+
+        
         this.addObcetsToMap(this.level.clouds);
         this.addObcetsToMap(this.level.jellyFish);
         this.addObcetsToMap(this.level.pufferfish);
@@ -73,7 +80,7 @@ class World {
             this.level.pufferfish.forEach((pufferfish) => {
                 if (this.charackter.isColiding(pufferfish)) {
                    this.charackter.hit();
-                   console.log('Collision with Character', this.charackter.energy);        
+                    this.statusBar.setPercentage(this.charackter.energy);
                 }
             },2000);
         } )
@@ -83,8 +90,9 @@ class World {
         setInterval(() => {
             this.level.jellyFish.forEach((jellyFish) => {
                 if (this.charackter.isColiding(jellyFish)) {
-                    console.log('Testi');
                     this.charackter.hit();
+                    this.statusBar.setPercentage(this.charackter.energy);
+
                 }
             }, 2000);
         } )
