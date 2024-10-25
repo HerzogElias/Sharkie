@@ -17,6 +17,7 @@ class World {
         this.setWorld();
         this.checkColissionPufferfish();
         this.checkColissionJellyFish();
+        this.checkColissionCoins();
     }
 
     setWorld() {
@@ -33,7 +34,7 @@ class World {
         this.addToMap(this.statusBar);
         this.ctx.translate(this.camera_x, 0);
 
-        
+        this.addObcetsToMap(this.level.coins);
         this.addObcetsToMap(this.level.clouds);
         this.addObcetsToMap(this.level.jellyFish);
         this.addObcetsToMap(this.level.pufferfish);
@@ -80,7 +81,7 @@ class World {
             this.level.pufferfish.forEach((pufferfish) => {
                 if (this.charackter.isColiding(pufferfish)) {
                    this.charackter.hit();
-                    this.statusBar.setPercentage(this.charackter.energy);
+                   this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
                 }
             },2000);
         } )
@@ -91,8 +92,17 @@ class World {
             this.level.jellyFish.forEach((jellyFish) => {
                 if (this.charackter.isColiding(jellyFish)) {
                     this.charackter.hit();
-                    this.statusBar.setPercentage(this.charackter.energy);
+                    this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                }
+            }, 2000);
+        } )
+    }
 
+    checkColissionCoins() {
+        setInterval(() => {
+            this.level.coins.forEach((coin) => {
+                if (this.charackter.isColiding(coin)) {
+                    console.log('Coin getroffen');
                 }
             }, 2000);
         } )
