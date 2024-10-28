@@ -1,3 +1,9 @@
+@font-face {
+    font-family:"historia";
+    src: url("fonts/historia.ttf") format("truetype");
+  }
+
+
 body{
     display: flex;
     flex-direction: column;
@@ -8,6 +14,43 @@ body{
     height: 100%;
 }
 
+h1{
+    font-family: 'historia', Arial, Helvetica, sans-serif;
+    font-size: 72px;
+    font-weight: 200;
+    color: black;
+}
+
 canvas {
     background-color: black;
+    display: block;
 }
+
+@media only screen and (max-width:720) {
+    canvas {
+        height: 100%;
+    }
+} 
+
+
+@media only screen and (max-width:720px) {
+    canvas {
+        width: 100%;
+    }
+
+    .title{
+        display: none;
+    }
+}
+
+@media only screen and (max-height:480px) {
+    canvas {
+        height: 100vh;
+    }
+
+    .title{
+        display: none;
+    }
+}
+
+

@@ -8,7 +8,7 @@ class World {
     camera_x = 100;
     statusBar = new Statusbar();
 
-
+    
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -107,5 +107,4 @@ class World {
             }, 2000);
         } )
     }
-
 }

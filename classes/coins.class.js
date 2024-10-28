@@ -16,4 +16,5 @@ class Coins extends MovableObject {
         this.loadImages(this.IMAGE_COINS);
     }
 
+    
 }
