@@ -8,7 +8,7 @@ class World {
     camera_x = 100;
     statusBar = new Statusbar();
 
-    
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -18,6 +18,7 @@ class World {
         this.checkColissionPufferfish();
         this.checkColissionJellyFish();
         this.checkColissionCoins();
+        this.checkColissionGift();
     }
 
     setWorld() {
@@ -38,6 +39,7 @@ class World {
         this.addObcetsToMap(this.level.clouds);
         this.addObcetsToMap(this.level.jellyFish);
         this.addObcetsToMap(this.level.pufferfish);
+        this.addObcetsToMap(this.level.gift);
         this.addObcetsToMap(this.level.Endboss);
         this.ctx.translate(-this.camera_x, 0);
 
@@ -78,10 +80,11 @@ class World {
 
     checkColissionPufferfish() {
         setInterval(() => {
-            this.level.pufferfish.forEach((pufferfish) => {
+            this.level.pufferfish.forEach((pufferfish,index) => {
                 if (this.charackter.isColiding(pufferfish)) {
                    this.charackter.hit();
                    this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                   this.level.pufferfish.splice(index,1)
                 }
             },2000);
         } )
@@ -89,10 +92,11 @@ class World {
 
     checkColissionJellyFish() {
         setInterval(() => {
-            this.level.jellyFish.forEach((jellyFish) => {
+            this.level.jellyFish.forEach((jellyFish,index) => {
                 if (this.charackter.isColiding(jellyFish)) {
                     this.charackter.hit();
                     this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                    this.level.jellyFish.splice(index,1)
                 }
             }, 2000);
         } )
@@ -100,9 +104,22 @@ class World {
 
     checkColissionCoins() {
         setInterval(() => {
-            this.level.coins.forEach((coin) => {
+            this.level.coins.forEach((coin,index) => {
                 if (this.charackter.isColiding(coin)) {
                     console.log('Coin getroffen');
+                    this.level.coins.splice(index,1)
+                }
+            }, 2000);
+        } )
+    }
+
+
+    checkColissionGift() {
+        setInterval(() => {
+            this.level.gift.forEach((gift,index) => {
+                if (this.charackter.isColiding(gift)) {
+                    console.log('Gift getroffen');
+                    this.level.gift.splice(index,1)
                 }
             }, 2000);
         } )

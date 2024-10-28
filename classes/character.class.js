@@ -64,7 +64,7 @@ class Charackter extends MovableObject {
                 this.walking_sound.play();
             }
             this.world.camera_x = -this.x + 60;
-        }, 1000/60);
+        }, 1000 / 60);
 
 
         setInterval(() => {
@@ -77,18 +77,18 @@ class Charackter extends MovableObject {
                     this.y -= this.speed;
                     this.otherDirection = false;
                 }
-        }, 1000/60)
+        }, 1000 / 60)
 
 
         setInterval(() => {
             if (this.isDeat()) {
                 this.playAnimation(this.IMAGES_DEAD)
-            } else 
-            if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT)
-            } else 
-            this.playAnimation(this.IMAGES_WALKING);
-        },200)
+            } else
+                if (this.isHurt()) {
+                    this.playAnimation(this.IMAGES_HURT)
+                } else
+                    this.playAnimation(this.IMAGES_WALKING);
+        }, 200)
     }
 
 

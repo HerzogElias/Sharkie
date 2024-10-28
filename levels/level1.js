@@ -55,6 +55,11 @@ const Level1 = new level(
         new Coins(),
         new Coins(),
         new Coins()
+    ],
+
+    [  
+        new Gift(),
+        new Gift()
     ]
 );
 
