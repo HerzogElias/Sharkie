@@ -6,7 +6,10 @@ class World {
     ctx;
     keyboard;
     camera_x = 100;
-    statusBar = new Statusbar();
+    statusBar = new Statusbars();
+    statusBarGift = new GiftStatusbar();
+    stausBarCoin = new StatusbarCoin();
+    statusBarEndboss = new EndbossStatusbar();
 
 
     constructor(canvas, keyboard) {
@@ -15,10 +18,13 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkColissionPufferfish();
+        this.checkColissionPufferfish(); 1
         this.checkColissionJellyFish();
         this.checkColissionCoins();
+        this.checkColissionEndboss();
         this.checkColissionGift();
+        this.updateStatusbar(this.statusBarGift);
+        this.updateStatusbar(this.stausBarCoin);
     }
 
     setWorld() {
@@ -33,6 +39,9 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
+        this.addToMap(this.statusBarGift);
+        this.addToMap(this.stausBarCoin);
+        this.addToMap(this.statusBarEndboss);
         this.ctx.translate(this.camera_x, 0);
 
         this.addObcetsToMap(this.level.coins);
@@ -80,48 +89,68 @@ class World {
 
     checkColissionPufferfish() {
         setInterval(() => {
-            this.level.pufferfish.forEach((pufferfish,index) => {
+            this.level.pufferfish.forEach((pufferfish, index) => {
                 if (this.charackter.isColiding(pufferfish)) {
-                   this.charackter.hit();
-                   this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-                   this.level.pufferfish.splice(index,1)
+                    this.charackter.hit();
+                    this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                    this.level.pufferfish.splice(index, 1)
                 }
-            },2000);
-        } )
+            }, 2000);
+        })
     }
 
     checkColissionJellyFish() {
         setInterval(() => {
-            this.level.jellyFish.forEach((jellyFish,index) => {
+            this.level.jellyFish.forEach((jellyFish, index) => {
                 if (this.charackter.isColiding(jellyFish)) {
                     this.charackter.hit();
                     this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-                    this.level.jellyFish.splice(index,1)
+                    this.level.jellyFish.splice(index, 1)
                 }
             }, 2000);
-        } )
+        })
     }
 
     checkColissionCoins() {
         setInterval(() => {
-            this.level.coins.forEach((coin,index) => {
+            this.level.coins.forEach((coin, index) => {
                 if (this.charackter.isColiding(coin)) {
                     console.log('Coin getroffen');
-                    this.level.coins.splice(index,1)
+                    this.level.coins.splice(index, 1);
+                    this.updateStatusbar(this.stausBarCoin);
                 }
             }, 2000);
-        } )
+        })
     }
-
 
     checkColissionGift() {
         setInterval(() => {
-            this.level.gift.forEach((gift,index) => {
+            this.level.gift.forEach((gift, index) => {
                 if (this.charackter.isColiding(gift)) {
                     console.log('Gift getroffen');
-                    this.level.gift.splice(index,1)
+                    this.level.gift.splice(index, 1)
+                    this.updateStatusbar(this.statusBarGift);
                 }
             }, 2000);
-        } )
+        })
+    }
+
+    updateStatusbar(statusbar) {
+        console.log(statusbar);
+        if (statusbar.percentage < 100) {
+            statusbar.percentage += 20;
+            statusbar.setPercentage(statusbar.percentage);
+        }
+    }
+
+    checkColissionEndboss() {
+        setInterval(() => {
+            this.level.Endboss.forEach((endboss) => {
+                if (this.charackter.isColiding(endboss)) {
+                    this.charackter.hit(800);
+                    this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                }
+            }, 2000);
+        });
     }
 }

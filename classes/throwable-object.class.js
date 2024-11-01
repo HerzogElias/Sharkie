@@ -1,5 +1,7 @@
 class TrowableObject extends MovableObject {
-    
+        
 
-    constructor(){}
+    constructor(){
+        
+    }
 }
