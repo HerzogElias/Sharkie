@@ -15,6 +15,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.throwableObject = new ThrowableObject(this);
         this.draw();
         this.setWorld();
         this.checkColissionPufferfish(); 1
@@ -28,6 +29,7 @@ class World {
 
     setWorld() {
         this.charackter.world = this;
+        this.throwableObject.world = this; 
     }
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -49,7 +51,6 @@ class World {
         this.addObcetsToMap(this.level.pufferfish);
         this.addObcetsToMap(this.level.gift);
         this.addObcetsToMap(this.level.Endboss);
-        this.addObcetsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;

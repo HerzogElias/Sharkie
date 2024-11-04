@@ -21,25 +21,33 @@ class ThrowableObject extends MovableObject {
         super();
         this.loadImages(this.IMAGES_THROW);
         this.world = world;
+        this.bubbleY = 0;
+        this.bubbleSpeedY = 15;
 
+        this.initInputHandling();
+    }
+
+    initInputHandling() {
         setInterval(() => {
             if (this.world.keyboard.D) {
                 this.throwToEndboss();
-                this.throwBubble(this);
+                this.throwBubble();
             }
         }, 1000 / 60);
     }
 
-    throwBubble(mo) {
-        let bubbleX = mo.x + mo.width;
-        this.bubbleY = mo.y + mo.height * 0.5;
+    throwBubble() {
+        let bubbleX = this.x + this.width;
+        this.bubbleY = this.y + this.height * 0.5;
 
-        setInterval(() => {
+        const bubbleAnimation = setInterval(() => {
             this.bubbleY -= this.bubbleSpeedY;
             this.bubbleSpeedY -= this.gravity;
-            if (this.bubbleSpeedY < -5) {
-                this.bubbleSpeedY = -5;
+
+            if (this.bubbleY < 0) {
+                clearInterval(bubbleAnimation);
             }
+
             this.draw(bubbleX, this.bubbleY);
         }, 1000 / 60);
     }
@@ -52,6 +60,7 @@ class ThrowableObject extends MovableObject {
         this.world.ctx.drawImage(this.img, x, y, this.width, this.height);
     }
 }
+
 
 
 

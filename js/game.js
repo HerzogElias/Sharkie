@@ -10,11 +10,7 @@ function init() {
     console.log('My character is', world.charackter);
 }
 window.addEventListener("keydown",(e) => {
-<<<<<<< HEAD
    /* console.log(e)*/
-=======
- /*  console.log(e) */
->>>>>>> c7b7d6e (change folder)
 
     if (e.keyCode == 32 ) {
         keyboard.SPACE=true;
@@ -35,22 +31,14 @@ window.addEventListener("keydown",(e) => {
         keyboard.DOWN=true;
     }
 
-<<<<<<< HEAD
     if (e.keyCode ==68) {
-=======
-    if (e.keyCode == 68) {
->>>>>>> c7b7d6e (change folder)
         keyboard.D=true;
     }
 });
 
 
 window.addEventListener("keyup",(e) => {
-<<<<<<< HEAD
 /*    console.log(e)*/
-=======
- /*console.log(e) */
->>>>>>> c7b7d6e (change folder)
 
     if (e.keyCode == 32 ) {
         keyboard.SPACE=false;
@@ -71,11 +59,7 @@ window.addEventListener("keyup",(e) => {
         keyboard.DOWN=false;
     }
 
-<<<<<<< HEAD
     if (e.keyCode ==68) {
-=======
-    if (e.keyCode == 68) {
->>>>>>> c7b7d6e (change folder)
         keyboard.D=false;
     }
 });
