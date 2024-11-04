@@ -11,7 +11,6 @@ class World {
     stausBarCoin = new StatusbarCoin();
     statusBarEndboss = new EndbossStatusbar();
 
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -50,6 +49,7 @@ class World {
         this.addObcetsToMap(this.level.pufferfish);
         this.addObcetsToMap(this.level.gift);
         this.addObcetsToMap(this.level.Endboss);
+        this.addObcetsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;

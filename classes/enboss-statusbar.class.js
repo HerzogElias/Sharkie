@@ -1,5 +1,5 @@
 class EndbossStatusbar extends DrawableObject {
-    percentage = 0;
+    percentage = 100;
 
     IMAGES_GIFT_STATUSBAR = [
         'img/7.Myown/statusbar/0.png',

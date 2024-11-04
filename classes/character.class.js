@@ -2,6 +2,7 @@ class Charackter extends MovableObject {
     height = 100;
     width = 200;
     speed = 10;
+    world;
 
     IMAGES_WALKING =
         [
@@ -38,13 +39,13 @@ class Charackter extends MovableObject {
 
 
 
-    world;
     walking_sound = new Audio('audio/swimming.mp3')
-    constructor() {
+    constructor(world) {
         super().loadImage('./img/1.Sharkie/2.Long_IDLE/i1.png')
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
+        this.world=world;
         this.animate();
         this.fallDown();
     }
