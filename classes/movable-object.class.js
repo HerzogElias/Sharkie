@@ -4,8 +4,6 @@ class MovableObject extends DrawableObject{
     energy = 3000;
     lastHit=0;
 
-   
-
     isColiding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
