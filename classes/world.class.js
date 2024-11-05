@@ -10,12 +10,12 @@ class World {
     statusBarGift = new GiftStatusbar();
     stausBarCoin = new StatusbarCoin();
     statusBarEndboss = new EndbossStatusbar();
+    throwableObject = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.throwableObject = new ThrowableObject(this);
         this.draw();
         this.setWorld();
         this.checkColissionPufferfish(); 1
@@ -25,11 +25,11 @@ class World {
         this.checkColissionGift();
         this.updateStatusbar(this.statusBarGift);
         this.updateStatusbar(this.stausBarCoin);
+        this.checkThrowableObject()
     }
 
     setWorld() {
         this.charackter.world = this;
-        this.throwableObject.world = this; 
     }
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -37,20 +37,20 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObcetsToMap(this.level.backgroundObjects);
         this.addToMap(this.charackter);
-
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBarGift);
         this.addToMap(this.stausBarCoin);
         this.addToMap(this.statusBarEndboss);
-        this.ctx.translate(this.camera_x, 0);
 
+        this.ctx.translate(this.camera_x, 0);
         this.addObcetsToMap(this.level.coins);
         this.addObcetsToMap(this.level.clouds);
         this.addObcetsToMap(this.level.jellyFish);
         this.addObcetsToMap(this.level.pufferfish);
         this.addObcetsToMap(this.level.gift);
         this.addObcetsToMap(this.level.Endboss);
+        this.addObcetsToMap(this.throwableObject);
         this.ctx.translate(-this.camera_x, 0);
 
         let self = this;
@@ -76,6 +76,8 @@ class World {
             this.flipImageBack(mo);
         }
     }
+
+    
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -86,6 +88,16 @@ class World {
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
+    }
+
+
+    checkThrowableObject(){
+        setInterval(() => {
+            if (this.keyboard.D) {
+                let bubble = new ThrowableObject(this.charackter.x, this.charackter.y);
+                this.throwableObject.push(bubble)
+            }
+        },1000/30);
     }
 
     checkColissionPufferfish() {
