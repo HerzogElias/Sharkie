@@ -94,8 +94,8 @@ class World {
     checkThrowableObject(){
         setInterval(() => {
             if (this.keyboard.D) {
-                let bubble = new ThrowableObject(this.charackter.x, this.charackter.y);
-                this.throwableObject.push(bubble)
+                let bubble = new ThrowableObject(this.charackter.x + this.charackter.width, this.charackter.y + this.charackter.height / 2);
+                this.throwableObject.push(bubble);
             }
         },1000/30);
     }
