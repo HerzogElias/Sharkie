@@ -16,27 +16,25 @@ class ThrowableObject extends MovableObject {
     throw(x, y) {
         this.x = x;
         this.y = y;
-        this.SpeedY = -15; // GEÄNDERT: Startwert für SpeedY, um die Bubble nach oben zu werfen
+        this.SpeedY = -15;
         this.applyGravityY();
         this.applyGravityX();
     }
 
     applyGravityX() {
         setInterval(() => {
-            this.x += 5; // Bewegt die Bubble nach rechts
+            this.x += 5;
         }, 25);
     }
 
     applyGravityY() {
         setInterval(() => {
-            // GEÄNDERT: y-Position mit SpeedY addieren, um die Bewegung zu simulieren
             this.y += this.SpeedY;
             
-            // GEÄNDERT: Schwerkraft anwenden, SpeedY erhöhen
-            if (this.y >= 420) { // Beispiel-Bodenwert
-                this.SpeedY = 0; // Stoppt die Bewegung, wenn der Boden erreicht wird
+            if (this.y >= 420) {
+                this.SpeedY = 0;
             } else {
-                this.SpeedY += this.gravity; // GEÄNDERT: Schwerkraft hinzufügen
+                this.SpeedY += this.gravity; 
             }
         }, 1000 / 25);
     }
