@@ -90,15 +90,32 @@ class World {
         this.ctx.restore();
     }
 
-
+/*
     checkThrowableObject(){
         setInterval(() => {
-            if (this.keyboard.D) {
+            if (this.keyboard.D && this.statusBarGift.percentage > 0) {
                 let bubble = new ThrowableObject(this.charackter.x + this.charackter.width, this.charackter.y + this.charackter.height / 2);
                 this.throwableObject.push(bubble);
-            }
+            } 
         },1000/30);
-    }
+    }*/
+
+        checkThrowableObject() {
+            window.addEventListener("keydown", (event) => {
+                // Nur Bubbles werfen, wenn genug Gift vorhanden ist
+                if (event.key === "d" && this.statusBarGift.percentage > 0) {
+                    let bubble = new ThrowableObject(
+                        this.charackter.x + this.charackter.width,
+                        this.charackter.y + this.charackter.height / 2
+                    );
+                    this.throwableObject.push(bubble);
+    
+                    // Reduziert das Gift um einen bestimmten Prozentsatz, wenn ein Bubble geworfen wird
+                    this.statusBarGift.percentage -= 5; // oder jede andere Menge
+                    this.statusBarGift.setPercentage(this.statusBarGift.percentage);
+                }
+            });
+        }
 
     checkColissionPufferfish() {
         setInterval(() => {

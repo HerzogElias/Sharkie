@@ -93,7 +93,7 @@ class Charackter extends MovableObject {
         }, 1000 / 60)
 
         setInterval(() => {
-            if(this.world.keyboard.D){
+            if(this.world.keyboard.D && this.world.statusBarGift.percentage>0){
                 this.playAnimation(this.IMAGES_THROW);
             }
         }, 1000/60);
