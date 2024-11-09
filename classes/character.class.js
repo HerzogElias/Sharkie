@@ -6,12 +6,12 @@ class Charackter extends MovableObject {
 
     IMAGES_WALKING =
         [
-            './img/1.Sharkie/3.Swim/1.png',
-            './img/1.Sharkie/3.Swim/2.png',
-            './img/1.Sharkie/3.Swim/3.png',
-            './img/1.Sharkie/3.Swim/4.png',
-            './img/1.Sharkie/3.Swim/5.png',
-            './img/1.Sharkie/3.Swim/6.png'
+            'img/1.Sharkie/3.Swim/1.png',
+            'img/1.Sharkie/3.Swim/2.png',
+            'img/1.Sharkie/3.Swim/3.png',
+            'img/1.Sharkie/3.Swim/4.png',
+            'img/1.Sharkie/3.Swim/5.png',
+            'img/1.Sharkie/3.Swim/6.png'
         ]
 
     IMAGES_DEAD =
@@ -49,6 +49,22 @@ class Charackter extends MovableObject {
     ];
 
 
+    IMAGES_SLEEPING = [
+        'img/1.Sharkie/2.Long_IDLE/i1.png',
+        'img/1.Sharkie/2.Long_IDLE/I2.png',
+        'img/1.Sharkie/2.Long_IDLE/I3.png',
+        'img/1.Sharkie/2.Long_IDLE/I4.png',
+        'img/1.Sharkie/2.Long_IDLE/I5.png',
+        'img/1.Sharkie/2.Long_IDLE/I6.png',
+        'img/1.Sharkie/2.Long_IDLE/I7.png',
+        'img/1.Sharkie/2.Long_IDLE/I8.png',
+        'img/1.Sharkie/2.Long_IDLE/I9.png',
+        'img/1.Sharkie/2.Long_IDLE/I10.png',
+        'img/1.Sharkie/2.Long_IDLE/I11.png',
+        'img/1.Sharkie/2.Long_IDLE/I12.png',
+        'img/1.Sharkie/2.Long_IDLE/I13.png',
+        'img/1.Sharkie/2.Long_IDLE/I14.png'
+    ]
 
     walking_sound = new Audio('audio/swimming.mp3')
     constructor(world) {
@@ -57,9 +73,11 @@ class Charackter extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_THROW);
-        this.world=world;
+        this.loadImages(this.IMAGES_SLEEPING);
+        this.world = world;
         this.animate();
         this.fallDown();
+        this.sleepingMode();
     }
 
     animate() {
@@ -93,10 +111,10 @@ class Charackter extends MovableObject {
         }, 1000 / 60)
 
         setInterval(() => {
-            if(this.world.keyboard.D && this.world.statusBarGift.percentage>0){
+            if (this.world.keyboard.D && this.world.statusBarGift.percentage > 0) {
                 this.playAnimation(this.IMAGES_THROW);
             }
-        }, 1000/60);
+        }, 1000 / 60);
 
         setInterval(() => {
             if (this.isDeat()) {
@@ -119,5 +137,21 @@ class Charackter extends MovableObject {
                 }
             }
         }, 1000 / 10);
+    }
+
+    sleepingMode() {
+        setInterval(() => {
+            if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT
+                && !this.world.keyboard.UP && !this.world.keyboard.DOWN
+                && !this.world.keyboard.D) {
+                setTimeout(() => {
+                    this.aktivateSleepingMode();
+                }, 10000);
+            }
+        }, 100);
+    }
+
+    aktivateSleepingMode() {
+        this.playAnimation(this.IMAGES_SLEEPING);
     }
 }

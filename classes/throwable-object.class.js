@@ -30,7 +30,6 @@ class ThrowableObject extends MovableObject {
     applyGravityY() {
         setInterval(() => {
             this.y += this.SpeedY;
-            
             if (this.y >= 420) {
                 this.SpeedY = 0;
             } else {
