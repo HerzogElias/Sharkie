@@ -23,9 +23,7 @@ class World {
         this.checkColissionCoins();
         this.checkColissionEndboss();
         this.checkColissionGift();
-        this.updateStatusbar(this.statusBarGift);
-        this.updateStatusbar(this.stausBarCoin);
-        this.checkThrowableObject()
+        this.checkThrowableObject();
     }
 
     setWorld() {
@@ -77,7 +75,7 @@ class World {
         }
     }
 
-    
+
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -90,32 +88,25 @@ class World {
         this.ctx.restore();
     }
 
-/*
-    checkThrowableObject(){
-        setInterval(() => {
-            if (this.keyboard.D && this.statusBarGift.percentage > 0) {
-                let bubble = new ThrowableObject(this.charackter.x + this.charackter.width, this.charackter.y + this.charackter.height / 2);
+    checkThrowableObject() {
+        window.addEventListener("keydown", (event) => {
+            // Nur Bubbles werfen, wenn genug Gift vorhanden ist
+            if (event.key === "d" && this.statusBarGift.percentage > 0) {
+                let bubble = new ThrowableObject(
+                    this.charackter.x + this.charackter.width,
+                    this.charackter.y + this.charackter.height / 2
+                );
                 this.throwableObject.push(bubble);
-            } 
-        },1000/30);
-    }*/
 
-        checkThrowableObject() {
-            window.addEventListener("keydown", (event) => {
-                // Nur Bubbles werfen, wenn genug Gift vorhanden ist
-                if (event.key === "d" && this.statusBarGift.percentage > 0) {
-                    let bubble = new ThrowableObject(
-                        this.charackter.x + this.charackter.width,
-                        this.charackter.y + this.charackter.height / 2
-                    );
-                    this.throwableObject.push(bubble);
-    
-                    // Reduziert das Gift um einen bestimmten Prozentsatz, wenn ein Bubble geworfen wird
-                    this.statusBarGift.percentage -= 5; // oder jede andere Menge
-                    this.statusBarGift.setPercentage(this.statusBarGift.percentage);
-                }
-            });
-        }
+                // Reduziert das Gift um einen bestimmten Prozentsatz, wenn ein Bubble geworfen wird
+                this.statusBarGift.percentage -= 5;
+                this.statusBarGift.setPercentage(this.statusBarGift.percentage);
+
+                // Überprüfe Kollision für die neue Bubble
+                this.checkCollisionWithThrowableObjects(bubble);
+            }
+        });
+    }
 
     checkColissionPufferfish() {
         setInterval(() => {
@@ -158,7 +149,7 @@ class World {
             this.level.gift.forEach((gift, index) => {
                 if (this.charackter.isColiding(gift)) {
                     console.log('Gift getroffen');
-                    this.level.gift.splice(index, 1)
+                    this.level.gift.splice(index, 1);
                     this.updateStatusbar(this.statusBarGift);
                 }
             }, 2000);
@@ -183,4 +174,30 @@ class World {
             }, 2000);
         });
     }
+    /*
+     checkCollisionWithThrowableObjects(){
+         setInterval(() => {
+             this.Endboss.forEach((endbossThrow) => {
+                 if(this.throwableObject[bubble].isColiding(endbossThrow)){
+                     console.log('Bubbles Colidieren mit Endboss');
+                 }
+             })
+         }, 2000); 
+     } */
+
+    checkCollisionWithThrowableObjects() {
+        setInterval(() => {
+            this.throwableObject.forEach((bubble) => { 
+                this.level.Endboss.forEach((endbossThrow) => {
+                    if (bubble.isColiding(endbossThrow)) {
+                        console.log('Bubbles kollidieren mit Endboss');
+                        this.level.Endboss[0].hit();
+                        this.statusBarEndboss.setPercentage(this.level.Endboss.energy*100/3000)
+                    }
+                });
+            });
+        }, 2000);
+    }
+
 }
+
