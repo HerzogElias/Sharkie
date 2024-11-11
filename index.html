@@ -22,7 +22,7 @@
     <script src="classes/coin-statusbar.class.js"></script>
     <script src="classes/enboss-statusbar.class.js"></script>
     <script src="classes/world.class.js"></script>
-     <script src="classes/throwable-object.class.js"></script>
+    <script src="classes/throwable-object.class.js"></script>
     <script src="classes/background.class.js"></script>
     <script src="classes/keyboard.class.js"></script>
     <script src="classes/level.class.js"></script>
@@ -31,8 +31,27 @@
     <script src="js/game.js"></script> 
 
 </head>
-<body onload="init()">
+<body onload="showStartscreen()">
     <h1 class="title">Sharkie</h1>
     <canvas id="canvas" width="720" height="480"></canvas>
+
+    <div class ="startscreen" id="startscreen"> 
+        <img class="background-screen"src="img/3. Background/Mesa de trabajo 1.png">
+        <h1 class="tittle">Dukes Sharky Game </h1>
+        <img onclick="init()" class="startscreen-button" src="img/6.Botones/Start/3.png">
+    </div> 
+
+    <div class="youwon" id="youwon"> 
+        <img class="background-screen" src="img/7.Myown/background_screen.jpg">
+        <img class="youWon-Title" src="img/6.Botones/Tittles/You win/Recurso 22.png">
+    </div>
+
+
+    <div class="youlost" id="youlost"> 
+        <img class="background-screen" src="img/7.Myown/background_screen.jpg">
+        <img class="youLost-Title" src="img/6.Botones/Try again/Recurso 15.png"> 
+   
+    </div>
+   
 </body>
 </html>
