@@ -24,6 +24,8 @@ class World {
         this.checkColissionEndboss();
         this.checkColissionGift();
         this.checkThrowableObject();
+        this.checkIfCharakterLostGame();
+        this.checkifCharackterWon();
     }
 
     setWorld() {
@@ -174,30 +176,50 @@ class World {
             }, 2000);
         });
     }
-    /*
-     checkCollisionWithThrowableObjects(){
-         setInterval(() => {
-             this.Endboss.forEach((endbossThrow) => {
-                 if(this.throwableObject[bubble].isColiding(endbossThrow)){
-                     console.log('Bubbles Colidieren mit Endboss');
-                 }
-             })
-         }, 2000); 
-     } */
 
     checkCollisionWithThrowableObjects() {
         setInterval(() => {
-            this.throwableObject.forEach((bubble) => { 
+            this.throwableObject.forEach((bubble) => {
                 this.level.Endboss.forEach((endbossThrow) => {
                     if (bubble.isColiding(endbossThrow)) {
                         console.log('Bubbles kollidieren mit Endboss');
                         this.level.Endboss[0].hit();
-                        this.statusBarEndboss.setPercentage(this.level.Endboss.energy*100/3000)
+                        this.statusBarEndboss.setPercentage(this.level.Endboss.energy * 100 / 3000)
                     }
                 });
             });
         }, 2000);
     }
 
+
+    checkifCharackterWon() {
+        setInterval(() => {
+            if (this.charackter.energy===0) {
+                this.showWinnerScreen()
+            }
+        },1);
+    }
+
+    showWinnerScreen() {
+        document.getElementById('canvas').classList.add('dnone');
+        document.getElementById('startscreen').classList.add('dnone');
+        document.getElementById('youwon').classList.remove('dnone');
+        document.getElementById('youlost').classList.add('dnone');
+    }
+
+    checkIfCharakterLostGame() {
+        setInterval(() =>{
+            if (this.statusBar.percentage === 0) {
+                this.schowLostscreen();
+            }
+        }, 1);
+    }
+
+    schowLostscreen() {
+        document.getElementById('canvas').classList.add('dnone');
+        document.getElementById('startscreen').classList.add('dnone');
+        document.getElementById('youwon').classList.add('dnone');
+        document.getElementById('youlost').classList.remove('dnone');
+    }
 }
 

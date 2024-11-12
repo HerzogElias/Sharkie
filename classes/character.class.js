@@ -154,4 +154,6 @@ class Charackter extends MovableObject {
     aktivateSleepingMode() {
         this.playAnimation(this.IMAGES_SLEEPING);
     }
+
+    
 }

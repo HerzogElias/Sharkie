@@ -34,4 +34,15 @@ class EndbossStatusbar extends DrawableObject {
         if (this.percentage > 20) return 1;
         return 0;
     }
+    
+    showWinnerScreen() {
+        document.getElementById('canvas').classList.add('dnone');
+        document.getElementById('startscreen').classList.add('dnone');
+        document.getElementById('youwon').classList.remove('dnone');
+        document.getElementById('youlost').classList.add('dnone');
+    }
+
+    
+
+    
 }

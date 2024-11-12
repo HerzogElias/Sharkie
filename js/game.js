@@ -79,20 +79,6 @@ function showGame() {
     document.getElementById('youlost').classList.add('dnone');
 }
 
-function showWinnerScreen() {
-    document.getElementById('canvas').classList.add('dnone');
-    document.getElementById('startscreen').classList.add('dnone');
-    document.getElementById('youwon').classList.remove('dnone');
-    document.getElementById('youlost').classList.add('dnone');
-}
-
-function schowLostscreen() {
-    document.getElementById('canvas').classList.add('dnone');
-    document.getElementById('startscreen').classList.add('dnone');
-    document.getElementById('youwon').classList.add('dnone');
-    document.getElementById('youlost').classList.remove('dnone');
-}
-
 
 
 

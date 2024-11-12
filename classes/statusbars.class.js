@@ -10,7 +10,6 @@ class Statusbars extends DrawableObject {
         'img/4. Marcadores/Purple/life100.png'
     ];
 
-   
     constructor() {
         super();
         this.x = 20;
