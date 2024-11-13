@@ -173,7 +173,7 @@ class World {
                     this.charackter.hit(800);
                     this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
                 }
-            }, 2000);
+            }, 1000/60);
         });
     }
 
@@ -183,21 +183,29 @@ class World {
                 this.level.Endboss.forEach((endbossThrow) => {
                     if (bubble.isColiding(endbossThrow)) {
                         console.log('Bubbles kollidieren mit Endboss');
-                        this.level.Endboss[0].hit();
-                        this.statusBarEndboss.setPercentage(this.level.Endboss.energy * 100 / 3000)
+                        this.level.Endboss[0].hit(600);
+                        this.statusBarEndboss.setPercentage(this.level.Endboss.energy * 1000 / 3000)
                     }
                 });
             });
-        }, 2000);
+        }, 1000/60);
     }
 
 
     checkifCharackterWon() {
         setInterval(() => {
             if (this.charackter.energy===0) {
-                this.showWinnerScreen()
+                this.schowLostscreen();
+                this.clearAllIntervals();
             }
         },1);
+    }
+
+    schowLostscreen() {
+        document.getElementById('canvas').classList.add('dnone');
+        document.getElementById('startscreen').classList.add('dnone');
+        document.getElementById('youwon').classList.add('dnone');
+        document.getElementById('youlost').classList.remove('dnone');
     }
 
     showWinnerScreen() {
@@ -209,17 +217,20 @@ class World {
 
     checkIfCharakterLostGame() {
         setInterval(() =>{
-            if (this.statusBar.percentage === 0) {
-                this.schowLostscreen();
+            if (this.level.Endboss[0].energy===0) {
+                this.showWinnerScreen();
             }
         }, 1);
     }
 
-    schowLostscreen() {
-        document.getElementById('canvas').classList.add('dnone');
-        document.getElementById('startscreen').classList.add('dnone');
-        document.getElementById('youwon').classList.add('dnone');
-        document.getElementById('youlost').classList.remove('dnone');
-    }
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+      }
+
+    start(){
+        console.log('go to startcreen')
+        showStartscreen();
+      }
+    
 }
 

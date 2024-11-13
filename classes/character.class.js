@@ -148,12 +148,10 @@ class Charackter extends MovableObject {
                     this.aktivateSleepingMode();
                 }, 10000);
             }
-        }, 100);
+        }, 200);
     }
 
     aktivateSleepingMode() {
         this.playAnimation(this.IMAGES_SLEEPING);
     }
-
-    
 }
