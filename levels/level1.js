@@ -1,4 +1,7 @@
-const Level1 = new level(
+let Level1 = newLevel();
+function newLevel(){
+
+return new level(
     [
         new JellyFish(),
         new JellyFish(),
@@ -64,4 +67,4 @@ const Level1 = new level(
         new Gift()
     ]
 );
-
+}

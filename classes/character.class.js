@@ -3,6 +3,7 @@ class Charackter extends MovableObject {
     width = 200;
     speed = 10;
     world;
+  
 
     IMAGES_WALKING =
         [
@@ -154,4 +155,7 @@ class Charackter extends MovableObject {
     aktivateSleepingMode() {
         this.playAnimation(this.IMAGES_SLEEPING);
     }
+
+  
+
 }

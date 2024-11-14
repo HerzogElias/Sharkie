@@ -11,6 +11,7 @@ class World {
     stausBarCoin = new StatusbarCoin();
     statusBarEndboss = new EndbossStatusbar();
     throwableObject = [];
+    intervalIds=[];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -173,7 +174,7 @@ class World {
                     this.charackter.hit(800);
                     this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
                 }
-            }, 1000/60);
+            }, 1000 / 60);
         });
     }
 
@@ -188,17 +189,17 @@ class World {
                     }
                 });
             });
-        }, 1000/60);
+        }, 1000 / 60);
     }
 
 
     checkifCharackterWon() {
         setInterval(() => {
-            if (this.charackter.energy===0) {
+            if (this.charackter.energy === 0) {
                 this.schowLostscreen();
                 this.clearAllIntervals();
             }
-        },1);
+        }, 1);
     }
 
     schowLostscreen() {
@@ -216,9 +217,10 @@ class World {
     }
 
     checkIfCharakterLostGame() {
-        setInterval(() =>{
-            if (this.level.Endboss[0].energy===0) {
+        setInterval(() => {
+            if (this.level.Endboss[0].energy === 0) {
                 this.showWinnerScreen();
+                this.clearAllIntervals();
             }
         }, 1);
     }
@@ -227,10 +229,6 @@ class World {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
       }
 
-    start(){
-        console.log('go to startcreen')
-        showStartscreen();
-      }
-    
-}
+}   
+
 

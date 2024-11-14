@@ -31,6 +31,7 @@ class Endboss extends MovableObject {
             'img/2.Enemy/3 Final Enemy/1.Introduce/9.png',
             'img/2.Enemy/3 Final Enemy/1.Introduce/10.png'
         ]
+
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);

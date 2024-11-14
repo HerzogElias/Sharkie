@@ -79,6 +79,11 @@ function showGame() {
     document.getElementById('youlost').classList.add('dnone');
 }
 
+function stopGame(){
+    console.log('go to start');
+    showStartscreen();
+    Level1= newLevel();
+}
 
 
 
