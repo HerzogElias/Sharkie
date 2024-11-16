@@ -27,8 +27,6 @@ class Pufferfish extends MovableObject {
         },1000)
     }
 
-    
-
     moveleft(){
         setInterval(() => { 
             this.x -=this.speed;

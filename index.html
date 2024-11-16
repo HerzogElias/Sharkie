@@ -22,6 +22,7 @@
     <script src="classes/coin-statusbar.class.js"></script>
     <script src="classes/enboss-statusbar.class.js"></script>
     <script src="classes/world.class.js"></script>
+    <script src="classes/musicmanager.class.js"></script>
     <script src="classes/throwable-object.class.js"></script>
     <script src="classes/background.class.js"></script>
     <script src="classes/keyboard.class.js"></script>
@@ -32,8 +33,21 @@
 
 </head>
 <body onload="showStartscreen()">
+  
     <h1 class="title">Sharkie</h1>
+    <div class="canvas-container" id="canvas-container"> 
     <canvas id="canvas" width="720" height="480"></canvas>
+    <div class="button-div-responsive"> 
+        <div class="all-buttons"> 
+          <img class="button-control" src="img/7.Myown/left.png" alt="left">
+          <img class="button-control" src="img/7.Myown/right.png" alt="right">
+          <img class="button-control" src="img/7.Myown/up.png" alt="up">
+          <img class="button-control" src="img/7.Myown/down.png" alt="down">
+          <img class="button-control" src="img/7.Myown/Bubble.png" alt="bubble">
+          <img class="button-control" src="img/7.Myown/mute.png" alt="mutesound">
+        </div>
+    </div>
+    </div>
 
     <div class ="startscreen" id="startscreen"> 
         <img class="background-screen"src="img/3. Background/Mesa de trabajo 1.png">

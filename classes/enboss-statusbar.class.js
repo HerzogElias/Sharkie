@@ -36,7 +36,7 @@ class EndbossStatusbar extends DrawableObject {
     }
     
     showWinnerScreen() {
-        document.getElementById('canvas').classList.add('dnone');
+        document.getElementById('canvas-container').classList.add('dnone');
         document.getElementById('startscreen').classList.add('dnone');
         document.getElementById('youwon').classList.remove('dnone');
         document.getElementById('youlost').classList.add('dnone');

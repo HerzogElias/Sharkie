@@ -3,7 +3,6 @@ class Charackter extends MovableObject {
     width = 200;
     speed = 10;
     world;
-  
 
     IMAGES_WALKING =
         [
@@ -67,7 +66,7 @@ class Charackter extends MovableObject {
         'img/1.Sharkie/2.Long_IDLE/I14.png'
     ]
 
-    walking_sound = new Audio('audio/swimming.mp3')
+  
     constructor(world) {
         super().loadImage('./img/1.Sharkie/2.Long_IDLE/i1.png')
         this.loadImages(this.IMAGES_WALKING);
@@ -83,31 +82,35 @@ class Charackter extends MovableObject {
 
     animate() {
         setInterval(() => {
-            this.walking_sound.pause();
+            this.world.musicManager.characterMusic.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_x_End) {
                 this.x += this.speed;
                 this.otherDirection = false;
-                this.walking_sound.play();
+                this.world.musicManager.playCharackterMusik();
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
-                this.otherDirection = true;
-                this.walking_sound.play();
+               this.otherDirection = true;
+               this.world.musicManager.playCharackterMusik();
+
             }
             this.world.camera_x = -this.x + 60;
         }, 1000 / 60);
 
 
         setInterval(() => {
+            this.world.musicManager.characterMusic.pause();
             if (this.world.keyboard.DOWN && this.y < 390) {
                 this.y += this.speed;
                 this.otherDirection = false;
+                this.world.musicManager.characterMusic.play();
             }
             else
                 if (this.world.keyboard.UP && this.y > 5) {
                     this.y -= this.speed;
                     this.otherDirection = false;
+                    this.world.musicManager.characterMusic.play();
                 }
         }, 1000 / 60)
 
@@ -155,7 +158,4 @@ class Charackter extends MovableObject {
     aktivateSleepingMode() {
         this.playAnimation(this.IMAGES_SLEEPING);
     }
-
-  
-
 }

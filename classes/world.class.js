@@ -11,7 +11,8 @@ class World {
     stausBarCoin = new StatusbarCoin();
     statusBarEndboss = new EndbossStatusbar();
     throwableObject = [];
-    intervalIds=[];
+    musicManager = new MusicManager();
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -27,6 +28,7 @@ class World {
         this.checkThrowableObject();
         this.checkIfCharakterLostGame();
         this.checkifCharackterWon();
+       
     }
 
     setWorld() {
@@ -93,19 +95,15 @@ class World {
 
     checkThrowableObject() {
         window.addEventListener("keydown", (event) => {
-            // Nur Bubbles werfen, wenn genug Gift vorhanden ist
             if (event.key === "d" && this.statusBarGift.percentage > 0) {
                 let bubble = new ThrowableObject(
                     this.charackter.x + this.charackter.width,
                     this.charackter.y + this.charackter.height / 2
                 );
                 this.throwableObject.push(bubble);
-
-                // Reduziert das Gift um einen bestimmten Prozentsatz, wenn ein Bubble geworfen wird
+                this.musicManager.throwmusic.play();
                 this.statusBarGift.percentage -= 5;
                 this.statusBarGift.setPercentage(this.statusBarGift.percentage);
-
-                // Überprüfe Kollision für die neue Bubble
                 this.checkCollisionWithThrowableObjects(bubble);
             }
         });
@@ -117,7 +115,7 @@ class World {
                 if (this.charackter.isColiding(pufferfish)) {
                     this.charackter.hit();
                     this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-                    this.level.pufferfish.splice(index, 1)
+                    this.level.pufferfish.splice(index, 1);
                 }
             }, 2000);
         })
@@ -174,7 +172,7 @@ class World {
                     this.charackter.hit(800);
                     this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
                 }
-            }, 1000 / 60);
+            }, 1000/60);
         });
     }
 
@@ -186,10 +184,11 @@ class World {
                         console.log('Bubbles kollidieren mit Endboss');
                         this.level.Endboss[0].hit(600);
                         this.statusBarEndboss.setPercentage(this.level.Endboss.energy * 1000 / 3000)
+                        this.musicManager.endbosshurt.play();
                     }
                 });
             });
-        }, 1000 / 60);
+        }, 1000/60);
     }
 
 
@@ -203,14 +202,14 @@ class World {
     }
 
     schowLostscreen() {
-        document.getElementById('canvas').classList.add('dnone');
+        document.getElementById('canvas-container').classList.add('dnone');
         document.getElementById('startscreen').classList.add('dnone');
         document.getElementById('youwon').classList.add('dnone');
         document.getElementById('youlost').classList.remove('dnone');
     }
 
     showWinnerScreen() {
-        document.getElementById('canvas').classList.add('dnone');
+        document.getElementById('canvas-container').classList.add('dnone');
         document.getElementById('startscreen').classList.add('dnone');
         document.getElementById('youwon').classList.remove('dnone');
         document.getElementById('youlost').classList.add('dnone');
@@ -228,7 +227,6 @@ class World {
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
       }
-
 }   
 
 

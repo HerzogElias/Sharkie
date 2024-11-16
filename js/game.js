@@ -2,12 +2,13 @@ let canves;
 let world;
 let keyboard = new Keyboard();
 
-function init() {
+function init(world) {
     let canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     let ctx = canvas.getContext('2d');
     console.log('My character is', world.charackter);
     showGame();
+    world.musicManager.backgroundmusic.play();
 }
 
 window.addEventListener("keydown", (e) => {
@@ -66,14 +67,14 @@ window.addEventListener("keyup", (e) => {
 });
 
 function showStartscreen() {
-    document.getElementById('canvas').classList.add('dnone');
+    document.getElementById('canvas-container').classList.add('dnone');
     document.getElementById('startscreen').classList.remove('dnone');
     document.getElementById('youwon').classList.add('dnone');
     document.getElementById('youlost').classList.add('dnone');
 }
 
 function showGame() {
-    document.getElementById('canvas').classList.remove('dnone');
+    document.getElementById('canvas-container').classList.remove('dnone');
     document.getElementById('startscreen').classList.add('dnone');
     document.getElementById('youwon').classList.add('dnone');
     document.getElementById('youlost').classList.add('dnone');

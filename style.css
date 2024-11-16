@@ -1,20 +1,20 @@
 @font-face {
-    font-family:"historia";
+    font-family: "historia";
     src: url("fonts/historia.ttf") format("truetype");
-  }
+}
 
 
-body{
+body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image:url('img/7.Myown/background.jpg');
+    background-image: url('img/7.Myown/background.jpg');
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
 }
 
-h1{
+h1 {
     font-family: 'historia', Arial, Helvetica, sans-serif;
     font-size: 72px;
     font-weight: 200;
@@ -26,11 +26,11 @@ canvas {
     display: block;
 }
 
-.dnone{
+.dnone {
     display: none !important;
 }
 
-.startscreen{
+.startscreen {
     width: 720px;
     height: 480px;
     position: relative;
@@ -40,34 +40,35 @@ canvas {
     z-index: 1;
 }
 
-.background-screen{
-    width:720px;
+.background-screen {
+    width: 720px;
     height: 480px;
 }
 
-.tittle{
-    position:absolute;
-    top:210px;
-    left:200px;
-    color:azure;
+.tittle {
+    position: absolute;
+    top: 210px;
+    left: 200px;
+    color: azure;
 }
-.startscreen-button{
-    position:absolute;
+
+.startscreen-button {
+    position: absolute;
     top: 350px;
     width: 200px;
     height: 40px;
     left: 480px;
 }
 
-.youWon-Title{
-    position:absolute;
-    top:200px; 
+.youWon-Title {
+    position: absolute;
+    top: 200px;
     left: 300px;
     width: 350px;
     height: 150px;
 }
 
-.youLost-Title{
+.youLost-Title {
     position: absolute;
     top: 200px;
     left: 450px;
@@ -75,31 +76,62 @@ canvas {
     height: 60px;
 }
 
-@media only screen and (max-width:720px) {
+.canvas-container {
+    position: relative; /* Der Container wird relativ positioniert, damit die Schaltflächen sich darauf beziehen können */
+    width: 720px; /* Gleiche Größe wie das Canvas */
+    height: 480px; /* Gleiche Höhe wie das Canvas */
+    margin: 0 auto; /* Zentrieren des Containers */
+}
+
+/* Canvas-Einstellungen */
+canvas {
+    background-color: black;
+    display: block; /* Canvas als Block-Element */
+    position: relative; /* Canvas ist relativ zum Container positioniert */
+}
+
+/* Schaltflächenbereich */
+.button-div-responsive {
+    position: absolute; /* Absolute Positionierung innerhalb des Containers */
+    bottom: 10px; /* Schaltflächen 10px vom unteren Rand des Containers */
+    left: 10px; /* Schaltflächen 10px vom linken Rand des Containers */
+    background-color: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 10; /* Über Canvas anzeigen */
+}
+
+/* Größe und Abstand der Schaltflächen (Bilder) */
+.button-control {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px; /* Abstand zwischen den Schaltflächen */
+}
+
+/* Flexbox für Schaltflächen nebeneinander */
+.all-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Responsive Design für kleinere Bildschirme */
+@media only screen and (max-width: 720px) {
     canvas {
-        height: 100%;
+        width: 100%; /* Canvas nimmt die ganze Breite des Bildschirms ein */
+        height: auto;
     }
-} 
-
-
-@media only screen and (max-width:720px) {
-    canvas {
-        width: 100%;
-    }
-
-    .title{
-        display: none;
+    .title {
+        display: none; /* Titel ausblenden auf kleineren Bildschirmen */
     }
 }
 
-@media only screen and (max-height:480px) {
+@media only screen and (max-height: 480px) {
     canvas {
-        height: 100vh;
+        height: 100vh; /* Canvas nimmt die volle Höhe des Bildschirms ein */
     }
-
-    .title{
-        display: none;
+    .title {
+        display: none; /* Titel ausblenden auf kleineren Bildschirmen */
     }
 }
-
-
