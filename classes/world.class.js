@@ -11,7 +11,13 @@ class World {
     stausBarCoin = new StatusbarCoin();
     statusBarEndboss = new EndbossStatusbar();
     throwableObject = [];
-    musicManager = new MusicManager();
+   
+    backgroundSound = new Audio('audio/background.mp3');
+    charackterHurtSound = new Audio('audio/charackterHurt.mp3');
+    collectiingCoinAndGiftSound = new Audio('audio/collecting.mp3');
+    endbossHurtSound = new Audio('audio/endbossHurt.mp3');
+    charackterSwimmingSound = new Audio('audio/swimming.mp3');
+    charackterThrowSound = new Audio('audio/throw.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -26,14 +32,13 @@ class World {
         this.checkColissionEndboss();
         this.checkColissionGift();
         this.checkThrowableObject();
-        this.checkIfCharakterLostGame();
-        this.checkifCharackterWon();
-       
+        this.checkIfCharakterLostGame();      
     }
 
     setWorld() {
         this.charackter.world = this;
     }
+
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -101,7 +106,7 @@ class World {
                     this.charackter.y + this.charackter.height / 2
                 );
                 this.throwableObject.push(bubble);
-                this.musicManager.throwmusic.play();
+            
                 this.statusBarGift.percentage -= 5;
                 this.statusBarGift.setPercentage(this.statusBarGift.percentage);
                 this.checkCollisionWithThrowableObjects(bubble);
@@ -184,11 +189,11 @@ class World {
                         console.log('Bubbles kollidieren mit Endboss');
                         this.level.Endboss[0].hit(600);
                         this.statusBarEndboss.setPercentage(this.level.Endboss.energy * 1000 / 3000)
-                        this.musicManager.endbosshurt.play();
+                   
                     }
                 });
             });
-        }, 1000/60);
+        }, 20);
     }
 
 

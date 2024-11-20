@@ -44,5 +44,4 @@ class EndbossStatusbar extends DrawableObject {
 
     
 
-    
 }

@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="img/2.Enemy/3 Final Enemy/1.Introduce/2.png" type="image/x-icon">
-   
+
     <script src="classes/drawable-object.class.js"></script>
     <script src="classes/movable-object.class.js"></script>
     <script src="classes/character.class.js"></script>
@@ -17,56 +17,55 @@
     <script src="classes/coins.class.js"></script>
     <script src="classes/gift.class.js"></script>
     <script src="classes/cloud.class.js"></script>
-    <script src="classes/statusbars.class.js"></script> 
+    <script src="classes/statusbars.class.js"></script>
     <script src="classes/gift-statusbar.class.js"> </script>
     <script src="classes/coin-statusbar.class.js"></script>
     <script src="classes/enboss-statusbar.class.js"></script>
     <script src="classes/world.class.js"></script>
-    <script src="classes/musicmanager.class.js"></script>
     <script src="classes/throwable-object.class.js"></script>
     <script src="classes/background.class.js"></script>
     <script src="classes/keyboard.class.js"></script>
     <script src="classes/level.class.js"></script>
     <script src="classes/endboss.class.js"></script>
     <script src="levels/level1.js"></script>
-    <script src="js/game.js"></script> 
+    <script src="js/game.js"></script>
 
 </head>
+
 <body onload="showStartscreen()">
-  
+
     <h1 class="title">Sharkie</h1>
-    <div class="canvas-container" id="canvas-container"> 
-    <canvas id="canvas" width="720" height="480"></canvas>
-    <div class="button-div-responsive"> 
-        <div class="all-buttons"> 
-          <img class="button-control" src="img/7.Myown/left.png" alt="left">
-          <img class="button-control" src="img/7.Myown/right.png" alt="right">
-          <img class="button-control" src="img/7.Myown/up.png" alt="up">
-          <img class="button-control" src="img/7.Myown/down.png" alt="down">
-          <img class="button-control" src="img/7.Myown/Bubble.png" alt="bubble">
-          <img class="button-control" src="img/7.Myown/mute.png" alt="mutesound">
+    <div class="canvas-container" id="canvas-container">
+        <canvas id="canvas" width="720" height="480"></canvas>
+        <div class="button-div-responsive">
+            <div class="all-buttons">
+                <img class="button-control" src="img/7.Myown/left.png" alt="left">
+                <img class="button-control" src="img/7.Myown/right.png" alt="right">
+                <img class="button-control" src="img/7.Myown/up.png" alt="up">
+                <img class="button-control" src="img/7.Myown/down.png" alt="down">
+                <img class="button-control" src="img/7.Myown/Bubble.png" alt="bubble">
+                <img onclick="toggleMute()" class="button-control" src="img/7.Myown/mute.png" alt="mutesound">
+            </div>
         </div>
     </div>
-    </div>
 
-    <div class ="startscreen" id="startscreen"> 
-        <img class="background-screen"src="img/3. Background/Mesa de trabajo 1.png">
+    <div class="startscreen" id="startscreen">
+        <img class="background-screen" src="img/3. Background/Mesa de trabajo 1.png">
         <h1 class="tittle">Dukes Sharky Game </h1>
         <img onclick="init()" class="startscreen-button" src="img/6.Botones/Start/3.png">
-    </div> 
+    </div>
 
-    <div class="youwon" id="youwon"> 
+    <div class="youwon" id="youwon">
         <img class="background-screen" src="img/7.Myown/background_screen.jpg">
         <img class="youWon-Title" src="img/6.Botones/Tittles/You win/Recurso 22.png">
-        <img onclick="stopGame()" class="youLost-Title" src="img/6.Botones/Try again/Recurso 15.png"> 
-
+        <img onclick="stopGame()" class="youLost-Title" src="img/6.Botones/Try again/Recurso 15.png">
     </div>
 
-
-    <div class="youlost" id="youlost"> 
+    <div class="youlost" id="youlost">
         <img class="background-screen" src="img/7.Myown/background_screen.jpg">
-        <img onclick="stopGame()" class="youLost-Title" src="img/6.Botones/Try again/Recurso 15.png"> 
+        <img onclick="stopGame()" class="youLost-Title" src="img/6.Botones/Try again/Recurso 15.png">
     </div>
-   
+
 </body>
+
 </html>

@@ -1,14 +1,25 @@
 let canves;
 let world;
 let keyboard = new Keyboard();
+let soundOn = false;
 
-function init(world) {
+function init() {
     let canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     let ctx = canvas.getContext('2d');
     console.log('My character is', world.charackter);
+   world.backgroundSound.play()
+    allsoundsOff(soundOn);
     showGame();
-    world.musicManager.backgroundmusic.play();
+}
+
+function allsoundsOff(soundOn) {
+    world.backgroundSound.muted=soundOn;
+    world.charackterHurtSound.muted = soundOn;
+    world.collectiingCoinAndGiftSound.muted = soundOn;
+    world.endbossHurtSound.muted = soundOn;
+    world.charackterSwimmingSound.muted = soundOn;  
+    world.charackterThrowSound.muted = soundOn;  
 }
 
 window.addEventListener("keydown", (e) => {
@@ -37,7 +48,6 @@ window.addEventListener("keydown", (e) => {
         keyboard.D = true;
     }
 });
-
 
 window.addEventListener("keyup", (e) => {
     /*    console.log(e)*/
@@ -74,6 +84,7 @@ function showStartscreen() {
 }
 
 function showGame() {
+    console.log('show game funktioniert')
     document.getElementById('canvas-container').classList.remove('dnone');
     document.getElementById('startscreen').classList.add('dnone');
     document.getElementById('youwon').classList.add('dnone');
@@ -85,6 +96,13 @@ function stopGame(){
     showStartscreen();
     Level1= newLevel();
 }
+
+
+function toggleMute(){
+    soundOn=!soundOn;
+    allsoundsOff(soundOn);
+}
+
 
 
 
