@@ -8,7 +8,8 @@ function init() {
     world = new World(canvas, keyboard);
     let ctx = canvas.getContext('2d');
     console.log('My character is', world.charackter);
-   world.backgroundSound.play()
+    soundOn=false;
+    world.backgroundSound.play()
     allsoundsOff(soundOn);
     showGame();
 }
@@ -20,6 +21,8 @@ function allsoundsOff(soundOn) {
     world.endbossHurtSound.muted = soundOn;
     world.charackterSwimmingSound.muted = soundOn;  
     world.charackterThrowSound.muted = soundOn;  
+    world.characterWonSound.muted=soundOn;
+    world.charackterLostSound.muted=soundOn;
 }
 
 window.addEventListener("keydown", (e) => {
@@ -102,7 +105,6 @@ function toggleMute(){
     soundOn=!soundOn;
     allsoundsOff(soundOn);
 }
-
 
 
 

@@ -18,6 +18,8 @@ class World {
     endbossHurtSound = new Audio('audio/endbossHurt.mp3');
     charackterSwimmingSound = new Audio('audio/swimming.mp3');
     charackterThrowSound = new Audio('audio/throw.mp3');
+    characterWonSound= new Audio ('audio/win.mp3');
+    charackterLostSound =new Audio('audio/lost.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -32,7 +34,8 @@ class World {
         this.checkColissionEndboss();
         this.checkColissionGift();
         this.checkThrowableObject();
-        this.checkIfCharakterLostGame();      
+        this.checkifCharackterLostGame();  
+        this.checkifCharackterWon();  
     }
 
     setWorld() {
@@ -197,11 +200,13 @@ class World {
     }
 
 
-    checkifCharackterWon() {
+    checkifCharackterLostGame() {
         setInterval(() => {
             if (this.charackter.energy === 0) {
                 this.schowLostscreen();
                 this.clearAllIntervals();
+                this.charackterLostSound.play();
+                this.backgroundSound.pause();
             }
         }, 1);
     }
@@ -220,11 +225,13 @@ class World {
         document.getElementById('youlost').classList.add('dnone');
     }
 
-    checkIfCharakterLostGame() {
+    checkifCharackterWon() {
         setInterval(() => {
             if (this.level.Endboss[0].energy === 0) {
                 this.showWinnerScreen();
                 this.clearAllIntervals();
+                this.characterWonSound.play();
+                this.backgroundSound.pause();
             }
         }, 1);
     }
