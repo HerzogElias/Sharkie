@@ -35,10 +35,10 @@
 
 </head>
 
-<body onload="showStartscreen()">
+<body>
 
     <h1 class="title">Sharkie</h1>
-    <div class="canvas-container" id="canvas-container">
+    <div class="canvas-container dnone" id="canvas-container">
         <canvas id="canvas" width="720" height="480"></canvas>
         <div class="button-div-responsive">
             <div class="all-buttons">
@@ -62,13 +62,13 @@
         <img onclick="init()" class="startscreen-button" src="img/6.Botones/Start/3.png">
     </div>
 
-    <div class="youwon" id="youwon">
+    <div class="youwon dnone" id="youwon">
         <img class="background-screen" src="img/7.Myown/background_screen.jpg">
         <img class="youWon-Title" src="img/6.Botones/Tittles/You win/Recurso 22.png">
         <img onclick="stopGame()" class="youLost-Title" src="img/6.Botones/Try again/Recurso 15.png">
     </div>
 
-    <div class="youlost" id="youlost">
+    <div class="youlost dnone" id="youlost">
         <img class="background-screen" src="img/7.Myown/background_screen.jpg">
         <img onclick="stopGame()" class="youLost-Title" src="img/6.Botones/Try again/Recurso 15.png">
     </div>
