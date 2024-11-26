@@ -6,7 +6,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 100;
-    statusBar = new Statusbars();
+    statusBar = new StatusbarCarackter();
     statusBarGift = new GiftStatusbar();
     stausBarCoin = new StatusbarCoin();
     statusBarEndboss = new EndbossStatusbar();
