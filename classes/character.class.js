@@ -110,7 +110,7 @@ class Charackter extends MovableObject {
                 if (this.world.keyboard.UP && this.y > 5) {
                     this.y -= this.speed;
                     this.otherDirection = false;
-                  this.charackterSwimmingSound.play();
+                  this.world.charackterSwimmingSound.play();
                 }
         }, 1000 / 60)
 

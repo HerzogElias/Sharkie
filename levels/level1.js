@@ -17,6 +17,7 @@ return new level(
     [
         new Endboss()
     ],
+    
     [
         new Cloud(),
         new Cloud()

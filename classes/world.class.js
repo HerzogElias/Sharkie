@@ -11,15 +11,16 @@ class World {
     stausBarCoin = new StatusbarCoin();
     statusBarEndboss = new EndbossStatusbar();
     throwableObject = [];
-   
+    isThrowing=false;
+
     backgroundSound = new Audio('audio/background.mp3');
     charackterHurtSound = new Audio('audio/charackterHurt.mp3');
     collectiingCoinAndGiftSound = new Audio('audio/collecting.mp3');
     endbossHurtSound = new Audio('audio/endbossHurt.mp3');
     charackterSwimmingSound = new Audio('audio/swimming.mp3');
     charackterThrowSound = new Audio('audio/throw.mp3');
-    characterWonSound= new Audio ('audio/win.mp3');
-    charackterLostSound =new Audio('audio/lost.mp3');
+    characterWonSound = new Audio('audio/win.mp3');
+    charackterLostSound = new Audio('audio/lost.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -34,8 +35,8 @@ class World {
         this.checkColissionEndboss();
         this.checkColissionGift();
         this.checkThrowableObject();
-        this.checkifCharackterLostGame();  
-        this.checkifCharackterWon();  
+        this.checkifCharackterLostGame();
+        this.checkifCharackterWon();
     }
 
     setWorld() {
@@ -53,6 +54,7 @@ class World {
         this.addToMap(this.statusBarGift);
         this.addToMap(this.stausBarCoin);
         this.addToMap(this.statusBarEndboss);
+
 
         this.ctx.translate(this.camera_x, 0);
         this.addObcetsToMap(this.level.coins);
@@ -102,19 +104,41 @@ class World {
     }
 
     checkThrowableObject() {
-        window.addEventListener("keydown", (event) => {
-            if (event.key === "d" && this.statusBarGift.percentage > 0) {
-                let bubble = new ThrowableObject(
-                    this.charackter.x + this.charackter.width,
-                    this.charackter.y + this.charackter.height / 2
-                );
-                this.throwableObject.push(bubble);
-            
-                this.statusBarGift.percentage -= 5;
-                this.statusBarGift.setPercentage(this.statusBarGift.percentage);
-                this.checkCollisionWithThrowableObjects(bubble);
+        setInterval(() => {
+            if (this.keyboard.D && !this.isThrowing) {
+                console.log('Test');
+                if (this.statusBarGift.percentage > 0) {
+                    let bubble = new ThrowableObject(
+                       this.handleCharackterOtherDirection(),
+                        this.charackter.y + this.charackter.height / 2,
+                        this.charackter.otherDirection
+                    );
+
+                    this.throwableObject.push(bubble);
+                    this.statusBarGift.percentage -= 5;
+                    this.statusBarGift.setPercentage(this.statusBarGift.percentage);
+                    this.checkCollisionWithThrowableObjects(bubble);
+                    this.handleThrowing();
+                }
             }
-        });
+        }, 1);
+    }
+
+    handleThrowing(){
+        this.isThrowing=true;
+        setTimeout(() => {
+            this.isThrowing=false;
+        }, 200);
+    }
+
+
+    handleCharackterOtherDirection() {
+        if (this.charackter.otherDirection) {
+            return this.charackter.x - this.charackter.width
+        } else {
+            return this.charackter.x + this.charackter.width
+
+        }
     }
 
     checkColissionPufferfish() {
@@ -177,27 +201,32 @@ class World {
         setInterval(() => {
             this.level.Endboss.forEach((endboss) => {
                 if (this.charackter.isColiding(endboss)) {
-                    this.charackter.hit(800);
+                    this.charackter.hit();
                     this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
                 }
-            }, 1000/60);
-        });
+            });
+        },2000);
     }
 
     checkCollisionWithThrowableObjects() {
+        let endbossCooldown = false; 
         setInterval(() => {
-            this.throwableObject.forEach((bubble) => {
-                this.level.Endboss.forEach((endbossThrow) => {
-                    if (bubble.isColiding(endbossThrow)) {
-                        console.log('Bubbles kollidieren mit Endboss');
-                        this.level.Endboss[0].hit(600);
-                        this.statusBarEndboss.setPercentage(this.level.Endboss.energy * 1000 / 3000)
-                   
+            this.throwableObject.forEach((bubble, bubbleIndex) => {
+                this.level.Endboss.forEach((endboss) => {
+                    if (bubble.isColiding(endboss) && !endbossCooldown) {
+                        endboss.hit();
+                        this.statusBarEndboss.setPercentage(endboss.energy * 100 / endboss.maxEnergy);
+                        this.throwableObject.splice(bubbleIndex, 1);
+                        endbossCooldown = true;
+                        setTimeout(() => {
+                            endbossCooldown = false;
+                        }, 500);
                     }
                 });
             });
-        }, 20);
+        }, 100); 
     }
+    
 
 
     checkifCharackterLostGame() {
@@ -238,7 +267,5 @@ class World {
 
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
-      }
-}   
-
-
+    }
+}
