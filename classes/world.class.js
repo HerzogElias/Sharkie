@@ -29,11 +29,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkColissionPufferfish(); 1
-        this.checkColissionJellyFish();
-        this.checkColissionCoins();
-        this.checkColissionEndboss();
-        this.checkColissionGift();
+        this.checkCollisions();
         this.checkThrowableObject();
         this.checkifCharackterLostGame();
         this.checkifCharackterWon();
@@ -44,19 +40,28 @@ class World {
     }
 
     draw() {
+        this.clearCanvas();
+        this.drawStaticElements();
+        this.drawDynamicElements();
+        this.drawUI();
+        
+        // Rekursiver Aufruf für kontinuierliches Zeichnen
+        requestAnimationFrame(() => this.draw());
+    }
+    
+    clearCanvas() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+    }
+    
+    drawStaticElements() {
         this.ctx.translate(this.camera_x, 0);
         this.addObcetsToMap(this.level.backgroundObjects);
-        this.addToMap(this.charackter);
         this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusBar);
-        this.addToMap(this.statusBarGift);
-        this.addToMap(this.stausBarCoin);
-        this.addToMap(this.statusBarEndboss);
-
-
+    }
+    
+    drawDynamicElements() {
         this.ctx.translate(this.camera_x, 0);
+        this.addToMap(this.charackter);
         this.addObcetsToMap(this.level.coins);
         this.addObcetsToMap(this.level.clouds);
         this.addObcetsToMap(this.level.jellyFish);
@@ -65,12 +70,15 @@ class World {
         this.addObcetsToMap(this.level.Endboss);
         this.addObcetsToMap(this.throwableObject);
         this.ctx.translate(-this.camera_x, 0);
-
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
     }
+    
+    drawUI() {
+        this.addToMap(this.statusBar);
+        this.addToMap(this.statusBarGift);
+        this.addToMap(this.stausBarCoin);
+        this.addToMap(this.statusBarEndboss);
+    }
+    
 
     addObcetsToMap(objekts) {
         objekts.forEach(o => {
@@ -109,7 +117,7 @@ class World {
                 console.log('Test');
                 if (this.statusBarGift.percentage > 0) {
                     let bubble = new ThrowableObject(
-                       this.handleCharackterOtherDirection(),
+                        this.handleCharackterOtherDirection(),
                         this.charackter.y + this.charackter.height / 2,
                         this.charackter.otherDirection
                     );
@@ -141,52 +149,55 @@ class World {
         }
     }
 
-    checkColissionPufferfish() {
+    checkCollisions() {
         setInterval(() => {
-            this.level.pufferfish.forEach((pufferfish, index) => {
-                if (this.charackter.isColiding(pufferfish)) {
-                    this.charackter.hit();
-                    this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-                    this.level.pufferfish.splice(index, 1);
-                }
-            }, 2000);
-        })
+            this.checkCollisionWithPufferfish();
+            this.checkCollisionWithJellyfish();
+            this.checkCollisionWithCoins();
+            this.checkCollisionWithGift();
+            this.checkCollisionWithThrowableObjects();
+            this.checkCollisionWithEndboss() 
+        }, 1);
     }
-
-    checkColissionJellyFish() {
-        setInterval(() => {
-            this.level.jellyFish.forEach((jellyFish, index) => {
-                if (this.charackter.isColiding(jellyFish)) {
-                    this.charackter.hit();
-                    this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-                    this.level.jellyFish.splice(index, 1)
-                }
-            }, 2000);
-        })
+    
+    checkCollisionWithPufferfish() {
+        this.level.pufferfish.forEach((pufferfish, index) => {
+            if (this.charackter.isColiding(pufferfish)) {
+                this.charackter.hit();
+                this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                this.level.pufferfish.splice(index, 1);
+            }
+        });
     }
-
-    checkColissionCoins() {
-        setInterval(() => {
-            this.level.coins.forEach((coin, index) => {
-                if (this.charackter.isColiding(coin)) {
-                    console.log('Coin getroffen');
-                    this.level.coins.splice(index, 1);
-                    this.updateStatusbar(this.stausBarCoin);
-                }
-            }, 2000);
-        })
+    
+    checkCollisionWithJellyfish() {
+        this.level.jellyFish.forEach((jellyFish, index) => {
+            if (this.charackter.isColiding(jellyFish)) {
+                this.charackter.hit();
+                this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                this.level.jellyFish.splice(index, 1);
+            }
+        });
     }
-
-    checkColissionGift() {
-        setInterval(() => {
-            this.level.gift.forEach((gift, index) => {
-                if (this.charackter.isColiding(gift)) {
-                    console.log('Gift getroffen');
-                    this.level.gift.splice(index, 1);
-                    this.updateStatusbar(this.statusBarGift);
-                }
-            }, 2000);
-        })
+    
+    checkCollisionWithCoins() {
+        this.level.coins.forEach((coin, index) => {
+            if (this.charackter.isColiding(coin)) {
+                console.log('Coin getroffen');
+                this.level.coins.splice(index, 1);
+                this.updateStatusbar(this.stausBarCoin);
+            }
+        });
+    }
+    
+    checkCollisionWithGift() {
+        this.level.gift.forEach((gift, index) => {
+            if (this.charackter.isColiding(gift)) {
+                console.log('Gift getroffen');
+                this.level.gift.splice(index, 1);
+                this.updateStatusbar(this.statusBarGift);
+            }
+        });
     }
 
     updateStatusbar(statusbar) {
@@ -197,36 +208,32 @@ class World {
         }
     }
 
-    checkColissionEndboss() {
-        setInterval(() => {
-            this.level.Endboss.forEach((endboss) => {
-                if (this.charackter.isColiding(endboss)) {
-                    this.charackter.hit();
-                    this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-                }
-            });
-        },2000);
+    checkCollisionWithEndboss() {
+        this.level.Endboss.forEach((endboss) => {
+            if (this.charackter.isColiding(endboss)) {
+                this.charackter.hit();
+                this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+            }
+        });
     }
 
     checkCollisionWithThrowableObjects() {
-        let endbossCooldown = false; 
-        setInterval(() => {
-            this.throwableObject.forEach((bubble, bubbleIndex) => {
-                this.level.Endboss.forEach((endboss) => {
-                    if (bubble.isColiding(endboss) && !endbossCooldown) {
-                        endboss.hit();
-                        this.statusBarEndboss.setPercentage(endboss.energy * 100 / endboss.maxEnergy);
-                        this.throwableObject.splice(bubbleIndex, 1);
-                        endbossCooldown = true;
-                        setTimeout(() => {
-                            endbossCooldown = false;
-                        }, 500);
-                    }
-                });
-            });
-        }, 100); 
-    }
+        let endbossCooldown = false;
+        this.throwableObject.forEach((bubble, bubbleIndex) => {
+            this.level.Endboss.forEach((endboss) => {
+                if (bubble.isColiding(endboss) && !endbossCooldown) {
+                    endboss.hit();
+                    this.statusBarEndboss.setPercentage(endboss.energy * 100 / endboss.maxEnergy);
+                    this.throwableObject.splice(bubbleIndex, 1);
+                    endbossCooldown = true;
     
+                    setTimeout(() => {
+                        endbossCooldown = false;
+                    }, 500); // Cooldown von 500ms für Endboss
+                }
+            });
+        });
+    }
 
 
     checkifCharackterLostGame() {
