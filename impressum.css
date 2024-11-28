@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "historia";
+    src: url("fonts/historia.ttf") format("truetype");
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: beige !important;
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+    font-family: 'historia', Arial, Helvetica, sans-serif;
+    font-size: 72px;
+    font-weight: 200;
+    color: black;
+}
+

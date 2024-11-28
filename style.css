@@ -65,23 +65,23 @@ canvas {
     top: 350px;
     width: 200px;
     height: 40px;
-    left: 480px;
+    left: 430px;
 }
 
 .youWon-Title {
     position: absolute;
     top: 200px;
-    left: 300px;
-    width: 350px;
-    height: 150px;
+    left: 250px;
+    width: 300px;
+    height: 100px;
 }
 
 .youLost-Title {
     position: absolute;
-    top: 200px;
-    left: 450px;
+    top: 350px;
+    left: 480px;
     width: 300px;
-    height: 60px;
+    height: 100px;
 }
 
 .canvas-container {
@@ -119,6 +119,18 @@ canvas {
     display: flex;
     justify-content: space-around;
 }
+
+.button-impressum{
+    position: absolute;
+    top: 410px;
+    left: 400px;
+    width: 140px;
+    height: 40px;
+    border-radius: 3%;
+    background-color: yellow;
+    color: blueviolet;
+}
+
 .rotate-warning {
     position: fixed;
     top: 0;
@@ -140,6 +152,30 @@ canvas {
     align-items: center;
     justify-content: center;
     border: 2px solid green;
+}
+
+button{
+    cursor: pointer;
+}
+
+@media  screen and (max-width:920) {
+    .youLost-Title {
+        position: absolute;
+        top: 350px;
+        left: 200px;
+        width: 250px;
+        height: 80px;
+    }
+}
+
+@media  screen and (max-width:800px) {
+    .youLost-Title{
+        position: absolute;
+        top: 350px;
+        left: 200px;
+        width: 200px;
+        height: 60px;
+    }    
 }
 
 /* Wenn die Breite max. 720px oder die Höhe max. 480px ist, 

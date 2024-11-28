@@ -48,10 +48,10 @@ class ThrowableObject extends MovableObject {
      * @param {number} y - The initial Y position of the object.
      * @param {boolean} otherDirection - Determines if the object moves in the opposite direction horizontally.
      */
-    constructor(x, y, otherDirection, mo) {
+    constructor(x, y, otherDirection) {
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
-        this.x = mo.x;
-        this.y = mo.y;
+        this.x = x;
+        this.y = y;
         this.otherDirection = otherDirection;
         this.throw(x, y);
     }
