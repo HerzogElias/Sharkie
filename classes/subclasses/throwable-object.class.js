@@ -48,10 +48,10 @@ class ThrowableObject extends MovableObject {
      * @param {number} y - The initial Y position of the object.
      * @param {boolean} otherDirection - Determines if the object moves in the opposite direction horizontally.
      */
-    constructor(x, y, otherDirection) {
+    constructor(x, y, otherDirection, mo) {
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
-        this.x = x;
-        this.y = y;
+        this.x = mo.x;
+        this.y = mo.y;
         this.otherDirection = otherDirection;
         this.throw(x, y);
     }
@@ -85,19 +85,15 @@ class ThrowableObject extends MovableObject {
     }
 
     /**
-     * Applies gravity in the vertical direction, updating the Y position and 
-     * adjusting the vertical speed over time.
-     */
+  * Applies gravity in the vertical direction, updating the Y position and 
+  * adjusting the vertical speed over time.
+  */
     applyGravityY() {
         setInterval(() => {
             this.y += this.SpeedY;
 
             // Adjust vertical speed depending on direction
-            if (this.otherDirection) {
-                this.SpeedY -= this.gravity; 
-            } else {
-                this.SpeedY += this.gravity; 
-            }
+            this.SpeedY += this.otherDirection ? -this.gravity : this.gravity;
 
             // Stops vertical movement if the object reaches or exceeds a Y position of 420
             if (this.y >= 420) {
@@ -105,5 +101,6 @@ class ThrowableObject extends MovableObject {
             }
         }, 1000 / 25); // Update 25 times per second
     }
+
 }
 

@@ -120,12 +120,11 @@ canvas {
     justify-content: space-around;
 }
 .rotate-warning {
-    display: none; /* Standardmäßig versteckt */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: inherit; /* Hintergrund des Bodys übernehmen */
     display: flex;
     justify-content: center;
@@ -134,34 +133,58 @@ canvas {
 }
 
 .rotate-warning h1 {
-    font-size: 2rem;
+    font-size: 4rem;
     color: #000;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid green;
 }
 
-@media only screen and (max-width: 720px) {
-    canvas {
-        width: 100%;
-        height: auto;
-    }
-    .title {
-        display: none;
-    }
-
+/* Wenn die Breite max. 720px oder die Höhe max. 480px ist, 
+   und das Gerät im Portrait-Modus ist */
+   @media only screen and (max-width: 720px), 
+   only screen and (max-height: 480px) {
+@media (orientation: portrait) {
     .rotate-warning {
-      display: flex;
+        display: block; /* .rotate-warning wird angezeigt */
+    }
+}
+
+@media (orientation: landscape) {
+    .rotate-warning {
+        display: block; /* .rotate-warning wird angezeigt */
+    }
 }
 }
 
+/* Wenn die Breite max. 720px ist */
+@media only screen and (max-width: 720px) {
+canvas {
+    width: 100%;
+    height: auto;
+}
+
+.title {
+    display: none;
+}
+}
+
+/* Wenn die Höhe max. 480px ist */
 @media only screen and (max-height: 480px) {
-    canvas {
-        height: 100vh;
-    }
-    .title {
-        display: none;
-    }
-
-    .rotate-warning{
-        display: flex;
-    }
+canvas {
+    height: 100vh;
 }
+
+.title {
+    display: none;
+}
+}
+
+@media only screen and (min-width:721px) {
+ .rotate-warning{
+    display: none;
+ }   
+}
+
