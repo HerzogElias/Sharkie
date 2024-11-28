@@ -25,7 +25,7 @@ class Pufferfish extends Enemy {
     constructor() {
         super();
         // Load the dead image for the Pufferfish
-        this.loadImage('img/2.Enemy/1.Puffer fish (3 color options)/Dead/1.png');
+        this.loadImage('img/2.Enemy/1.Pufferfish (3 color options)/Dead/1.png');
         
         // Set a random position on the screen
         this.setRandomPosition(1800, 250);
