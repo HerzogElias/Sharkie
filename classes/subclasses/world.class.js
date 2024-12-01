@@ -225,186 +225,184 @@ class World {
      */
     handleCharackterOtherDirection() {
         if (this.charackter.otherDirection) {
-            return this.charackter.x - this.charackter.width;
+            return this.charackter.x;
         } else {
             return this.charackter.x + this.charackter.width;
         }
     }
 
-    // Remaining methods can be similarly documented.
 
 
-
-   /**
- * Checks collisions with various game objects periodically.
- */
-checkCollisions() {
-    setInterval(() => {
-        this.checkCollisionWithPufferfish();
-        this.checkCollisionWithJellyfish();
-        this.checkCollisionWithCoins();
-        this.checkCollisionWithGift();
-        this.checkCollisionWithThrowableObjects();
-        this.checkCollisionWithEndboss();
-    }, 1);
-}
-
-/**
- * Checks for collisions between the character and pufferfish.
- * If a collision is detected, the character takes damage, and the pufferfish is removed.
- */
-checkCollisionWithPufferfish() {
-    this.level.pufferfish.forEach((pufferfish, index) => {
-        if (this.charackter.isColiding(pufferfish)) {
-            this.charackter.hit();
-            this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-            this.level.pufferfish.splice(index, 1);
-        }
-    });
-}
-
-/**
- * Checks for collisions between the character and jellyfish.
- * If a collision is detected, the character takes damage, and the jellyfish is removed.
- */
-checkCollisionWithJellyfish() {
-    this.level.jellyFish.forEach((jellyFish, index) => {
-        if (this.charackter.isColiding(jellyFish)) {
-            this.charackter.hit();
-            this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-            this.level.jellyFish.splice(index, 1);
-        }
-    });
-}
-
-/**
- * Checks for collisions between the character and coins.
- * If a collision is detected, the coin is removed, and the coin status bar is updated.
- */
-checkCollisionWithCoins() {
-    this.level.coins.forEach((coin, index) => {
-        if (this.charackter.isColiding(coin)) {
-            console.log('Coin getroffen');
-            this.level.coins.splice(index, 1);
-            this.updateStatusbar(this.stausBarCoin);
-        }
-    });
-}
-
-/**
- * Checks for collisions between the character and gifts.
- * If a collision is detected, the gift is removed, and the gift status bar is updated.
- */
-checkCollisionWithGift() {
-    this.level.gift.forEach((gift, index) => {
-        if (this.charackter.isColiding(gift)) {
-            console.log('Gift getroffen');
-            this.level.gift.splice(index, 1);
-            this.updateStatusbar(this.statusBarGift);
-        }
-    });
-}
-
-/**
- * Updates the given status bar by increasing its percentage.
- * @param {Statusbar} statusbar The status bar to update.
- */
-updateStatusbar(statusbar) {
-    console.log(statusbar);
-    if (statusbar.percentage < 100) {
-        statusbar.percentage += 20;
-        statusbar.setPercentage(statusbar.percentage);
+    /**
+  * Checks collisions with various game objects periodically.
+  */
+    checkCollisions() {
+        setInterval(() => {
+            this.checkCollisionWithPufferfish();
+            this.checkCollisionWithJellyfish();
+            this.checkCollisionWithCoins();
+            this.checkCollisionWithGift();
+            this.checkCollisionWithThrowableObjects();
+            this.checkCollisionWithEndboss();
+        }, 1);
     }
-}
 
-/**
- * Checks for collisions between the character and the end boss.
- * If a collision is detected, the character takes damage.
- */
-checkCollisionWithEndboss() {
-    this.level.Endboss.forEach((endboss) => {
-        if (this.charackter.isColiding(endboss)) {
-            this.charackter.hit();
-            this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-        }
-    });
-}
-
-/**
- * Checks for collisions between throwable objects (e.g., bubbles) and the end boss.
- * If a collision is detected, the end boss takes damage, and the throwable object is removed.
- */
-checkCollisionWithThrowableObjects() {
-    let endbossCooldown = false;
-    this.throwableObject.forEach((bubble, bubbleIndex) => {
-        this.level.Endboss.forEach((endboss) => {
-            if (bubble.isColiding(endboss) && !endbossCooldown) {
-                endboss.hit();
-                this.statusBarEndboss.setPercentage(endboss.energy * 100 / endboss.maxEnergy);
-                this.throwableObject.splice(bubbleIndex, 1);
-                endbossCooldown = true;
-
-                // Cooldown to prevent rapid hits
-                setTimeout(() => {
-                    endbossCooldown = false;
-                }, 500);
+    /**
+     * Checks for collisions between the character and pufferfish.
+     * If a collision is detected, the character takes damage, and the pufferfish is removed.
+     */
+    checkCollisionWithPufferfish() {
+        this.level.pufferfish.forEach((pufferfish, index) => {
+            if (this.charackter.isColiding(pufferfish)) {
+                this.charackter.hit();
+                this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                this.level.pufferfish.splice(index, 1);
             }
         });
-    });
-}
+    }
 
-/**
- * Periodically checks if the character has lost the game by running out of energy.
- */
-checkifCharackterLostGame() {
-    setInterval(() => {
-        if (this.charackter.energy === 0) {
-            this.schowLostscreen();
-            this.clearAllIntervals();
-            this.charackterLostSound.play();
-            this.backgroundSound.pause();
+    /**
+     * Checks for collisions between the character and jellyfish.
+     * If a collision is detected, the character takes damage, and the jellyfish is removed.
+     */
+    checkCollisionWithJellyfish() {
+        this.level.jellyFish.forEach((jellyFish, index) => {
+            if (this.charackter.isColiding(jellyFish)) {
+                this.charackter.hit();
+                this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                this.level.jellyFish.splice(index, 1);
+            }
+        });
+    }
+
+    /**
+     * Checks for collisions between the character and coins.
+     * If a collision is detected, the coin is removed, and the coin status bar is updated.
+     */
+    checkCollisionWithCoins() {
+        this.level.coins.forEach((coin, index) => {
+            if (this.charackter.isColiding(coin)) {
+                console.log('Coin getroffen');
+                this.level.coins.splice(index, 1);
+                this.updateStatusbar(this.stausBarCoin);
+            }
+        });
+    }
+
+    /**
+     * Checks for collisions between the character and gifts.
+     * If a collision is detected, the gift is removed, and the gift status bar is updated.
+     */
+    checkCollisionWithGift() {
+        this.level.gift.forEach((gift, index) => {
+            if (this.charackter.isColiding(gift)) {
+                console.log('Gift getroffen');
+                this.level.gift.splice(index, 1);
+                this.updateStatusbar(this.statusBarGift);
+            }
+        });
+    }
+
+    /**
+     * Updates the given status bar by increasing its percentage.
+     * @param {Statusbar} statusbar The status bar to update.
+     */
+    updateStatusbar(statusbar) {
+        console.log(statusbar);
+        if (statusbar.percentage < 100) {
+            statusbar.percentage += 20;
+            statusbar.setPercentage(statusbar.percentage);
         }
-    }, 1);
-}
+    }
 
-/**
- * Displays the "You Lost" screen and hides the canvas and other elements.
- */
-schowLostscreen() {
-    document.getElementById('canvas-container').classList.add('dnone');
-    document.getElementById('startscreen').classList.add('dnone');
-    document.getElementById('youwon').classList.add('dnone');
-    document.getElementById('youlost').classList.remove('dnone');
-}
+    /**
+     * Checks for collisions between the character and the end boss.
+     * If a collision is detected, the character takes damage.
+     */
+    checkCollisionWithEndboss() {
+        this.level.Endboss.forEach((endboss) => {
+            if (this.charackter.isColiding(endboss)) {
+                this.charackter.hit();
+                this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+            }
+        });
+    }
 
-/**
- * Displays the "You Won" screen and hides the canvas and other elements.
- */
-showWinnerScreen() {
-    document.getElementById('canvas-container').classList.add('dnone');
-    document.getElementById('startscreen').classList.add('dnone');
-    document.getElementById('youwon').classList.remove('dnone');
-    document.getElementById('youlost').classList.add('dnone');
-}
+    /**
+     * Checks for collisions between throwable objects (e.g., bubbles) and the end boss.
+     * If a collision is detected, the end boss takes damage, and the throwable object is removed.
+     */
+    checkCollisionWithThrowableObjects() {
+        let endbossCooldown = false;
+        this.throwableObject.forEach((bubble, bubbleIndex) => {
+            this.level.Endboss.forEach((endboss) => {
+                if (bubble.isColiding(endboss) && !endbossCooldown) {
+                    endboss.hit();
+                    this.statusBarEndboss.setPercentage(endboss.energy * 100 / endboss.maxEnergy);
+                    this.throwableObject.splice(bubbleIndex, 1);
+                    endbossCooldown = true;
 
-/**
- * Periodically checks if the character has won the game by defeating the end boss.
- */
-checkifCharackterWon() {
-    setInterval(() => {
-        if (this.level.Endboss[0].energy === 0) {
-            this.showWinnerScreen();
-            this.clearAllIntervals();
-            this.characterWonSound.play();
-            this.backgroundSound.pause();
-        }
-    }, 1);
-}
+                    // Cooldown to prevent rapid hits
+                    setTimeout(() => {
+                        endbossCooldown = false;
+                    }, 500);
+                }
+            });
+        });
+    }
 
-/**
- * Clears all active intervals, stopping all periodic functions.
- */
-clearAllIntervals() {
-    for (let i = 1; i < 9999; i++) window.clearInterval(i);
-}
+    /**
+     * Periodically checks if the character has lost the game by running out of energy.
+     */
+    checkifCharackterLostGame() {
+        setInterval(() => {
+            if (this.charackter.energy === 0) {
+                this.schowLostscreen();
+                this.clearAllIntervals();
+                this.charackterLostSound.play();
+                this.backgroundSound.pause();
+            }
+        }, 1);
+    }
+
+    /**
+     * Displays the "You Lost" screen and hides the canvas and other elements.
+     */
+    schowLostscreen() {
+        document.getElementById('canvas-container').classList.add('dnone');
+        document.getElementById('startscreen').classList.add('dnone');
+        document.getElementById('youwon').classList.add('dnone');
+        document.getElementById('youlost').classList.remove('dnone');
+    }
+
+    /**
+     * Displays the "You Won" screen and hides the canvas and other elements.
+     */
+    showWinnerScreen() {
+        document.getElementById('canvas-container').classList.add('dnone');
+        document.getElementById('startscreen').classList.add('dnone');
+        document.getElementById('youwon').classList.remove('dnone');
+        document.getElementById('youlost').classList.add('dnone');
+    }
+
+    /**
+     * Periodically checks if the character has won the game by defeating the end boss.
+     */
+    checkifCharackterWon() {
+        setInterval(() => {
+            if (this.level.Endboss[0].energy === 0) {
+                this.showWinnerScreen();
+                this.clearAllIntervals();
+                this.characterWonSound.play();
+                this.backgroundSound.pause();
+            }
+        }, 1);
+    }
+
+    /**
+     * Clears all active intervals, stopping all periodic functions.
+     */
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    }
 }

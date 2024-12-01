@@ -163,5 +163,3 @@ function toggleMute(){
     allsoundsOff(soundOn);
 }
 
-
-
