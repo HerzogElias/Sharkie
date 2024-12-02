@@ -3,7 +3,8 @@
     src: url("fonts/historia.ttf") format("truetype");
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -120,16 +121,6 @@ canvas {
     justify-content: space-around;
 }
 
-.button-impressum{
-    position: absolute;
-    top: 410px;
-    left: 400px;
-    width: 140px;
-    height: 40px;
-    border-radius: 3%;
-    background-color: yellow;
-    color: blueviolet;
-}
 
 .rotate-warning {
     position: fixed;
@@ -137,7 +128,7 @@ canvas {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: inherit; /* Hintergrund des Bodys übernehmen */
+    background: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -153,12 +144,76 @@ canvas {
     justify-content: center;
     border: 2px solid green;
 }
-
-button{
-    cursor: pointer;
+                            
+.btn {
+    background-color: yellow; /* Gelber Hintergrund */
+    border: 3px solid blue; /* Blauer Rahmen */
+    color: blue; /* Blauer Text */
+    font-size: 24px; /* Schriftgröße */
+    font-weight: bold; /* Fettschrift */
+    text-transform: uppercase; /* Text in Großbuchstaben */
+    padding: 10px 20px; /* Innenabstand */
+    border-radius: 15px; /* Abgerundete Ecken */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Leichter 3D-Schattierungseffekt */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animation für Hover-Effekt */
 }
 
-@media  screen and (max-width:920) {
+.btn:hover {
+    transform: scale(1.05); /* Leichte Vergrößerung beim Hover */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5); /* Stärkere Schattierung beim Hover */
+    cursor: pointer;
+
+}
+
+.btn-impressum {
+    position: absolute;
+    top: 410px;
+    left: 390px;
+    width: 250px;
+    height: 50px;
+}
+
+.btn-start{
+    position: absolute;
+    top: 340px;
+    left: 420px;
+    width: 200px;
+    height: 50px;
+}
+
+.impressum{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 600px;
+    height: 70vh;
+    overflow-y: auto;
+    text-align: center;
+    color:wheat;
+}
+
+.backStartscreen{
+    color: wheat;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.backStartscreen:hover{
+    color: burlywood;
+    text-decoration:underline;
+}
+
+.h1-Impressum{
+    color: wheat;
+    text-decoration: underline;
+}
+
+.impressum-links{
+    color: goldenrod;
+}
+
+.impressum-links:hover{
+    text-decoration: underline;
+}
+@media screen and (max-width:920) {
     .youLost-Title {
         position: absolute;
         top: 350px;
@@ -168,59 +223,60 @@ button{
     }
 }
 
-@media  screen and (max-width:800px) {
-    .youLost-Title{
+@media screen and (max-width:800px) {
+    .youLost-Title {
         position: absolute;
         top: 350px;
         left: 200px;
         width: 200px;
         height: 60px;
-    }    
+    }
 }
 
 /* Wenn die Breite max. 720px oder die Höhe max. 480px ist, 
    und das Gerät im Portrait-Modus ist */
-   @media only screen and (max-width: 720px), 
-   only screen and (max-height: 480px) {
-@media (orientation: portrait) {
-    .rotate-warning {
-        display: block; /* .rotate-warning wird angezeigt */
+@media only screen and (max-width: 720px),
+only screen and (max-height: 480px) {
+    @media (orientation: portrait) {
+        .rotate-warning {
+            display: block;
+            /* .rotate-warning wird angezeigt */
+        }
     }
-}
 
-@media (orientation: landscape) {
-    .rotate-warning {
-        display: block; /* .rotate-warning wird angezeigt */
+    @media (orientation: landscape) {
+        .rotate-warning {
+            display: block;
+            /* .rotate-warning wird angezeigt */
+        }
     }
-}
 }
 
 /* Wenn die Breite max. 720px ist */
 @media only screen and (max-width: 720px) {
-canvas {
-    width: 100%;
-    height: auto;
-}
+    canvas {
+        width: 100%;
+        height: auto;
+    }
 
-.title {
-    display: none;
-}
+    .title {
+        display: none;
+    }
 }
 
 /* Wenn die Höhe max. 480px ist */
 @media only screen and (max-height: 480px) {
-canvas {
-    height: 100vh;
-}
+    canvas {
+        height: 100vh;
+    }
 
-.title {
-    display: none;
-}
+    .title {
+        display: none;
+    }
 }
 
 @media only screen and (min-width:721px) {
- .rotate-warning{
-    display: none;
- }   
+    .rotate-warning {
+        display: none;
+    }
 }
-

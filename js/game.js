@@ -15,6 +15,15 @@ function init() {
     setupTouchControls();
 }
 
+function showImpressum(){
+    console.log('impressum wird angezeigt');
+    document.getElementById('impressum').classList.remove('dnone');
+    document.getElementById('canvas-container').classList.add('dnone');
+    document.getElementById('startscreen').classList.add('dnone');
+    document.getElementById('youwon').classList.add('dnone');
+    document.getElementById('youlost').classList.add('dnone');
+}
+
 function allsoundsOff(soundOn) {
     world.backgroundSound.muted=soundOn;
     world.charackterHurtSound.muted = soundOn;
