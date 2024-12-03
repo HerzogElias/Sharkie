@@ -69,22 +69,6 @@ canvas {
     left: 430px;
 }
 
-.youWon-Title {
-    position: absolute;
-    top: 200px;
-    left: 250px;
-    width: 300px;
-    height: 100px;
-}
-
-.youLost-Title {
-    position: absolute;
-    top: 350px;
-    left: 480px;
-    width: 300px;
-    height: 100px;
-}
-
 .canvas-container {
     position: relative;
     width: 720px;
@@ -146,24 +130,24 @@ canvas {
 }
                             
 .btn {
-    background-color: yellow; /* Gelber Hintergrund */
-    border: 3px solid blue; /* Blauer Rahmen */
-    color: blue; /* Blauer Text */
-    font-size: 24px; /* Schriftgröße */
-    font-weight: bold; /* Fettschrift */
-    text-transform: uppercase; /* Text in Großbuchstaben */
-    padding: 10px 20px; /* Innenabstand */
-    border-radius: 15px; /* Abgerundete Ecken */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Leichter 3D-Schattierungseffekt */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animation für Hover-Effekt */
+    background-color: yellow;
+    border: 3px solid blue;
+    color: blue;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn:hover {
-    transform: scale(1.05); /* Leichte Vergrößerung beim Hover */
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5); /* Stärkere Schattierung beim Hover */
+    transform: scale(1.05);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-
 }
+
 
 .btn-impressum {
     position: absolute;
@@ -183,22 +167,11 @@ canvas {
 
 .impressum{
     background-color: rgba(0, 0, 0, 0.5);
-    width: 600px;
+    width: 900px;
     height: 70vh;
     overflow-y: auto;
     text-align: center;
     color:wheat;
-}
-
-.backStartscreen{
-    color: wheat;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-.backStartscreen:hover{
-    color: burlywood;
-    text-decoration:underline;
 }
 
 .h1-Impressum{
@@ -213,6 +186,38 @@ canvas {
 .impressum-links:hover{
     text-decoration: underline;
 }
+
+.dflex {
+   
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative
+}
+
+.endscreen-container {
+    background-image:url('img/7.Myown/background_screen.jpg');
+    width: 720px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    color: white;
+}
+
+.endscreen-container h2 {
+    font-size: 48px;
+    text-decoration: solid;
+    font-family: 'historia', Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+
 @media screen and (max-width:920) {
     .youLost-Title {
         position: absolute;
@@ -224,12 +229,13 @@ canvas {
 }
 
 @media screen and (max-width:800px) {
-    .youLost-Title {
-        position: absolute;
-        top: 350px;
-        left: 200px;
-        width: 200px;
-        height: 60px;
+    .impressum{
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 600px;
+        height: 70vh;
+        overflow-y: auto;
+        text-align: center;
+        color:wheat;
     }
 }
 
@@ -262,6 +268,14 @@ only screen and (max-height: 480px) {
     .title {
         display: none;
     }
+
+    .mutebutton-desktop{
+        display: none;
+    }
+
+    .mutebutton-responsive{
+        display: block;
+    }
 }
 
 /* Wenn die Höhe max. 480px ist */
@@ -272,6 +286,14 @@ only screen and (max-height: 480px) {
 
     .title {
         display: none;
+    }
+
+    .mutebutton-desktop{
+        display: none;
+    }
+
+    .mutebutton-responsive{
+        display: block;
     }
 }
 

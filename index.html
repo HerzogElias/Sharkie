@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <link rel="shortcut icon" href="img/2.Enemy/3 Final Enemy/1.Introduce/2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/7.Myown/favicon.jpg" type="image/x-icon">
 
 
     <script src="classes/subclasses/drawable-object.class.js"></script>
@@ -49,13 +49,17 @@
     <div class="canvas-container dnone" id="canvas-container">
         <canvas id="canvas" width="720" height="480"></canvas>
         <div class="button-div-responsive">
-            <div class="all-buttons">
+            <div class="all-buttons dnone mutebutton-responsive">
                 <img id="left" class="button-control" src="img/7.Myown/left.png" alt="left">
                 <img id="right" class="button-control" src="img/7.Myown/right.png" alt="right">
                 <img id="up" class="button-control" src="img/7.Myown/up.png" alt="up">
                 <img id="down" class="button-control" src="img/7.Myown/down.png" alt="down">
                 <img id="throw" class="button-control" src="img/7.Myown/Bubble.png" alt="bubble">
                 <img onclick="toggleMute()" class="button-control" src="img/7.Myown/mute.png" alt="mutesound">
+            </div>
+
+            <div class="mutebutton mutebutton-desktop">
+                <img onclick="toggleMute()" id="throw" class="button-control" src="img/7.Myown/mute.png" alt="mutesound">
             </div>
         </div>
 
@@ -69,15 +73,20 @@
       <button onclick="showImpressum()" class="btn btn-impressum"> Impressum </button> 
     </div>
 
-    <div class="youwon dnone" id="youwon">
-        <img class="background-screen" src="img/7.Myown/background_screen.jpg">
-        <img class="youWon-Title" src="img/6.Botones/Tittles/You win/Recurso 22.png">
-        <img onclick="stopGame()" class="youLost-Title" src="img/6.Botones/Try again/Recurso 15.png">
+    <div class="endscreen-container dnone" id="youwon"><
+        <div class="dflex">
+        <h2>Hurra, you won! </h2>
+            <button class="btn" onclick="stopGame()">Home</button>
+            <button class="btn" onclick="newGame()">Try Again</button>
+        </div>
     </div>
 
-    <div class="youlost dnone" id="youlost">
-        <img class="background-screen" src="img/7.Myown/background_screen.jpg">
-        <img onclick="stopGame()" class="youLost-Title" src="img/6.Botones/Try again/Recurso 15.png">
+    <div class="endscreen-container dnone" id="youlost">
+        <div class="dflex">
+        <h2>You Lost ....</h2>
+            <button class="btn" onclick="stopGame()"> Home</button>
+            <button class="btn" onclick="newGame()">Try Again</button>
+        </div>
     </div>
 
 

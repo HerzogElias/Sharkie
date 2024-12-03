@@ -1,22 +1,46 @@
+/**
+ * The main canvas element of the game.
+ * @type {HTMLCanvasElement}
+ */
 let canves;
+
+/**
+ * The main world object representing the game state and interactions.
+ * @type {World}
+ */
 let world;
+
+/**
+ * Object representing the state of the keyboard inputs.
+ * @type {Keyboard}
+ */
 let keyboard = new Keyboard();
+
+/**
+ * Indicates whether the sound is currently on or muted.
+ * @type {boolean}
+ */
 let soundOn = false;
 
+/**
+ * Initializes the game by setting up the canvas, world, and event listeners.
+ */
 function init() {
     let canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     let ctx = canvas.getContext('2d');
-    console.log('My character is', world.charackter);
-    soundOn=false;
-    world.backgroundSound.play()
+    soundOn = false;
+    world.backgroundSound.play();
+    world.backgroundSound.loop = true;
     allsoundsOff(soundOn);
     showGame();
     setupTouchControls();
 }
 
-function showImpressum(){
-    console.log('impressum wird angezeigt');
+/**
+ * Displays the Impressum (about/legal) section and hides other sections.
+ */
+function showImpressum() {
     document.getElementById('impressum').classList.remove('dnone');
     document.getElementById('canvas-container').classList.add('dnone');
     document.getElementById('startscreen').classList.add('dnone');
@@ -24,71 +48,48 @@ function showImpressum(){
     document.getElementById('youlost').classList.add('dnone');
 }
 
+/**
+ * Toggles all game sounds on or off based on the `soundOn` state.
+ * @param {boolean} soundOn - Whether sounds should be muted (true) or unmuted (false).
+ */
 function allsoundsOff(soundOn) {
-    world.backgroundSound.muted=soundOn;
+    world.backgroundSound.muted = soundOn;
     world.charackterHurtSound.muted = soundOn;
     world.collectiingCoinAndGiftSound.muted = soundOn;
     world.endbossHurtSound.muted = soundOn;
-    world.charackterSwimmingSound.muted = soundOn;  
-    world.charackterThrowSound.muted = soundOn;  
-    world.characterWonSound.muted=soundOn;
-    world.charackterLostSound.muted=soundOn;
+    world.charackterSwimmingSound.muted = soundOn;
+    world.charackterThrowSound.muted = soundOn;
+    world.characterWonSound.muted = soundOn;
+    world.charackterLostSound.muted = soundOn;
 }
 
+/**
+ * Adds event listeners for keyboard controls.
+ */
 window.addEventListener("keydown", (e) => {
-    /* console.log(e)*/
-
-    if (e.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
-
-    if (e.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
-
-    if (e.keyCode == 38) {
-        keyboard.UP = true;
-    }
-
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
-    if (e.keyCode == 40) {
-        keyboard.DOWN = true;
-    }
-
-    if (e.keyCode == 68) {
-        keyboard.D = true;
-    }
+    if (e.keyCode === 32) keyboard.SPACE = true;
+    if (e.keyCode === 37) keyboard.LEFT = true;
+    if (e.keyCode === 38) keyboard.UP = true;
+    if (e.keyCode === 39) keyboard.RIGHT = true;
+    if (e.keyCode === 40) keyboard.DOWN = true;
+    if (e.keyCode === 68) keyboard.D = true;
 });
 
+/**
+ * Removes the keydown state for keyboard controls when keys are released.
+ */
 window.addEventListener("keyup", (e) => {
-    /*    console.log(e)*/
-
-    if (e.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
-
-    if (e.keyCode == 37) {
-        keyboard.LEFT = false;
-    }
-
-    if (e.keyCode == 38) {
-        keyboard.UP = false;
-    }
-
-    if (e.keyCode == 39) {
-        keyboard.RIGHT = false;
-    }
-    if (e.keyCode == 40) {
-        keyboard.DOWN = false;
-    }
-
-    if (e.keyCode == 68) {
-        keyboard.D = false;
-    }
+    if (e.keyCode === 32) keyboard.SPACE = false;
+    if (e.keyCode === 37) keyboard.LEFT = false;
+    if (e.keyCode === 38) keyboard.UP = false;
+    if (e.keyCode === 39) keyboard.RIGHT = false;
+    if (e.keyCode === 40) keyboard.DOWN = false;
+    if (e.keyCode === 68) keyboard.D = false;
 });
 
+/**
+ * Sets up touch controls for mobile devices.
+ */
 function setupTouchControls() {
     // LEFT
     document.getElementById('left').addEventListener('touchstart', (e) => {
@@ -130,11 +131,9 @@ function setupTouchControls() {
         keyboard.DOWN = false;
     });
 
-
     // D
     document.getElementById('throw').addEventListener('touchstart', (e) => {
         e.preventDefault();
-        console.log(keyboard.D)
         keyboard.D = true;
     });
     document.getElementById('throw').addEventListener('touchend', (e) => {
@@ -143,8 +142,9 @@ function setupTouchControls() {
     });
 }
 
-
-
+/**
+ * Displays the start screen and hides other game screens.
+ */
 function showStartscreen() {
     document.getElementById('canvas-container').classList.add('dnone');
     document.getElementById('startscreen').classList.remove('dnone');
@@ -152,23 +152,37 @@ function showStartscreen() {
     document.getElementById('youlost').classList.add('dnone');
 }
 
+/**
+ * Displays the game screen and hides other screens.
+ */
 function showGame() {
-    console.log('show game funktioniert')
     document.getElementById('canvas-container').classList.remove('dnone');
     document.getElementById('startscreen').classList.add('dnone');
     document.getElementById('youwon').classList.add('dnone');
     document.getElementById('youlost').classList.add('dnone');
 }
 
-function stopGame(){
-    console.log('go to start');
+/**
+ * Stops the game and returns to the start screen.
+ */
+function stopGame() {
     showStartscreen();
-    Level1= newLevel();
+    Level1 = newLevel();
 }
 
+/**
+ * Starts a new game by reinitializing the game state.
+ */
+function newGame() {
+    init();
+    Level1 = newLevel();
+}
 
-function toggleMute(){
-    soundOn=!soundOn;
+/**
+ * Toggles the mute state of the game sounds.
+ */
+function toggleMute() {
+    soundOn = !soundOn;
     allsoundsOff(soundOn);
 }
 

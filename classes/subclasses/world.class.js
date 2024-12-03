@@ -234,8 +234,8 @@ class World {
 
 
     /**
-  * Checks collisions with various game objects periodically.
-  */
+    * Checks collisions with various game objects periodically.
+    */
     checkCollisions() {
         setInterval(() => {
             this.checkCollisionWithPufferfish();
@@ -244,6 +244,7 @@ class World {
             this.checkCollisionWithGift();
             this.checkCollisionWithThrowableObjects();
             this.checkCollisionWithEndboss();
+            this.checkCollisionsBubbleWithPufferfish()
         }, 1);
     }
 
@@ -268,7 +269,7 @@ class World {
     checkCollisionWithJellyfish() {
         this.level.jellyFish.forEach((jellyFish, index) => {
             if (this.charackter.isColiding(jellyFish)) {
-                this.charackter.hit();
+                this.charackter.hit(350);
                 this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
                 this.level.jellyFish.splice(index, 1);
             }
@@ -282,7 +283,6 @@ class World {
     checkCollisionWithCoins() {
         this.level.coins.forEach((coin, index) => {
             if (this.charackter.isColiding(coin)) {
-                console.log('Coin getroffen');
                 this.level.coins.splice(index, 1);
                 this.updateStatusbar(this.stausBarCoin);
             }
@@ -296,7 +296,6 @@ class World {
     checkCollisionWithGift() {
         this.level.gift.forEach((gift, index) => {
             if (this.charackter.isColiding(gift)) {
-                console.log('Gift getroffen');
                 this.level.gift.splice(index, 1);
                 this.updateStatusbar(this.statusBarGift);
             }
@@ -308,7 +307,6 @@ class World {
      * @param {Statusbar} statusbar The status bar to update.
      */
     updateStatusbar(statusbar) {
-        console.log(statusbar);
         if (statusbar.percentage < 100) {
             statusbar.percentage += 20;
             statusbar.setPercentage(statusbar.percentage);
@@ -338,7 +336,7 @@ class World {
             this.level.Endboss.forEach((endboss) => {
                 if (bubble.isColiding(endboss) && !endbossCooldown) {
                     endboss.hit();
-                    this.statusBarEndboss.setPercentage(endboss.energy * 100 / endboss.maxEnergy);
+                    this.statusBarEndboss.setPercentage(endboss.energy * 100 / 4000);
                     this.throwableObject.splice(bubbleIndex, 1);
                     endbossCooldown = true;
 
@@ -346,6 +344,22 @@ class World {
                     setTimeout(() => {
                         endbossCooldown = false;
                     }, 500);
+                }
+            });
+        });
+    }
+
+    /**
+     * Checks for collisions between throwable bubbles and pufferfish.
+     * Removes the pufferfish and updates the gift status bar if a collision occurs.
+     */
+    checkCollisionsBubbleWithPufferfish() {
+        this.throwableObject.forEach((bubble, bubbleIndex) => {
+            this.level.pufferfish.forEach((pufferfish, pufferfishIndex) => {
+                if (bubble.isColiding(pufferfish)) {
+                    this.level.pufferfish.splice(pufferfishIndex, 1);
+                    this.updateStatusbar(this.statusBarGift);
+                    this.throwableObject.splice(bubbleIndex, 1);
                 }
             });
         });
