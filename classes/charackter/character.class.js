@@ -29,46 +29,65 @@ class Charackter extends MovableObject {
     world;
 
     /**
+     * @property {number} idleCounter - Counter to track idle time for triggering animations.
+     * @default 0
+     */
+    idleCounter = 0;
+
+    /**
+     * @property {object} offset - Defines the hitbox offset for the character.
+     * @property {number} offset.top - Top offset in pixels.
+     * @property {number} offset.bottom - Bottom offset in pixels.
+     * @property {number} offset.left - Left offset in pixels.
+     * @property {number} offset.right - Right offset in pixels.
+     */
+    offset = {
+        top: 60,
+        bottom: 10,
+        left: 45,
+        right: 25
+    };
+
+    /**
      * @property {string[]} IMAGES_WALKING - Paths to images used for the walking animation.
      */
-    IMAGES_WALKING =
-        [
-            'img/1.Sharkie/3.Swim/1.png',
-            'img/1.Sharkie/3.Swim/2.png',
-            'img/1.Sharkie/3.Swim/3.png',
-            'img/1.Sharkie/3.Swim/4.png',
-            'img/1.Sharkie/3.Swim/5.png',
-            'img/1.Sharkie/3.Swim/6.png'
-        ]
+    IMAGES_WALKING = [
+        'img/1.Sharkie/3.Swim/1.png',
+        'img/1.Sharkie/3.Swim/2.png',
+        'img/1.Sharkie/3.Swim/3.png',
+        'img/1.Sharkie/3.Swim/4.png',
+        'img/1.Sharkie/3.Swim/5.png',
+        'img/1.Sharkie/3.Swim/6.png'
+    ];
+
     /**
-     @property {string[]} IMAGES_DEAD - Paths to images used for the dead animation.
-    */
-    IMAGES_DEAD =
-        [
-            'img/1.Sharkie/6.dead/1.Poisoned/1.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/2.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/3.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/4.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/5.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/6.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/7.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/8.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/9.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/10.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/11.png',
-            'img/1.Sharkie/6.dead/1.Poisoned/12.png'
-        ]
+     * @property {string[]} IMAGES_DEAD - Paths to images used for the dead animation.
+     */
+    IMAGES_DEAD = [
+        'img/1.Sharkie/6.dead/1.Poisoned/1.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/2.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/3.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/4.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/5.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/6.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/7.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/8.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/9.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/10.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/11.png',
+        'img/1.Sharkie/6.dead/1.Poisoned/12.png'
+    ];
+
     /**
      * @property {string[]} IMAGES_HURT - Paths to images used for the hurt animation.
      */
-    IMAGES_HURT =
-        [
-            'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
-            'img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
-            'img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
-            'img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
-            'img/1.Sharkie/5.Hurt/1.Poisoned/5.png'
-        ]
+    IMAGES_HURT = [
+        'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/3.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/4.png',
+        'img/1.Sharkie/5.Hurt/1.Poisoned/5.png'
+    ];
 
     /**
      * @property {string[]} IMAGES_THROW - Paths to images used for the throw animation.
@@ -85,8 +104,8 @@ class Charackter extends MovableObject {
     ];
 
     /**
-    * @property {string[]} IMAGES_SLEEPING - Paths to images used for the sleeping animation.
-    */
+     * @property {string[]} IMAGES_SLEEPING - Paths to images used for the sleeping animation.
+     */
     IMAGES_SLEEPING = [
         'img/1.Sharkie/2.Long_IDLE/I1.png',
         'img/1.Sharkie/2.Long_IDLE/I2.png',
@@ -102,25 +121,49 @@ class Charackter extends MovableObject {
         'img/1.Sharkie/2.Long_IDLE/I12.png',
         'img/1.Sharkie/2.Long_IDLE/I13.png',
         'img/1.Sharkie/2.Long_IDLE/I14.png'
-    ]
+    ];
 
     /**
-    * Creates a new character instance.
-    *         
-    *  @param {object} world - Reference to the game world.
-    */
+     * @property {string[]} IMAGES_IDLE - Paths to images used for the idle animation.
+     */
+    IMAGES_IDLE = [
+        'img/1.Sharkie/1.IDLE/1.png',
+        'img/1.Sharkie/1.IDLE/2.png',
+        'img/1.Sharkie/1.IDLE/3.png',
+        'img/1.Sharkie/1.IDLE/4.png',
+        'img/1.Sharkie/1.IDLE/5.png',
+        'img/1.Sharkie/1.IDLE/6.png',
+        'img/1.Sharkie/1.IDLE/7.png',
+        'img/1.Sharkie/1.IDLE/8.png',
+        'img/1.Sharkie/1.IDLE/9.png',
+        'img/1.Sharkie/1.IDLE/10.png',
+        'img/1.Sharkie/1.IDLE/11.png',
+        'img/1.Sharkie/1.IDLE/12.png',
+        'img/1.Sharkie/1.IDLE/13.png',
+        'img/1.Sharkie/1.IDLE/14.png',
+        'img/1.Sharkie/1.IDLE/15.png',
+        'img/1.Sharkie/1.IDLE/16.png',
+        'img/1.Sharkie/1.IDLE/17.png',
+        'img/1.Sharkie/1.IDLE/18.png'
+    ];
+
+    /**
+     * Creates a new character instance.
+     * 
+     * @param {object} world - Reference to the game world.
+     */
     constructor(world) {
-        super().loadImage('./img/1.Sharkie/2.Long_IDLE/i1.png')
+        super().loadImage('./img/1.Sharkie/2.Long_IDLE/I1.png');
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_THROW);
         this.loadImages(this.IMAGES_SLEEPING);
+        this.loadImages(this.IMAGES_IDLE);
         this.world = world;
         this.animate();
-        this.fallDown();
-        this.sleepingMode();
     }
+
     /**
      * Starts the character's animations and handles user input for movement.
      */
@@ -131,17 +174,14 @@ class Charackter extends MovableObject {
                 this.x += this.speed;
                 this.otherDirection = false;
                 this.world.charackterSwimmingSound.play();
-
             }
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
                 this.world.charackterSwimmingSound.play();
-
             }
             this.world.camera_x = -this.x + 60;
         }, 1000 / 60);
-
 
         setInterval(() => {
             this.world.charackterSwimmingSound.pause();
@@ -149,14 +189,12 @@ class Charackter extends MovableObject {
                 this.y += this.speed;
                 this.otherDirection = false;
                 this.world.charackterSwimmingSound.play();
+            } else if (this.world.keyboard.UP && this.y > 5) {
+                this.y -= this.speed;
+                this.otherDirection = false;
+                this.world.charackterSwimmingSound.play();
             }
-            else
-                if (this.world.keyboard.UP && this.y > 5) {
-                    this.y -= this.speed;
-                    this.otherDirection = false;
-                    this.world.charackterSwimmingSound.play();
-                }
-        }, 1000 / 60)
+        }, 1000 / 60);
 
         setInterval(() => {
             if (this.world.keyboard.D && this.world.statusBarGift.percentage > 0) {
@@ -167,47 +205,29 @@ class Charackter extends MovableObject {
 
         setInterval(() => {
             if (this.isDeat()) {
-                this.playAnimation(this.IMAGES_DEAD)
-            } else
-                if (this.isHurt()) {
-                    this.playAnimation(this.IMAGES_HURT)
-                } else
-                    this.playAnimation(this.IMAGES_WALKING);
-        }, 200)
-    }
-
-    /**
-     * Handles the falling animation when the character is idle.
-     */
-    fallDown() {
-        setInterval(() => {
-            if (!this.world.keyboard.DOWN && !this.world.keyboard.UP) {
-                if (this.y < 380) {
-                    this.y += 2;
-                }
-            }
-        }, 1000 / 10);
-    }
-
-     /**
-     * Activates the sleeping mode if the character remains idle for a certain time.
-     */
-    sleepingMode() {
-        setInterval(() => {
-            if (!this.world.keyboard.LEFT && !this.world.keyboard.RIGHT
-                && !this.world.keyboard.UP && !this.world.keyboard.DOWN
-                && !this.world.keyboard.D) {
-                setTimeout(() => {
-                    this.aktivateSleepingMode();
-                }, 10000);
+                this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.isHurt()) {
+                this.idleCounter = 0;
+                this.playAnimation(this.IMAGES_HURT);
+            } else if (this.isWalking()) {
+                this.idleCounter = 0;
+                this.playAnimation(this.IMAGES_WALKING);
+            } else if (this.idleCounter > 15) {
+                this.playAnimation(this.IMAGES_SLEEPING);
+            } else {
+                this.idleCounter++;
+                this.playAnimation(this.IMAGES_IDLE);
             }
         }, 200);
     }
 
     /**
-     * Plays the sleeping animation.
+     * Determines if the character is currently walking based on keyboard input.
+     * 
+     * @returns {boolean} - True if the character is walking, false otherwise.
      */
-    aktivateSleepingMode() {
-        this.playAnimation(this.IMAGES_SLEEPING);
+    isWalking() {
+        return this.world.keyboard.LEFT || this.world.keyboard.RIGHT ||
+            this.world.keyboard.UP || this.world.keyboard.DOWN;
     }
 }

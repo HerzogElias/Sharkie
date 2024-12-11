@@ -79,19 +79,16 @@ class DrawableObject {
         });
     }
 
-    /**
-     * Draws a blue border around the object for debugging purposes.
-     * This is only applied to objects that are instances of `Charackter`, `Pufferfish`, or `JellyFish`.
-     * 
-     * @param {CanvasRenderingContext2D} ctx - The canvas 2D rendering context to draw the border on.
-     */
-    drawBorder(ctx) {
-        if (this instanceof Charackter || this instanceof Pufferfish || this instanceof JellyFish) {
+    /*
+    drawFrame(ctx) {
+        if (this instanceof Pufferfish || this instanceof Charackter || this instanceof Endboss) {
             ctx.beginPath();
-            ctx.lineWidth = '5';
+            ctx.lineWidth = '4';
             ctx.strokeStyle = 'blue';
             ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
+            ctx.stroke();   
         }
-    }
+    }*/
+
+
 }

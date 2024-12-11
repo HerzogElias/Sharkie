@@ -20,10 +20,12 @@ class JellyFish extends Enemy {
      * The JellyFish is given an initial image, a random position on the screen, and an animation sequence.
      * The animation will cycle through the images in the `IMAGES_ENEMY` array.
      */
-    constructor() {
+    constructor(world) {
         super();
         // Load the dead image for the JellyFish
         this.loadImage('img/2.Enemy/2 Jelly fish/Dead/green/g1.png');
+
+        this.world=world;
         
         // Set a random position on the screen
         this.setRandomPosition(1000, 250);
@@ -33,5 +35,7 @@ class JellyFish extends Enemy {
         
         // Start the animation with a 1-second interval
         this.startAnimation(this.IMAGES_ENEMY, 1000);
+
+
     }
 }

@@ -80,7 +80,10 @@ class World {
         this.checkThrowableObject();
         this.checkifCharackterLostGame();
         this.checkifCharackterWon();
+     
     }
+
+
 
     /**
      * Sets the game world context for the character.
@@ -142,6 +145,14 @@ class World {
         this.addToMap(this.statusBarEndboss);
     }
 
+
+    offset = {
+        top: 20,
+        bottom: 5,
+        left: 5,
+        right: 20
+    }; 
+    
     /**
      * Adds an array of objects to the map by drawing them.
      * @param {Object[]} objekts Array of objects to add.
@@ -152,20 +163,42 @@ class World {
         });
     }
 
-    /**
-     * Adds a single movable object to the map, flipping its direction if needed.
-     * @param {MovableObject} mo The movable object to add.
-     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-        mo.draw(this.ctx);
-        mo.drawBorder(this.ctx);
+        
+        
+        mo.draw(this.ctx); // Zeichne das Objekt
+        /*
+        mo.drawFrame(this.ctx); // Zeichne den blauen Rahmen
+    
+
+        // Zeichne den roten Offset-Rahmen, falls das Objekt ein MovableObject ist
+        if (mo instanceof MovableObject) {
+            this.drawOffsetBorder(mo);
+        }
+        
+        */
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
     }
+    
+
+    /*
+    drawOffsetBorder(mo) {
+        const offset = mo.offset || this.offset; // Verwende das spezifische Offset des Objekts oder Standard-Offset
+        const x = mo.x + this.offset.left;
+        const y = mo.y + this.offset.top;
+        const width = mo.width - (this.offset.left + this.offset.right);
+        const height = mo.height - (this.offset.top + this.offset.bottom);
+    
+        this.ctx.strokeStyle = "red";
+        this.ctx.lineWidth = 2;
+        this.ctx.strokeRect(x, y, width, height);
+    }
+*/
 
     /**
      * Flips the image horizontally for mirrored drawing.
@@ -232,7 +265,6 @@ class World {
     }
 
 
-
     /**
     * Checks collisions with various game objects periodically.
     */
@@ -245,7 +277,7 @@ class World {
             this.checkCollisionWithThrowableObjects();
             this.checkCollisionWithEndboss();
             this.checkCollisionsBubbleWithPufferfish()
-        }, 1);
+        }, 150);
     }
 
     /**
@@ -255,9 +287,8 @@ class World {
     checkCollisionWithPufferfish() {
         this.level.pufferfish.forEach((pufferfish, index) => {
             if (this.charackter.isColiding(pufferfish)) {
-                this.charackter.hit();
+                this.charackter.hit(100);
                 this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-                this.level.pufferfish.splice(index, 1);
             }
         });
     }
@@ -269,9 +300,9 @@ class World {
     checkCollisionWithJellyfish() {
         this.level.jellyFish.forEach((jellyFish, index) => {
             if (this.charackter.isColiding(jellyFish)) {
-                this.charackter.hit(350);
+                this.charackter.hit(100);
                 this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-                this.level.jellyFish.splice(index, 1);
+               
             }
         });
     }
@@ -320,7 +351,7 @@ class World {
     checkCollisionWithEndboss() {
         this.level.Endboss.forEach((endboss) => {
             if (this.charackter.isColiding(endboss)) {
-                this.charackter.hit();
+                this.charackter.hit(600);
                 this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
             }
         });
@@ -343,7 +374,7 @@ class World {
                     // Cooldown to prevent rapid hits
                     setTimeout(() => {
                         endbossCooldown = false;
-                    }, 500);
+                    }, 850);
                 }
             });
         });

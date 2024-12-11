@@ -8,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 body {
@@ -20,7 +20,7 @@ body {
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 h1 {
@@ -33,6 +33,7 @@ h1 {
 canvas {
     background-color: black;
     display: block;
+    position: relative;
 }
 
 .dnone {
@@ -47,6 +48,8 @@ canvas {
     justify-content: center;
     align-items: center;
     z-index: 1;
+    background-image: url('img/3. Background/Mesa de trabajo 1.png');
+    background-repeat: no-repeat;
 }
 
 .background-screen {
@@ -76,12 +79,6 @@ canvas {
     margin: 0 auto;
 }
 
-canvas {
-    background-color: black;
-    display: block;
-    position: relative;
-}
-
 .button-div-responsive {
     position: absolute;
     bottom: 10px;
@@ -105,13 +102,12 @@ canvas {
     justify-content: space-around;
 }
 
-
 .rotate-warning {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    min-height: 100%;
     background: inherit;
     display: flex;
     justify-content: center;
@@ -128,7 +124,7 @@ canvas {
     justify-content: center;
     border: 2px solid green;
 }
-                            
+
 .btn {
     background-color: yellow;
     border: 3px solid blue;
@@ -148,7 +144,6 @@ canvas {
     cursor: pointer;
 }
 
-
 .btn-impressum {
     position: absolute;
     top: 410px;
@@ -157,7 +152,7 @@ canvas {
     height: 50px;
 }
 
-.btn-start{
+.btn-start {
     position: absolute;
     top: 340px;
     left: 420px;
@@ -165,41 +160,40 @@ canvas {
     height: 50px;
 }
 
-.impressum{
+.impressum {
     background-color: rgba(0, 0, 0, 0.5);
     width: 900px;
     height: 70vh;
     overflow-y: auto;
     text-align: center;
-    color:wheat;
+    color: wheat;
 }
 
-.h1-Impressum{
+.h1-Impressum {
     color: wheat;
     text-decoration: underline;
 }
 
-.impressum-links{
+.impressum-links {
     color: goldenrod;
 }
 
-.impressum-links:hover{
+.impressum-links:hover {
     text-decoration: underline;
 }
 
 .dflex {
-   
     display: flex;
     flex-direction: column;
     gap: 20px;
     justify-content: center;
     align-items: center;
     text-align: center;
-    position: relative
+    position: relative;
 }
 
 .endscreen-container {
-    background-image:url('img/7.Myown/background_screen.jpg');
+    background-image: url('img/7.Myown/background_screen.jpg');
     width: 720px;
     height: 480px;
     display: flex;
@@ -217,49 +211,23 @@ canvas {
     margin: 0;
 }
 
-
-@media screen and (max-width:920) {
-    .youLost-Title {
-        position: absolute;
-        top: 350px;
-        left: 200px;
-        width: 250px;
-        height: 80px;
-    }
+.mutebutton-responsive {
+    display: none;
 }
 
-@media screen and (max-width:800px) {
-    .impressum{
+@media screen and (max-width: 800px) {
+    .impressum {
         background-color: rgba(0, 0, 0, 0.5);
         width: 600px;
         height: 70vh;
         overflow-y: auto;
         text-align: center;
-        color:wheat;
+        color: wheat;
     }
 }
 
-/* Wenn die Breite max. 720px oder die Höhe max. 480px ist, 
-   und das Gerät im Portrait-Modus ist */
 @media only screen and (max-width: 720px),
 only screen and (max-height: 480px) {
-    @media (orientation: portrait) {
-        .rotate-warning {
-            display: block;
-            /* .rotate-warning wird angezeigt */
-        }
-    }
-
-    @media (orientation: landscape) {
-        .rotate-warning {
-            display: block;
-            /* .rotate-warning wird angezeigt */
-        }
-    }
-}
-
-/* Wenn die Breite max. 720px ist */
-@media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
         height: auto;
@@ -269,35 +237,23 @@ only screen and (max-height: 480px) {
         display: none;
     }
 
-    .mutebutton-desktop{
-        display: none;
+    .mutebutton-desktop {
+        display: none; /* Desktop-Button ausblenden */
     }
 
-    .mutebutton-responsive{
-        display: block;
-    }
-}
-
-/* Wenn die Höhe max. 480px ist */
-@media only screen and (max-height: 480px) {
-    canvas {
-        height: 100vh;
+    .mutebutton-responsive {
+        display: block; /* Responsive-Button einblenden */
     }
 
-    .title {
-        display: none;
-    }
-
-    .mutebutton-desktop{
-        display: none;
-    }
-
-    .mutebutton-responsive{
-        display: block;
+    @media (orientation: portrait),
+    (orientation: landscape) {
+        .rotate-warning {
+            display: block;
+        }
     }
 }
 
-@media only screen and (min-width:721px) {
+@media only screen and (min-width: 721px) {
     .rotate-warning {
         display: none;
     }

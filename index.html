@@ -49,7 +49,7 @@
     <div class="canvas-container dnone" id="canvas-container">
         <canvas id="canvas" width="720" height="480"></canvas>
         <div class="button-div-responsive">
-            <div class="all-buttons dnone mutebutton-responsive">
+            <div class="all-buttons mutebutton-responsive">
                 <img id="left" class="button-control" src="img/7.Myown/left.png" alt="left">
                 <img id="right" class="button-control" src="img/7.Myown/right.png" alt="right">
                 <img id="up" class="button-control" src="img/7.Myown/up.png" alt="up">
@@ -67,10 +67,11 @@
     </div>
 
     <div class="startscreen" id="startscreen">
-        <img class="background-screen" src="img/3. Background/Mesa de trabajo 1.png">
-        <h1 class="tittle">Dukes Sharky Game </h1> 
-        <button onclick="init()" class="btn btn-start">Start</button>
-      <button onclick="showImpressum()" class="btn btn-impressum"> Impressum </button> 
+            <h1 class="tittle">Dukes Sharky Game </h1> 
+        <div class="button-startscreen">
+            <button onclick="init()" class="btn btn-start">Start</button>
+            <button onclick="showImpressum()" class="btn btn-impressum"> Impressum </button>
+        </div>
     </div>
 
     <div class="endscreen-container dnone" id="youwon"><
@@ -91,7 +92,7 @@
 
 
     <div class="rotate-warning">
-        <h1>Please rotate your Device</h1>
+        <h1>Please rotate your Device </h1>
     </div>
 
     <div class="impressum dnone" id="impressum"> 

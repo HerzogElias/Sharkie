@@ -174,8 +174,8 @@ function stopGame() {
  * Starts a new game by reinitializing the game state.
  */
 function newGame() {
+    Level1=newLevel();
     init();
-    Level1 = newLevel();
 }
 
 /**

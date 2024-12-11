@@ -32,23 +32,12 @@ class Cloud extends MovableObject {
      */
     constructor() {
         super().loadImage('./img/3. Background/Legacy/Layers/1. Light/2.png');
-        this.animate();
+       
     }
 
     /**
      * Starts the cloud's animation by making it move to the left.
      */
-    animate() {
-        this.moveLeft();
-    }
-
-    /**
-     * Moves the cloud to the left by updating its x position at a constant speed.
-     */
-    moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60);
-    }
+   
 }
 

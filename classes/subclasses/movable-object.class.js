@@ -30,17 +30,28 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
 
     /**
-     * Checks if the current object is colliding with another object.
-     * A collision is detected when the bounding boxes of both objects overlap.
-     * 
+     * The offset values used for collision detection.
+     * @type {{top: number, bottom: number, left: number, right: number}}
+     */
+    offset = {
+        top: 20,
+        bottom: 5,
+        left: 5,
+        right: 20
+    }; 
+
+    /**
+     * Checks if the current object is colliding with another object, considering offsets.
      * @param {MovableObject} mo - The other object to check for collision.
      * @returns {boolean} `true` if the objects are colliding, `false` otherwise.
      */
     isColiding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
+        return (
+            this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
+        );
     }
 
     /**
@@ -48,7 +59,7 @@ class MovableObject extends DrawableObject {
      * Updates the timestamp of the last hit.
      */
     hit() {
-        this.energy -= 500;
+        this.energy -= 200;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -77,7 +88,7 @@ class MovableObject extends DrawableObject {
     isDeat() {
         return this.energy == 0;
     }
-    
+
     /**
      * Moves the object to the left by its speed value at a rate of 60 frames per second.
      * This method continuously moves the object by setting an interval.
@@ -100,4 +111,4 @@ class MovableObject extends DrawableObject {
         this.img = this.imageCache[path]; // Set the image from the cache
         this.currentImage++; // Move to the next image in the animation sequence
     }
-} 
+}

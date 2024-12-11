@@ -4,16 +4,27 @@
  */
 class Endboss extends Enemy {
     /**
-     * Width of the Endboss.
+     * Width of the Endboss in pixels.
      * @type {number}
      */
     width = 350;
 
     /**
-     * Height of the Endboss.
+     * Height of the Endboss in pixels.
      * @type {number}
      */
     height = 350;
+
+    /**
+     * Offset values for the collision boundary of the Endboss.
+     * @type {{top: number, bottom: number, left: number, right: number}}
+     */
+    offset = {
+        top: 150,
+        bottom: 20,
+        left: 5,
+        right: 20
+    };
 
     /**
      * Array of image paths for the walking animation of the Endboss.
@@ -33,8 +44,6 @@ class Endboss extends Enemy {
         'img/2.Enemy/3 Final Enemy/2.floating/11.png',
         'img/2.Enemy/3 Final Enemy/2.floating/12.png',
         'img/2.Enemy/3 Final Enemy/2.floating/13.png'
-
-
     ];
 
     /**
@@ -52,15 +61,13 @@ class Endboss extends Enemy {
         'img/2.Enemy/3 Final Enemy/1.Introduce/8.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/9.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/10.png'
-
     ];
 
     /**
-     * Creates an instance of the Endboss and initializes the walking animation and position.
+     * Creates an instance of the Endboss and initializes its properties, animations, and position.
      * 
-     * The Endboss is initialized with a walking animation and a fixed position. It starts with
-     * the first frame of the walking animation and loads the images for both the walking and
-     * the first animation.
+     * The Endboss is initialized with predefined animations and a fixed position. The walking 
+     * animation is loaded and automatically started upon creation.
      */
     constructor() {
         super();
@@ -72,8 +79,16 @@ class Endboss extends Enemy {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_FIRST_ANIMATION);
 
-        // Set the fixed position of the Endboss
-        this.x = 2000;  // Endboss has a fixed position
+        /**
+         * X-coordinate position of the Endboss in the game world.
+         * @type {number}
+         */
+        this.x = 2000; // Endboss has a fixed position
+
+        /**
+         * Y-coordinate position of the Endboss in the game world.
+         * @type {number}
+         */
         this.y = 50;
         
         // Start the walking animation with a 200ms interval between frames
@@ -81,10 +96,11 @@ class Endboss extends Enemy {
     }
 
     /**
-     * Starts the first animation for the Endboss if the character reaches a certain position.
+     * Starts the first animation for the Endboss based on the character's position.
      * 
-     * This method checks if the character's x position is less than -1440, and if so, it plays
-     * the first animation for the Endboss (e.g., introduction animation).
+     * If the character's x position is less than -1440, this method triggers the first 
+     * animation for the Endboss (e.g., introduction animation), providing a dramatic 
+     * introduction of the boss.
      */
     endbossFirstAnimation() {
         if (this.world.charackter.x < -1440) {
@@ -92,3 +108,4 @@ class Endboss extends Enemy {
         }
     }
 }
+

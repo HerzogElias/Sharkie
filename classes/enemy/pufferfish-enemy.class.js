@@ -22,10 +22,12 @@ class Pufferfish extends Enemy {
      * The animation will cycle through the images in the `IMAGES_ENEMY` array.
      * Additionally, the Pufferfish starts moving left after its creation.
      */
-    constructor() {
+    constructor(world) {
         super();
         // Load the super image for the Pufferfish
         this.loadImage('img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png');
+
+        this.world=world;
         
         // Set a random position on the screen
         this.setRandomPosition(1800, 250);
