@@ -79,8 +79,7 @@ class World {
         this.checkCollisions();
         this.checkThrowableObject();
         this.checkifCharackterLostGame();
-        this.checkifCharackterWon();
-     
+        this.checkifCharackterWon(); 
     }
 
 
@@ -277,7 +276,7 @@ class World {
             this.checkCollisionWithThrowableObjects();
             this.checkCollisionWithEndboss();
             this.checkCollisionsBubbleWithPufferfish()
-        }, 150);
+        }, 50);
     }
 
     /**
@@ -366,7 +365,7 @@ class World {
         this.throwableObject.forEach((bubble, bubbleIndex) => {
             this.level.Endboss.forEach((endboss) => {
                 if (bubble.isColiding(endboss) && !endbossCooldown) {
-                    endboss.hit();
+                    endboss.hit(600);
                     this.statusBarEndboss.setPercentage(endboss.energy * 100 / 4000);
                     this.throwableObject.splice(bubbleIndex, 1);
                     endbossCooldown = true;

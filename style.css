@@ -9,6 +9,8 @@ body {
     padding: 0;
     width: 100%;
     height: 100vh;
+    scrollbar-width: thin;
+    scrollbar-color: wheat;
 }
 
 body {
@@ -45,11 +47,14 @@ canvas {
     height: 480px;
     position: relative;
     display: flex;
+    flex-direction: column; /* Richtet Kinder-Elemente vertikal an */
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Zentriert die Elemente horizontal */
     z-index: 1;
     background-image: url('img/3. Background/Mesa de trabajo 1.png');
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .background-screen {
@@ -58,18 +63,13 @@ canvas {
 }
 
 .tittle {
-    position: absolute;
-    top: 210px;
-    left: 200px;
     color: azure;
 }
 
 .startscreen-button {
-    position: absolute;
-    top: 350px;
     width: 200px;
     height: 40px;
-    left: 430px;
+  
 }
 
 .canvas-container {
@@ -83,7 +83,7 @@ canvas {
     position: absolute;
     bottom: 10px;
     left: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.1);
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -99,7 +99,9 @@ canvas {
 
 .all-buttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    align-items: center; /* Zentriert die Buttons vertikal */
+    width: 100%;
 }
 
 .rotate-warning {
@@ -113,6 +115,7 @@ canvas {
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    display: none;
 }
 
 .rotate-warning h1 {
@@ -145,17 +148,11 @@ canvas {
 }
 
 .btn-impressum {
-    position: absolute;
-    top: 410px;
-    left: 390px;
     width: 250px;
     height: 50px;
 }
 
 .btn-start {
-    position: absolute;
-    top: 340px;
-    left: 420px;
     width: 200px;
     height: 50px;
 }
@@ -167,11 +164,21 @@ canvas {
     overflow-y: auto;
     text-align: center;
     color: wheat;
+    padding: 24px;
 }
 
 .h1-Impressum {
     color: wheat;
     text-decoration: underline;
+}
+
+
+.backStartscreen{
+    color: wheat;
+}
+
+.backStartscreen:hover{
+    color: goldenrod;
 }
 
 .impressum-links {
@@ -215,6 +222,51 @@ canvas {
     display: none;
 }
 
+.button-startscreen {
+    display: flex;
+}
+
+.content-container {
+    position: relative; /* Sorgt dafür, dass der Z-Index funktioniert */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Einzelne Steuerung (Bild + Text) */
+.control {
+    display: flex; 
+    flex-direction: column;
+    align-items: center; /* Zentriert Bild und Text */
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7); /* Transparenter Hintergrund */
+    border-radius: 10px; /* Abgerundete Ecken */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Leichter Schatten */
+    width: 118px;
+    height: 175px;
+}
+
+/* Bilder kleiner machen */
+.control img {
+    width: 50px; /* Kleinere Größe */
+    height: 50px;
+    margin-bottom: 8px; /* Abstand zwischen Bild und Text */
+}
+
+/* Text */
+.control span {
+    font-size: 14px; /* Kleinere Schrift */
+    color: #000; /* Dunkle Schriftfarbe */
+    font-family: Arial, sans-serif;
+}
+
+.userStory{
+    display: flex;
+    flex-direction: column;
+}
+
 @media screen and (max-width: 800px) {
     .impressum {
         background-color: rgba(0, 0, 0, 0.5);
@@ -228,9 +280,9 @@ canvas {
 
 @media only screen and (max-width: 720px),
 only screen and (max-height: 480px) {
-    canvas {
-        width: 100%;
-        height: auto;
+    .canvas {
+        width: 100% !important;
+        height: 100vh !important;
     }
 
     .title {
@@ -245,8 +297,22 @@ only screen and (max-height: 480px) {
         display: block; /* Responsive-Button einblenden */
     }
 
-    @media (orientation: portrait),
-    (orientation: landscape) {
+    .startscreen{
+        width: 100%;
+        height: 100%;
+    }
+
+    .endscreen-container{
+        width: 100%;
+        height: 100%;
+    }
+
+    .canvas-container {
+        width: 100%; /* Volle Breite des Viewports */
+        height: 100vh; /* Volle Höhe des Viewports */
+    }
+
+    @media (orientation: portrait) {
         .rotate-warning {
             display: block;
         }

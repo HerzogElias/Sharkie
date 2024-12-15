@@ -48,6 +48,15 @@ function showImpressum() {
     document.getElementById('youlost').classList.add('dnone');
 }
 
+
+function showUserStory(){
+    document.getElementById('userStory').classList.remove('dnone');
+    document.getElementById('canvas-container').classList.add('dnone');
+    document.getElementById('startscreen').classList.add('dnone');
+    document.getElementById('youwon').classList.add('dnone');
+    document.getElementById('youlost').classList.add('dnone');
+}
+
 /**
  * Toggles all game sounds on or off based on the `soundOn` state.
  * @param {boolean} soundOn - Whether sounds should be muted (true) or unmuted (false).

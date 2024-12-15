@@ -26,6 +26,7 @@ class Endboss extends Enemy {
         right: 20
     };
 
+    isInNearFormEndboss =false;
     /**
      * Array of image paths for the walking animation of the Endboss.
      * @type {string[]}
@@ -103,9 +104,11 @@ class Endboss extends Enemy {
      * introduction of the boss.
      */
     endbossFirstAnimation() {
-        if (this.world.charackter.x < -1440) {
-            this.playAnimation(this.IMAGES_FIRST_ANIMATION);
-        }
+        setInterval(() => {
+            if (this.world.charackter.x > + 1900) {
+                this.playAnimation(this.IMAGES_FIRST_ANIMATION);
+                this.isInNearFormEndboss=true;
+            }
+        }, 150); 
     }
 }
-

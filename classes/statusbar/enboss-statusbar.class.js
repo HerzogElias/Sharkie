@@ -40,7 +40,7 @@ class EndbossStatusbar extends StatusBar {
      */
     constructor() {
         super();
-        this.x = 500;  // X position of the status bar
+        this.x = 400;  // X position of the status bar
         this.y = 5;    // Y position of the status bar
         this.width = 200;  // Width of the status bar
         this.height = 60;  // Height of the status bar
