@@ -33,6 +33,7 @@ class Charackter extends MovableObject {
      * @default 0
      */
     idleCounter = 0;
+    // x;
 
     /**
      * @property {object} offset - Defines the hitbox offset for the character.
@@ -147,6 +148,21 @@ class Charackter extends MovableObject {
         'img/1.Sharkie/1.IDLE/18.png'
     ];
 
+
+    IMAGES_FINSLAP =
+        [
+            'img/1.Sharkie/4.Attack/Fin slap/1.png',
+            'img/1.Sharkie/4.Attack/Fin slap/2.png',
+            'img/1.Sharkie/4.Attack/Fin slap/3.png',
+            'img/1.Sharkie/4.Attack/Fin slap/4.png',
+            'img/1.Sharkie/4.Attack/Fin slap/5.png',
+            'img/1.Sharkie/4.Attack/Fin slap/6.png',
+            'img/1.Sharkie/4.Attack/Fin slap/7.png',
+            'img/1.Sharkie/4.Attack/Fin slap/8.png'
+        ]
+
+    healCharacter = false;
+    
     /**
      * Creates a new character instance.
      * 
@@ -160,6 +176,7 @@ class Charackter extends MovableObject {
         this.loadImages(this.IMAGES_THROW);
         this.loadImages(this.IMAGES_SLEEPING);
         this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_FINSLAP);
         this.world = world;
         this.animate();
     }

@@ -3,6 +3,7 @@ class Enemy extends MovableObject {
     height = 60;
     speed = 0.15 + Math.random() * 0.35;
 
+
     /**
      * Setzt die Position des Enemys zufällig.
      */

@@ -267,6 +267,11 @@ canvas {
     flex-direction: column;
 }
 
+.userStoryPicture{
+    width: 70px;
+    height: 80px;
+}
+
 @media screen and (max-width: 800px) {
     .impressum {
         background-color: rgba(0, 0, 0, 0.5);

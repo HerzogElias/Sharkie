@@ -13,7 +13,7 @@ return new level(
         new Pufferfish(),
         new Pufferfish(),
     ],
-
+    
     [
         new Endboss()
     ],

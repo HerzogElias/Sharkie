@@ -74,21 +74,25 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.Endboss = new Endboss(this);
         this.draw();
         this.setWorld();
         this.checkCollisions();
         this.checkThrowableObject();
         this.checkifCharackterLostGame();
-        this.checkifCharackterWon(); 
+        this.checkifCharackterWon();
+
+        this.setSoundVolume();
     }
 
-
+   
 
     /**
      * Sets the game world context for the character.
      */
     setWorld() {
         this.charackter.world = this;
+        this.level.Endboss[0].world = this;
     }
 
     /**
@@ -99,7 +103,15 @@ class World {
         this.drawStaticElements();
         this.drawDynamicElements();
         this.drawUI();
+        this.checckEndbossStart();
         requestAnimationFrame(() => this.draw());
+    }
+
+    checckEndbossStart(){
+        if(this.charackter.x >1500 &&this.level.Endboss[0].isAnimated){
+            this.level.Endboss[0].animate();
+        }
+        
     }
 
     /**
@@ -150,8 +162,8 @@ class World {
         bottom: 5,
         left: 5,
         right: 20
-    }; 
-    
+    };
+
     /**
      * Adds an array of objects to the map by drawing them.
      * @param {Object[]} objekts Array of objects to add.
@@ -166,8 +178,8 @@ class World {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-        
-        
+
+
         mo.draw(this.ctx); // Zeichne das Objekt
         /*
         mo.drawFrame(this.ctx); // Zeichne den blauen Rahmen
@@ -183,7 +195,7 @@ class World {
             this.flipImageBack(mo);
         }
     }
-    
+
 
     /*
     drawOffsetBorder(mo) {
@@ -219,6 +231,19 @@ class World {
         this.ctx.restore();
     }
 
+
+    setSoundVolume(){
+        this.backgroundSound.volume = 1.0;
+        this.charackterHurtSound.volume = 0.9; 
+        this.collectiingCoinAndGiftSound.volume = 0.8;
+        this.endbossHurtSound.volume = 0.7;
+        this.charackterSwimmingSound.volume = 0.7;
+        this.charackterThrowSound.volume = 0.7;
+        this.characterWonSound.volume = 0.7;
+        this.charackterLostSound.volume = 0.3;
+    }
+
+    
     /**
      * Periodically checks if throwable objects should be created.
      */
@@ -301,7 +326,6 @@ class World {
             if (this.charackter.isColiding(jellyFish)) {
                 this.charackter.hit(100);
                 this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
-               
             }
         });
     }

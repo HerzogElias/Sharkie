@@ -3,11 +3,17 @@
  * @extends {Enemy}
  */
 class Endboss extends Enemy {
+    firstAnimationPlayed = false;   
+    isAnimated =false; 
+    i = 0; // Zähler für die Animation
+
     /**
      * Width of the Endboss in pixels.
      * @type {number}
      */
     width = 350;
+
+    world;
 
     /**
      * Height of the Endboss in pixels.
@@ -26,7 +32,6 @@ class Endboss extends Enemy {
         right: 20
     };
 
-    isInNearFormEndboss =false;
     /**
      * Array of image paths for the walking animation of the Endboss.
      * @type {string[]}
@@ -64,15 +69,19 @@ class Endboss extends Enemy {
         'img/2.Enemy/3 Final Enemy/1.Introduce/10.png'
     ];
 
+    alreadyPlaying = false;
+
     /**
      * Creates an instance of the Endboss and initializes its properties, animations, and position.
      * 
      * The Endboss is initialized with predefined animations and a fixed position. The walking 
      * animation is loaded and automatically started upon creation.
      */
-    constructor() {
+    constructor(world) {
         super();
         
+        // this.world = world;
+
         // Load the first image of the walking animation
         this.loadImage(this.IMAGES_WALKING[0]);
         
@@ -90,25 +99,30 @@ class Endboss extends Enemy {
          * Y-coordinate position of the Endboss in the game world.
          * @type {number}
          */
-        this.y = 50;
-        
-        // Start the walking animation with a 200ms interval between frames
-        this.startAnimation(this.IMAGES_WALKING, 200);
+        this.y = 50;    
     }
 
     /**
-     * Starts the first animation for the Endboss based on the character's position.
-     * 
-     * If the character's x position is less than -1440, this method triggers the first 
-     * animation for the Endboss (e.g., introduction animation), providing a dramatic 
-     * introduction of the boss.
+     * Moves the Endboss to the left.
      */
-    endbossFirstAnimation() {
+    moveLeft() {
         setInterval(() => {
-            if (this.world.charackter.x > + 1900) {
+            this.x -= this.speed;
+        }, 1000);
+    }
+
+    /**
+     * Animates the Endboss, playing its introduction animation first, followed by its walking animation.
+     */
+    animate() {
+        this.isAnimated=true;
+        setInterval(() => {
+            if (this.currentImage < this.IMAGES_FIRST_ANIMATION.length) {
                 this.playAnimation(this.IMAGES_FIRST_ANIMATION);
-                this.isInNearFormEndboss=true;
+            } else {
+                this.firstAnimationPlayed = true;
+                this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 150); 
+        }, 150);
     }
 }
