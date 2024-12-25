@@ -2,74 +2,28 @@
  * Represents the game world, including the character, levels, and game logic.
  */
 class World {
-    /** @type {Charackter} The main character in the game. */
     charackter = new Charackter();
-
-    /** @type {Level1} The current level. */
     level = Level1;
-
-    /** @type {Endboss | undefined} The end boss of the current level. */
     Endboss;
-
-    /** @type {HTMLCanvasElement} The canvas element for rendering. */
     canvas;
-
-    /** @type {CanvasRenderingContext2D} The 2D context of the canvas. */
     ctx;
-
-    /** @type {Keyboard} The keyboard input handler. */
     keyboard;
-
-    /** @type {number} The camera's horizontal offset. */
     camera_x = 100;
-
-    /** @type {StatusbarCarackter} The character's health status bar. */
     statusBar = new StatusbarCarackter();
-
-    /** @type {GiftStatusbar} The gift collection status bar. */
     statusBarGift = new GiftStatusbar();
-
-    /** @type {StatusbarCoin} The coin collection status bar. */
     stausBarCoin = new StatusbarCoin();
-
-    /** @type {EndbossStatusbar} The end boss health status bar. */
     statusBarEndboss = new EndbossStatusbar();
-
-    /** @type {ThrowableObject[]} List of active throwable objects (e.g., bubbles). */
     throwableObject = [];
-
-    /** @type {boolean} Whether the character is currently throwing. */
     isThrowing = false;
-
-    /** @type {Audio} Background music for the game. */
     backgroundSound = new Audio('audio/background.mp3');
-
-    /** @type {Audio} Sound effect when the character is hurt. */
     charackterHurtSound = new Audio('audio/charackterHurt.mp3');
-
-    /** @type {Audio} Sound effect when collecting coins or gifts. */
     collectiingCoinAndGiftSound = new Audio('audio/collecting.mp3');
-
-    /** @type {Audio} Sound effect when the end boss is hurt. */
     endbossHurtSound = new Audio('audio/endbossHurt.mp3');
-
-    /** @type {Audio} Sound effect for swimming. */
     charackterSwimmingSound = new Audio('audio/swimming.mp3');
-
-    /** @type {Audio} Sound effect for throwing objects. */
     charackterThrowSound = new Audio('audio/throw.mp3');
-
-    /** @type {Audio} Sound effect when the character wins. */
     characterWonSound = new Audio('audio/win.mp3');
-
-    /** @type {Audio} Sound effect when the character loses. */
     charackterLostSound = new Audio('audio/lost.mp3');
 
-    /**
-     * Initializes the game world.
-     * @param {HTMLCanvasElement} canvas The canvas element for rendering.
-     * @param {Keyboard} keyboard The keyboard input handler.
-     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -81,7 +35,6 @@ class World {
         this.checkThrowableObject();
         this.checkifCharackterLostGame();
         this.checkifCharackterWon();
-
         this.setSoundVolume();
     }
 
@@ -108,10 +61,9 @@ class World {
     }
 
     checckEndbossStart(){
-        if(this.charackter.x >1500 &&this.level.Endboss[0].isAnimated){
+        if(this.charackter.x >1500 && !this.level.Endboss[0].isAnimated) {
             this.level.Endboss[0].animate();
         }
-        
     }
 
     /**
@@ -393,11 +345,13 @@ class World {
                     this.statusBarEndboss.setPercentage(endboss.energy * 100 / 4000);
                     this.throwableObject.splice(bubbleIndex, 1);
                     endbossCooldown = true;
-
+                    this.charackter.idleCounter=0;
                     // Cooldown to prevent rapid hits
                     setTimeout(() => {
                         endbossCooldown = false;
                     }, 850);
+
+                   
                 }
             });
         });

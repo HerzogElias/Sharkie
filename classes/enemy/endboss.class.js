@@ -69,7 +69,6 @@ class Endboss extends Enemy {
         'img/2.Enemy/3 Final Enemy/1.Introduce/10.png'
     ];
 
-    alreadyPlaying = false;
 
     /**
      * Creates an instance of the Endboss and initializes its properties, animations, and position.
@@ -77,13 +76,14 @@ class Endboss extends Enemy {
      * The Endboss is initialized with predefined animations and a fixed position. The walking 
      * animation is loaded and automatically started upon creation.
      */
-    constructor(world) {
+    constructor() {
         super();
         
-        // this.world = world;
+        this.speed = 15;
 
+        
         // Load the first image of the walking animation
-        this.loadImage(this.IMAGES_WALKING[0]);
+        this.loadImage(this.IMAGES_FIRST_ANIMATION[0]);
         
         // Load the images for the walking and first animations
         this.loadImages(this.IMAGES_WALKING);
@@ -100,6 +100,8 @@ class Endboss extends Enemy {
          * @type {number}
          */
         this.y = 50;    
+
+        this.moveLeft();
     }
 
     /**
@@ -107,7 +109,10 @@ class Endboss extends Enemy {
      */
     moveLeft() {
         setInterval(() => {
-            this.x -= this.speed;
+            if (this.firstAnimationPlayed){
+                console.log('endboss bewegt sich zu dir!!!!!');
+                this.x -= this.speed;
+            }
         }, 1000);
     }
 
