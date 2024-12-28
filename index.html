@@ -50,28 +50,31 @@
         <canvas id="canvas" class="canvas" width="720" height="480"></canvas>
         <div class="button-div-responsive">
             <div class="all-buttons mutebutton-responsive">
-                <div>
+                <div class="button-control-div">
                     <img id="left" class="button-control" src="img/7.Myown/left.png" alt="left">
                     <img id="right" class="button-control" src="img/7.Myown/right.png" alt="right">
                 </div>
 
-                <div>
+                <div class="button-control-div">
                     <img id="throw" class="button-control" src="img/7.Myown/Bubble.png" alt="bubble">
+                    <img id="finsalp" class="button-control"
+                        src="img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png" alt="finslapbubble">
                 </div>
 
-                <div>
+                <div class="button-control-div">
                     <img id="up" class="button-control" src="img/7.Myown/up.png" alt="up">
                     <img id="down" class="button-control" src="img/7.Myown/down.png" alt="down">
                 </div>
 
-                <div>
-                    <img onclick="toggleMute()" class="button-control" src="img/7.Myown/mute.png" alt="mutesound">
+                <div class="button-control-div">
+                    <img onclick="toggleMute()" class="button-control" src="img/7.Myown/volume.png" alt="mutesound"
+                        id="mutebutton">
                 </div>
-              
+
             </div>
 
             <div class="mutebutton mutebutton-desktop">
-                <img onclick="toggleMute()" id="throw" class="button-control" src="img/7.Myown/mute.png"
+                <img onclick="toggleMute()" id="mutebutton-d" class="button-control" src="img/7.Myown/volume.png"
                     alt="mutesound">
             </div>
         </div>
@@ -177,28 +180,31 @@
 
 
     <div class="endscreen-container dnone userStory" id="userStory">
-        <div>
-            <a c class="backStartscreen" href="./index.html">
+        <div class="backStartscreen-userStory" >
+            <a class="backStartscreen" href="./index.html">
                 <h3> Back to main</h3>
             </a>
         </div>
 
-        <div class="content-container">
-            <div class="control">
-                <img src="img/7.Myown/left.png" alt="left">
-                <span>Mit "left" oder Bild links am Keyboard bewegen Sie den Charakter nach links</span>
+        <div class="content-container-userStory ">
+            <h1 class="h1-userStory">User Story</h1>
+
+            <div class="one-story-explanation ">
+                <img src="img/7.Myown/keyboard.jpg" alt="keyboard">
+                <span>Mit den Pfeiltasten kann der Sharky bewegt werden</span>
             </div>
 
-            <div class="control">
-                <img  src="img/7.Myown/keyboard.jpg" alt="right">
-                <span>Mit "right" oder Bild rechts am Keyboard bewegen Sie den Charakter nach rechts</span>
+            <div class="one-story-explanation ">
+                <img src="img/7.Myown/Bubble.png" alt="bubble">
+                <span>Die Bubble/Taste D zum Gift Schießen an den Endboss</span>
             </div>
 
-            <div class="control">
-                <img src="img/7.Myown/down.png" alt="down">
-                <span>Mit "down" oder Bild runter am Keyboard bewegen Sie den Charakter nach unten</span>
+            <div class="one-story-explanation ">
+                <img src="img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png" alt="bubble">
+                <span>Die kleine Bubble/Space Taste zum Töten der kleinen Gegner</span>
             </div>
-    </div>
+
+        </div>
 
 </body>
 

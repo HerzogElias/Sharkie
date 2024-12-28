@@ -49,7 +49,7 @@ function showImpressum() {
 }
 
 
-function showUserStory(){
+function showUserStory() {
     document.getElementById('userStory').classList.remove('dnone');
     document.getElementById('canvas-container').classList.add('dnone');
     document.getElementById('startscreen').classList.add('dnone');
@@ -149,6 +149,17 @@ function setupTouchControls() {
         e.preventDefault();
         keyboard.D = false;
     });
+
+    // Finslap
+    document.getElementById('finsalp').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+    document.getElementById('finsalp').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    });
+
 }
 
 /**
@@ -183,7 +194,7 @@ function stopGame() {
  * Starts a new game by reinitializing the game state.
  */
 function newGame() {
-    Level1=newLevel();
+    Level1 = newLevel();
     init();
 }
 
@@ -193,5 +204,13 @@ function newGame() {
 function toggleMute() {
     soundOn = !soundOn;
     allsoundsOff(soundOn);
+
+    if (soundOn){
+        document.getElementById('mutebutton').src = "img/7.Myown/volume-mute.png";
+        document.getElementById('mutebutton-d').src="img/7.Myown/volume-mute.png";
+    } else {
+        document.getElementById('mutebutton').src= "img/7.Myown/volume.png";
+        document.getElementById('mutebutton-d').src="img/7.Myown/volume.png";
+    }
 }
 

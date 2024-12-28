@@ -8,16 +8,8 @@
  * @extends StatusBar
  */
 class GiftStatusbar extends StatusBar {
-    /**
-     * The percentage value indicating the current fill level of the status bar.
-     * Default is 0%.
-     */
     percentage = 0;
 
-    /**
-     * An array of image paths representing the different states of the status bar,
-     * ranging from empty (0%) to full (100%).
-     */
     IMAGES_STATUSBAR = [
         'img/4. Marcadores/green/poisoned bubbles/0.png',
         'img/4. Marcadores/green/poisoned bubbles/20.png',
@@ -35,12 +27,12 @@ class GiftStatusbar extends StatusBar {
      */
     constructor() {
         super();
-        this.x = 20; // The x-coordinate position of the status bar.
-        this.y = 40; // The y-coordinate position of the status bar.
-        this.width = 200; // The width of the status bar.
-        this.height = 60; // The height of the status bar.
-        this.loadImages(this.IMAGES_STATUSBAR); // Preloads all status bar images.
-        this.setPercentage(this.percentage); // Sets the initial percentage (default is 0%).
+        this.x = 20; 
+        this.y = 40; 
+        this.width = 200; 
+        this.height = 60; 
+        this.loadImages(this.IMAGES_STATUSBAR); 
+        this.setPercentage(this.percentage); 
     }
 }
 

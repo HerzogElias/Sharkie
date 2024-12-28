@@ -3,10 +3,6 @@
  * @extends {Enemy}
  */
 class Pufferfish extends Enemy {
-    /**
-     * Array of image paths for the Pufferfish enemy in various animation states (swimming).
-     * @type {string[]}
-     */
     IMAGES_ENEMY = [
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim1.png',
         'img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/3.swim2.png',
@@ -24,21 +20,11 @@ class Pufferfish extends Enemy {
      */
     constructor(world) {
         super();
-        // Load the super image for the Pufferfish
         this.loadImage('img/2.Enemy/1.Puffer fish (3 color options)/4.DIE/3.png');
-
         this.world=world;
-        
-        // Set a random position on the screen
         this.setRandomPosition(1800, 250);
-        
-        // Load the images for the swimming animation of the Pufferfish
         this.loadImages(this.IMAGES_ENEMY);
-        
-        // Start the animation with a 1-second interval between frames
         this.startAnimation(this.IMAGES_ENEMY, 1000);
-        
-        // Move the Pufferfish to the left
         this.moveLeft();
     }
 }

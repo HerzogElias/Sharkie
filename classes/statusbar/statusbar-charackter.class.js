@@ -3,16 +3,8 @@
  * @extends StatusBar
  */
 class StatusbarCarackter extends StatusBar {
-    /**
-     * Current percentage of the character's life displayed on the status bar.
-     * @type {number}
-     */
     percentage = 100;
-
-    /**
-     * Array of image paths for different life states of the status bar.
-     * @type {string[]}
-     */
+    
     IMAGES_STATUSBAR = [
         'img/4. Marcadores/Purple/life0.png',
         'img/4. Marcadores/Purple/life20.png',

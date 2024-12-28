@@ -1,7 +1,8 @@
+/**
+ * Represents the statusbar all general information.
+ * @extends DrawableObject
+ */
 class StatusBar extends DrawableObject {
-    /**
-     * percentage - how much percentage have the statusbar in the beginning? 
-     */
     percentage = 100;
 
     /**
@@ -13,7 +14,6 @@ class StatusBar extends DrawableObject {
         let path = this.IMAGES_STATUSBAR[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
-
 
     /**
      * 

@@ -38,8 +38,6 @@ class World {
         this.setSoundVolume();
     }
 
-   
-
     /**
      * Sets the game world context for the character.
      */
@@ -60,8 +58,12 @@ class World {
         requestAnimationFrame(() => this.draw());
     }
 
-    checckEndbossStart(){
-        if(this.charackter.x >1500 && !this.level.Endboss[0].isAnimated) {
+    /**
+       * Checks if the Endboss animation should start when the character is near.
+       * If the character's x-coordinate exceeds a threshold, the Endboss starts animating.
+    */
+    checckEndbossStart() {
+        if (this.charackter.x > 1500 && !this.level.Endboss[0].isAnimated) {
             this.level.Endboss[0].animate();
         }
     }
@@ -131,7 +133,6 @@ class World {
             this.flipImage(mo);
         }
 
-
         mo.draw(this.ctx); // Zeichne das Objekt
         /*
         mo.drawFrame(this.ctx); // Zeichne den blauen Rahmen
@@ -184,9 +185,9 @@ class World {
     }
 
 
-    setSoundVolume(){
+    setSoundVolume() {
         this.backgroundSound.volume = 1.0;
-        this.charackterHurtSound.volume = 0.9; 
+        this.charackterHurtSound.volume = 0.9;
         this.collectiingCoinAndGiftSound.volume = 0.8;
         this.endbossHurtSound.volume = 0.7;
         this.charackterSwimmingSound.volume = 0.7;
@@ -195,7 +196,7 @@ class World {
         this.charackterLostSound.volume = 0.3;
     }
 
-    
+
     /**
      * Periodically checks if throwable objects should be created.
      */
@@ -263,8 +264,12 @@ class World {
     checkCollisionWithPufferfish() {
         this.level.pufferfish.forEach((pufferfish, index) => {
             if (this.charackter.isColiding(pufferfish)) {
-                this.charackter.hit(100);
-                this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                if (this.charackter.healCharacter) {
+                    this.level.pufferfish.splice(index, 1); // Pufferfish entfernen
+                } else if (!this.charackter.isHurt()) {
+                    this.charackter.hit(200); // Schaden zufügen
+                    this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                }
             }
         });
     }
@@ -276,11 +281,16 @@ class World {
     checkCollisionWithJellyfish() {
         this.level.jellyFish.forEach((jellyFish, index) => {
             if (this.charackter.isColiding(jellyFish)) {
-                this.charackter.hit(100);
-                this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                if (this.charackter.healCharacter) {
+                    this.level.jellyFish.splice(index, 1); 
+                } else if (!this.charackter.isHurt()) {
+                    this.charackter.hit(300);
+                    this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
+                }
             }
         });
     }
+
 
     /**
      * Checks for collisions between the character and coins.
@@ -325,8 +335,8 @@ class World {
      */
     checkCollisionWithEndboss() {
         this.level.Endboss.forEach((endboss) => {
-            if (this.charackter.isColiding(endboss)) {
-                this.charackter.hit(600);
+            if (this.charackter.isColiding(endboss) && !this.charackter.isHurt()) {
+                this.charackter.hit(500);
                 this.statusBar.setPercentage(this.charackter.energy * 100 / 3000);
             }
         });
@@ -341,17 +351,17 @@ class World {
         this.throwableObject.forEach((bubble, bubbleIndex) => {
             this.level.Endboss.forEach((endboss) => {
                 if (bubble.isColiding(endboss) && !endbossCooldown) {
-                    endboss.hit(600);
+                    endboss.hit(400);
                     this.statusBarEndboss.setPercentage(endboss.energy * 100 / 4000);
                     this.throwableObject.splice(bubbleIndex, 1);
                     endbossCooldown = true;
-                    this.charackter.idleCounter=0;
+                    this.charackter.idleCounter = 0;
                     // Cooldown to prevent rapid hits
                     setTimeout(() => {
                         endbossCooldown = false;
                     }, 850);
 
-                   
+
                 }
             });
         });

@@ -1,11 +1,19 @@
+/**
+ * Represents an enemy in the game, extending the functionality of the `MovableObject` class.
+ * Handles properties, random positioning, animations, and movement logic for enemies.
+ * 
+ * @extends MovableObject
+ */
 class Enemy extends MovableObject {
-    width = 60; // Default-Werte
+    width = 60;
     height = 60;
     speed = 0.15 + Math.random() * 0.35;
 
-
     /**
-     * Setzt die Position des Enemys zufällig.
+     * Sets a random position for the enemy within specified ranges.
+     * 
+     * @param {number} [xRange=1000] - The range of the x-coordinate.
+     * @param {number} [yRange=250] - The range of the y-coordinate.
      */
     setRandomPosition(xRange = 1000, yRange = 250) {
         this.x = 200 + Math.random() * xRange;
@@ -13,9 +21,10 @@ class Enemy extends MovableObject {
     }
 
     /**
-     * Startet die Animation mit einem angegebenen Bilderset.
-     * @param {string[]} imageArray - Array der Bilder für die Animation.
-     * @param {number} interval - Intervallzeit in Millisekunden.
+     * Starts an animation for the enemy using the specified image set.
+     * 
+     * @param {string[]} imageArray - Array of image paths for the animation.
+     * @param {number} [interval=1000] - The interval time in milliseconds between frame changes.
      */
     startAnimation(imageArray, interval = 1000) {
         setInterval(() => {
@@ -24,7 +33,7 @@ class Enemy extends MovableObject {
     }
 
     /**
-     * Bewegt den Gegner nach links.
+     * Moves the enemy to the left continuously.
      */
     moveLeft() {
         setInterval(() => {

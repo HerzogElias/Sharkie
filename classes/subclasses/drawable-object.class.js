@@ -4,46 +4,12 @@
  * and drawing a border around the object for debugging or visual aid.
  */
 class DrawableObject {
-    /**
-     * The image to be drawn for this object.
-     * @type {HTMLImageElement}
-     */
     img;
-
-    /**
-     * A cache of loaded images, where the key is the image path and the value is the image element.
-     * @type {Object.<string, HTMLImageElement>}
-     */
     imageCache = {};
-
-    /**
-     * The current image index for animations or cycling images.
-     * @type {number}
-     */
     currentImage = 0;
-
-    /**
-     * The X-coordinate of the object on the canvas.
-     * @type {number}
-     */
     x = 50;
-
-    /**
-     * The Y-coordinate of the object on the canvas.
-     * @type {number}
-     */
     y = 250;
-
-    /**
-     * The height of the object.
-     * @type {number}
-     */
     height = 150;
-
-    /**
-     * The width of the object.
-     * @type {number}
-     */
     width = 100;
 
     /**
@@ -89,6 +55,4 @@ class DrawableObject {
             ctx.stroke();   
         }
     }*/
-
-
 }

@@ -4,40 +4,11 @@
  * the object with simulated gravity and horizontal movement.
  */
 class ThrowableObject extends MovableObject {
-    /**
-     * Width of the throwable object in pixels.
-     * @type {number}
-     */
     width = 30;
-
-    /**
-     * Height of the throwable object in pixels.
-     * @type {number}
-     */
     height = 30;
-
-    /**
-     * Initial speed of the object in the Y direction when thrown.
-     * @type {number}
-     */
     bubbleSpeedY = 15;
-
-    /**
-     * Gravitational force applied to the object.
-     * @type {number}
-     */
     gravity = 0.5;
-
-    /**
-     * Current speed of the object in the Y direction.
-     * @type {number}
-     */
     SpeedY = 0;
-
-    /**
-     * Acceleration of the object.
-     * @type {number}
-     */
     acceleration = 2;
 
     /**

@@ -9,20 +9,8 @@
  * @extends StatusBar
  */
 class EndbossStatusbar extends StatusBar {
-    /**
-     * The percentage of the final boss's health, displayed on the status bar.
-     * The default value is 100, which means the final boss is at full health.
-     * 
-     * @type {number}
-     */
     percentage = 100;
 
-    /**
-     * An array of image paths representing the different stages of the status bar.
-     * These images are selected based on the `percentage` value.
-     * 
-     * @type {string[]}
-     */
     IMAGES_STATUSBAR = [
         'img/7.Myown/statusbar/0.png',
         'img/7.Myown/statusbar/20.png',
@@ -40,19 +28,18 @@ class EndbossStatusbar extends StatusBar {
      */
     constructor() {
         super();
-        this.x = 400;  // X position of the status bar
-        this.y = 5;    // Y position of the status bar
-        this.width = 200;  // Width of the status bar
-        this.height = 60;  // Height of the status bar
-        this.loadImages(this.IMAGES_STATUSBAR);  // Loads the images for the status bar
-        this.setPercentage(this.percentage);  // Sets the initial percentage for the status bar
+        this.x = 400;  
+        this.y = 5;    
+        this.width = 200;
+        this.height = 60;
+        this.loadImages(this.IMAGES_STATUSBAR);  
+        this.setPercentage(this.percentage);  
     }
 
     /**
      * Displays the "Winner" screen when the final boss is defeated.
      * This hides the canvas and start screens and shows the "You Won" screen.
      * 
-     * @method
      */
     showWinnerScreen() {
         document.getElementById('canvas-container').classList.add('dnone');

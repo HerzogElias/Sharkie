@@ -4,35 +4,10 @@
  * for movement, collision detection, and handling energy and damage.
  */
 class MovableObject extends DrawableObject {
-    /**
-     * The speed at which the object moves.
-     * @type {number}
-     */
     speed = 0.1;
-
-    /**
-     * A boolean that determines the direction of movement. 
-     * `false` represents normal direction, `true` represents the opposite direction.
-     * @type {boolean}
-     */
     otherDirection = false;
-
-    /**
-     * The energy level of the object. When energy reaches 0, the object is considered "dead."
-     * @type {number}
-     */
     energy = 3000;
-
-    /**
-     * The timestamp of the last time the object was hit.
-     * @type {number}
-     */
     lastHit = 0;
-
-    /**
-     * The offset values used for collision detection.
-     * @type {{top: number, bottom: number, left: number, right: number}}
-     */
     offset = {
         top: 20,
         bottom: 5,
@@ -55,11 +30,11 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Reduces the object's energy by 500. If the energy goes below 0, it is set to 0.
+     * Reduces the object's energy by x. If the energy goes below 0, it is set to 0.
      * Updates the timestamp of the last hit.
      */
-    hit() {
-        this.energy -= 200;
+    hit(x) {
+        this.energy -= x;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -69,14 +44,14 @@ class MovableObject extends DrawableObject {
 
     /**
      * Checks if the object is currently hurt.
-     * The object is considered hurt if less than 2 seconds have passed since the last hit.
+     * The object is considered hurt if less than 1 seconds have passed since the last hit.
      * 
      * @returns {boolean} `true` if the object is hurt, `false` otherwise.
      */
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000; // Convert to seconds
-        return timePassed < 2;
+        return timePassed < 1;
     }
 
     /**

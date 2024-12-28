@@ -5,43 +5,12 @@
  * @extends MovableObject
  */
 class Charackter extends MovableObject {
-    /**
-     * @property {number} height - The height of the character in pixels.
-     * @default 100
-     */
     height = 100;
-
-    /**
-     * @property {number} width - The width of the character in pixels.
-     * @default 200
-     */
     width = 200;
-
-    /**
-     * @property {number} speed - The speed at which the character moves.
-     * @default 10
-     */
     speed = 10;
-
-    /**
-     * @property {object} world - Reference to the game world.
-     */
     world;
-
-    /**
-     * @property {number} idleCounter - Counter to track idle time for triggering animations.
-     * @default 0
-     */
     idleCounter = 0;
-    // x;
 
-    /**
-     * @property {object} offset - Defines the hitbox offset for the character.
-     * @property {number} offset.top - Top offset in pixels.
-     * @property {number} offset.bottom - Bottom offset in pixels.
-     * @property {number} offset.left - Left offset in pixels.
-     * @property {number} offset.right - Right offset in pixels.
-     */
     offset = {
         top: 60,
         bottom: 10,
@@ -49,9 +18,6 @@ class Charackter extends MovableObject {
         right: 25
     };
 
-    /**
-     * @property {string[]} IMAGES_WALKING - Paths to images used for the walking animation.
-     */
     IMAGES_WALKING = [
         'img/1.Sharkie/3.Swim/1.png',
         'img/1.Sharkie/3.Swim/2.png',
@@ -61,9 +27,6 @@ class Charackter extends MovableObject {
         'img/1.Sharkie/3.Swim/6.png'
     ];
 
-    /**
-     * @property {string[]} IMAGES_DEAD - Paths to images used for the dead animation.
-     */
     IMAGES_DEAD = [
         'img/1.Sharkie/6.dead/1.Poisoned/1.png',
         'img/1.Sharkie/6.dead/1.Poisoned/2.png',
@@ -79,9 +42,6 @@ class Charackter extends MovableObject {
         'img/1.Sharkie/6.dead/1.Poisoned/12.png'
     ];
 
-    /**
-     * @property {string[]} IMAGES_HURT - Paths to images used for the hurt animation.
-     */
     IMAGES_HURT = [
         'img/1.Sharkie/5.Hurt/1.Poisoned/1.png',
         'img/1.Sharkie/5.Hurt/1.Poisoned/2.png',
@@ -90,9 +50,6 @@ class Charackter extends MovableObject {
         'img/1.Sharkie/5.Hurt/1.Poisoned/5.png'
     ];
 
-    /**
-     * @property {string[]} IMAGES_THROW - Paths to images used for the throw animation.
-     */
     IMAGES_THROW = [
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png',
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png',
@@ -104,9 +61,6 @@ class Charackter extends MovableObject {
         'img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png'
     ];
 
-    /**
-     * @property {string[]} IMAGES_SLEEPING - Paths to images used for the sleeping animation.
-     */
     IMAGES_SLEEPING = [
         'img/1.Sharkie/2.Long_IDLE/I1.png',
         'img/1.Sharkie/2.Long_IDLE/I2.png',
@@ -124,9 +78,6 @@ class Charackter extends MovableObject {
         'img/1.Sharkie/2.Long_IDLE/I14.png'
     ];
 
-    /**
-     * @property {string[]} IMAGES_IDLE - Paths to images used for the idle animation.
-     */
     IMAGES_IDLE = [
         'img/1.Sharkie/1.IDLE/1.png',
         'img/1.Sharkie/1.IDLE/2.png',
@@ -148,21 +99,17 @@ class Charackter extends MovableObject {
         'img/1.Sharkie/1.IDLE/18.png'
     ];
 
-
-    IMAGES_FINSLAP =
-        [
-            'img/1.Sharkie/4.Attack/Fin slap/1.png',
-            'img/1.Sharkie/4.Attack/Fin slap/2.png',
-            'img/1.Sharkie/4.Attack/Fin slap/3.png',
-            'img/1.Sharkie/4.Attack/Fin slap/4.png',
-            'img/1.Sharkie/4.Attack/Fin slap/5.png',
-            'img/1.Sharkie/4.Attack/Fin slap/6.png',
-            'img/1.Sharkie/4.Attack/Fin slap/7.png',
-            'img/1.Sharkie/4.Attack/Fin slap/8.png'
-        ]
+    IMAGES_FINSLAP = [
+        'img/1.Sharkie/4.Attack/Fin slap/1.png',
+        'img/1.Sharkie/4.Attack/Fin slap/4.png',
+        'img/1.Sharkie/4.Attack/Fin slap/5.png',
+        'img/1.Sharkie/4.Attack/Fin slap/6.png',
+        'img/1.Sharkie/4.Attack/Fin slap/7.png',
+        'img/1.Sharkie/4.Attack/Fin slap/8.png'
+    ];
 
     healCharacter = false;
-    
+
     /**
      * Creates a new character instance.
      * 
@@ -226,6 +173,14 @@ class Charackter extends MovableObject {
             } else if (this.isHurt()) {
                 this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_HURT);
+            } else if (this.attackFinslap()) {
+                this.idleCounter = 0;
+                this.playAnimation(this.IMAGES_FINSLAP);  
+                this.healCharacter = true;
+
+                setTimeout(() => {
+                    this.healCharacter = false;
+                }, 300);
             } else if (this.isWalking()) {
                 this.idleCounter = 0;
                 this.playAnimation(this.IMAGES_WALKING);
@@ -247,4 +202,14 @@ class Charackter extends MovableObject {
         return this.world.keyboard.LEFT || this.world.keyboard.RIGHT ||
             this.world.keyboard.UP || this.world.keyboard.DOWN;
     }
+
+    /**
+     * Checks if the SPACE key is pressed to trigger the finslap attack.
+     * 
+     * @returns {boolean} - True if the SPACE key is pressed, false otherwise.
+     */
+    attackFinslap() {
+        return this.world.keyboard.SPACE;
+    }
 }
+

@@ -5,26 +5,10 @@
 class Endboss extends Enemy {
     firstAnimationPlayed = false;   
     isAnimated =false; 
-    i = 0; // Zähler für die Animation
-
-    /**
-     * Width of the Endboss in pixels.
-     * @type {number}
-     */
+    i = 0; 
     width = 350;
-
     world;
-
-    /**
-     * Height of the Endboss in pixels.
-     * @type {number}
-     */
     height = 350;
-
-    /**
-     * Offset values for the collision boundary of the Endboss.
-     * @type {{top: number, bottom: number, left: number, right: number}}
-     */
     offset = {
         top: 150,
         bottom: 20,
@@ -32,10 +16,6 @@ class Endboss extends Enemy {
         right: 20
     };
 
-    /**
-     * Array of image paths for the walking animation of the Endboss.
-     * @type {string[]}
-     */
     IMAGES_WALKING = [
         'img/2.Enemy/3 Final Enemy/2.floating/1.png',
         'img/2.Enemy/3 Final Enemy/2.floating/2.png',
@@ -52,10 +32,6 @@ class Endboss extends Enemy {
         'img/2.Enemy/3 Final Enemy/2.floating/13.png'
     ];
 
-    /**
-     * Array of image paths for the first animation when the Endboss is introduced.
-     * @type {string[]}
-     */
     IMAGES_FIRST_ANIMATION = [
         'img/2.Enemy/3 Final Enemy/1.Introduce/1.png',
         'img/2.Enemy/3 Final Enemy/1.Introduce/2.png',
@@ -78,29 +54,12 @@ class Endboss extends Enemy {
      */
     constructor() {
         super();
-        
         this.speed = 15;
-
-        
-        // Load the first image of the walking animation
         this.loadImage(this.IMAGES_FIRST_ANIMATION[0]);
-        
-        // Load the images for the walking and first animations
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_FIRST_ANIMATION);
-
-        /**
-         * X-coordinate position of the Endboss in the game world.
-         * @type {number}
-         */
         this.x = 2000; // Endboss has a fixed position
-
-        /**
-         * Y-coordinate position of the Endboss in the game world.
-         * @type {number}
-         */
         this.y = 50;    
-
         this.moveLeft();
     }
 
@@ -110,10 +69,9 @@ class Endboss extends Enemy {
     moveLeft() {
         setInterval(() => {
             if (this.firstAnimationPlayed){
-                console.log('endboss bewegt sich zu dir!!!!!');
                 this.x -= this.speed;
             }
-        }, 1000);
+        }, 400);
     }
 
     /**
